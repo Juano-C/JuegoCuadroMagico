@@ -1,0 +1,63 @@
+-----------------------------------------
+usuario windows:
+crear carpeta
+
+luego dentro de la carpeta hacer click derecho del mouse y poner 
+GIT BASH HERE
+
+dentro de consola, lo siguiente:
+
+git init
+
+git clone +link del repo
+
+git remote add origin +link del repo
+
+git branch -M main
+
+(de aca para arriba la primer configuracion)
+
+
+( comando viejo git branch --set-upstream-to=origin/main main )
+---------------------------------------
+(de aca para abajo siempre)
+
+ls -la //archivos en la carpeta
+
+cd +nombreDeCarpeta principal
+
+----------------------------------------------------------------------
+SECUENCIA DE TRABAJO
+----------------------------------------------------------------------
+
+1) bajarse los archivos del repositorio para ver si hay algo nuevo
+
+git pull
+
+2) poner refresh en el eclipse (f5) en el proyecto seleccionado
+
+3) luego de trabajar en eclipse y guardar, ejecutar las lineas de comando
+
+git status ////( lo que esta en rojo no esta agregado ni actualizado )
+
+git add . /////(agrega y actualiza)
+
+git commit -m "Texto de referencia" ////(Esto es como guardar por separado por ejemplo "METODO VOTO" y en otro "METODO AGREGAR")
+
+git push -uf origin main ////(Esto lo sube a la nube/repositorio)
+
+
+------------------------------------
+
+git add . //agrega archivos nuevos al git commit
+
+git commit -m "Initial commit" // guarda un estado del trabajo con comentarios
+
+git push -uf origin main // sube el archivo al GIT (Nube)
+
+git log // muestra los commits
+
+------------------------------------
+(caso merge)
+mensaje con cosito de la Ñ presionar Z mayuscula dos veces
+
