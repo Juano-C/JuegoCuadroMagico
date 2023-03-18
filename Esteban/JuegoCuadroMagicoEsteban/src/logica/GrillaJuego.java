@@ -103,6 +103,19 @@ public class GrillaJuego {
 		return false;
 	}
 	
+	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
+		/*
+		 * Si es verdadero va a recorrer la filas sino las columnas
+		 */
+		if(fila_columna) {
+			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
+			
+		}
+		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
+		
+		
+	}
+	
 	/*
 	 * Vaciamos una grilla para que el usuario intenete de vuelva jugar la grilla
 	 */
@@ -119,11 +132,7 @@ public class GrillaJuego {
 	public boolean estaBienMatriz() {
 		for(int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
 			// Comprobamos la suma de las filas
-			if(_resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario)) {
-				return false;
-			}
-			// Comprobamos la suma de las columnas
-			if(_resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario)) {
+			if( !(estaBienFilayColumna(true,indiceDiccionario)&&estaBienFilayColumna(false,indiceDiccionario))) {
 				return false;
 			}
 		}
@@ -247,12 +256,12 @@ public class GrillaJuego {
 		Random r = new Random(); return r.nextInt(max-min+1) + min;
 	}
 	
-	private int obtenerResultado(String fila_o_col, int i) {
+	private int obtenerResultado(String fila_o_col, int indice) {
 		if(fila_o_col.equals("f") || fila_o_col.equals("c")) {
-			if(i >= 0 && i < _tamanio) {
-				return _resultados.get(fila_o_col + i);
+			if(indice >= 0 && indice < _tamanio) {
+				return _resultados.get(fila_o_col + indice);
 			}else {
-				throw new IllegalArgumentException("El numero de fila o columan debe estar en el rango: " + i);
+				throw new IllegalArgumentException("El numero de fila o columan debe estar en el rango: " + indice);
 			}
 		}else {
 			throw new IllegalArgumentException("Debe introducir f - fila o ' - columna: " + fila_o_col);
