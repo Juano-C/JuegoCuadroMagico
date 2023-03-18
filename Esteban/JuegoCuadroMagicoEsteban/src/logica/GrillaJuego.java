@@ -103,6 +103,10 @@ public class GrillaJuego {
 		return false;
 	}
 	
+	/*
+	 * Se fija si esta bien la columna o fila dada
+	 */
+	
 	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
 		/*
 		 * Si es verdadero va a recorrer la filas sino las columnas
