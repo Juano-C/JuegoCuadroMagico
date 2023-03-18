@@ -237,7 +237,7 @@ public class GrillaJuego {
 		for(int fila = 0; fila < tamanio; fila++) {
 			for(int columna = 0; columna < tamanio; columna++) {
 				// Genero la grilla random
-				grilla[fila][columna] = rand(1,tamanio*2);
+				grilla[fila][columna] = numeroAleatorio(1,tamanio*2);
 				
 				// Sumando a cada fila
 				_resultadosSolucion.put("f" + fila, _resultadosSolucion.get("f"+fila) + grilla[fila][columna]);
@@ -251,9 +251,12 @@ public class GrillaJuego {
 		return grilla;
 	}
 	
-	
-	private static int rand(int min, int max) {
-		Random r = new Random(); return r.nextInt(max-min+1) + min;
+	/*
+	 * Generamos un numero aleatorio entre el min y max
+	 */
+	private static int numeroAleatorio(int min, int max) {
+		Random r = new Random(); 
+		return r.nextInt(max-min) + min;
 	}
 	
 	private int obtenerResultado(String fila_o_col, int indice) {
