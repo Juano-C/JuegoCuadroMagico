@@ -39,20 +39,20 @@ public class GrillaJuego {
 	/*
 	 * Agrega un numero en la posicion dada de la grilla
 	 */
-	private  void agregarNumero(int i, int j, int num) {
-		if(i < 0 || i >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + i);
+	private  void agregarNumero(int fila, int columna, int num) {
+		if(fila < 0 || fila >= _tamanio) {
+			throw new IllegalArgumentException("Fuera de rango: " + fila);
 		}
-		if(j < 0 || j >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + j);
+		if(columna < 0 || columna >= _tamanio) {
+			throw new IllegalArgumentException("Fuera de rango: " + columna);
 		}
 		if(num <= 0) {
 			throw new IllegalArgumentException("El numero debe ser un entero positivo: " + num); 
 		}
 		
-		_grilla[i][j] = num;
-		_resultados.put( "f" + i   , _resultados.get("f" + i)  +  num );
-		_resultados.put( "c" + j   , _resultados.get("c" + j)  +  num );
+		_grilla[fila][columna] = num;
+		_resultados.put( "f" + fila   , _resultados.get("f" + fila)  +  num );
+		_resultados.put( "c" + columna   , _resultados.get("c" + columna)  +  num );
 	}
 	
 	/*
@@ -62,28 +62,28 @@ public class GrillaJuego {
 	// Podria llamarse borrarNumero - eliminarPoscion 
 	// sacar se podria referir a obtener 
 	
-	private void sacarNumero(int i, int j) {
-		if(i < 0 || i >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + i);
+	private void sacarNumero(int fila, int columna) {
+		if(fila < 0 || fila >= _tamanio) {
+			throw new IllegalArgumentException("Fuera de rango: " + fila);
 		}
-		if(j < 0 || j >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + j);
+		if(columna < 0 || columna >= _tamanio) {
+			throw new IllegalArgumentException("Fuera de rango: " + columna);
 		}
 		
-		_resultados.put( "f" + i   , _resultados.get("f" + i)  -  _grilla[i][j] );
-		_resultados.put( "f" + j   , _resultados.get("f" + j)  -  _grilla[i][j] );
-		_grilla[i][j] = 0;
+		_resultados.put( "f" + fila   , _resultados.get("f" + fila)  -  _grilla[fila][columna] );
+		_resultados.put( "f" + columna   , _resultados.get("f" + columna)  -  _grilla[fila][columna] );
+		_grilla[fila][columna] = 0;
 		
 	}
 	/*
 	 * Modifica el valor de una celda en la grilla
 	 */
-	public void modificar(int i, int j, int num) {
-		if(i < 0 || i >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + i);
+	public void modificar(int fila, int columna, int num) {
+		if(fila < 0 || fila >= _tamanio) {
+			throw new IllegalArgumentException("Fuera de rango: " + fila);
 		}
-		if(j < 0 || j >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + j);
+		if(columna < 0 || columna >= _tamanio) {
+			throw new IllegalArgumentException("Fuera de rango: " + columna);
 		}
 		/*
 		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
@@ -92,8 +92,8 @@ public class GrillaJuego {
 			throw new IllegalArgumentException("El numero debe ser un entero positivo: " + num); 
 		}
 		
-		sacarNumero(i, j);
-		agregarNumero(i, j, num);
+		sacarNumero(fila, columna);
+		agregarNumero(fila, columna, num);
 	}
 	/*
 	 * Tendriamos que ver esta funcion, ver si lo que retornar es si la columna o la fila esta completo o si nos dice si esta bien esta fila o columna
@@ -117,13 +117,13 @@ public class GrillaJuego {
 	 * Verificamos que la matriz esta bien resuleta, esto podemos ver de cambiar la firma del metodo
 	 */
 	public boolean estaCompletaMatriz() {
-		for(int i = 0; i < _tamanio; i++) {
+		for(int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
 			// Comprobamos la suma de las filas
-			if(_resultados.get("f" + i) == _resultadosSolucion.get("f" + i)) {
+			if(_resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario)) {
 				return false;
 			}
 			// Comprobamos la suma de las columnas
-			if(_resultados.get("c" + i) == _resultadosSolucion.get("c" + i)) {
+			if(_resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario)) {
 				return false;
 			}
 		}
@@ -135,30 +135,30 @@ public class GrillaJuego {
 	
 	public void imprimir() {
 		
-		for(int i = 0; i < _tamanio; i++) {
-			for(int j = 0; j < _tamanio; j++) {
-				if(_grilla[i][j] > 0) {
-					if(_grilla[i][j] > 9) {
-						System.out.print(" " +  _grilla[i][j]);
+		for(int fila = 0; fila < _tamanio; fila++) {
+			for(int columna = 0; columna < _tamanio; columna++) {
+				if(_grilla[fila][columna] > 0) {
+					if(_grilla[fila][columna] > 9) {
+						System.out.print(" " +  _grilla[fila][columna]);
 					}else {
-						System.out.print("  " +  _grilla[i][j]);
+						System.out.print("  " +  _grilla[fila][columna]);
 					}
 				}else {
 					System.out.print("  " + " ");
 				}
 			}
-			if(_resultadosSolucion.get("f" + i) > 9) {
-				System.out.println(" " +  _resultadosSolucion.get("f" + i));
+			if(_resultadosSolucion.get("f" + fila) > 9) {
+				System.out.println(" " +  _resultadosSolucion.get("f" + fila));
 			}else {
-				System.out.println("  " +  _resultadosSolucion.get("f" + i));
+				System.out.println("  " +  _resultadosSolucion.get("f" + fila));
 			}
 		}
 		
-		for(int j = 0; j < _tamanio ; j++) {
-			if(_resultadosSolucion.get("c" + j) > 9) {
-				System.out.print(" " +  _resultadosSolucion.get("c" + j));
+		for(int columna = 0; columna < _tamanio ; columna++) {
+			if(_resultadosSolucion.get("c" + columna) > 9) {
+				System.out.print(" " +  _resultadosSolucion.get("c" + columna));
 			}else {
-				System.out.print("  " +  _resultadosSolucion.get("c" + j));
+				System.out.print("  " +  _resultadosSolucion.get("c" + columna));
 			}
 		}
 		System.out.println("");
@@ -168,30 +168,30 @@ public class GrillaJuego {
 	 * Imprime grilla solucion
 	 */
 	public void imprimirGrillaSolucion() {
-		for(int i = 0; i < _tamanio; i++) {
-			for(int j = 0; j < _tamanio; j++) {
-				if(_grillaSol[i][j] > 0) {
-					if(_grillaSol[i][j] > 9) {
-						System.out.print(" " +  _grillaSol[i][j]);
+		for(int fila = 0; fila < _tamanio; fila++) {
+			for(int columna = 0; columna < _tamanio; columna++) {
+				if(_grillaSol[fila][columna] > 0) {
+					if(_grillaSol[fila][columna] > 9) {
+						System.out.print(" " +  _grillaSol[fila][columna]);
 					}else {
-						System.out.print("  " +  _grillaSol[i][j]);
+						System.out.print("  " +  _grillaSol[fila][columna]);
 					}
 				}else {
 					System.out.print("  " + " ");
 				}
 			}
-			if(_resultadosSolucion.get("f" + i) > 9) {
-				System.out.println(" " +  _resultadosSolucion.get("f" + i));
+			if(_resultadosSolucion.get("f" + fila) > 9) {
+				System.out.println(" " +  _resultadosSolucion.get("f" + fila));
 			}else {
-				System.out.println("  " +  _resultadosSolucion.get("f" + i));
+				System.out.println("  " +  _resultadosSolucion.get("f" + fila));
 			}
 		}
 		
-		for(int j = 0; j < _tamanio ; j++) {
-			if(_resultadosSolucion.get("c" + j) > 9) {
-				System.out.print(" " +  _resultadosSolucion.get("c" + j));
+		for(int columna = 0; columna < _tamanio ; columna++) {
+			if(_resultadosSolucion.get("c" + columna) > 9) {
+				System.out.print(" " +  _resultadosSolucion.get("c" + columna));
 			}else {
-				System.out.print("  " +  _resultadosSolucion.get("c" + j));
+				System.out.print("  " +  _resultadosSolucion.get("c" + columna));
 			}
 		}
 		System.out.println("");
@@ -206,9 +206,9 @@ public class GrillaJuego {
 	 * Este metodo seria mejor que lo hagamos que generar grilla vacia y por separado la del resultado
 	 */
 	private int[][] generarGrilla(int tamanio) {
-		for(int i=0; i < _tamanio; i++) {
-			_resultados.put("f" + i, 0);
-			_resultados.put("c" + i, 0);
+		for(int indiceDiccionario=0; indiceDiccionario < _tamanio; indiceDiccionario++) {
+			_resultados.put("f" + indiceDiccionario, 0);
+			_resultados.put("c" + indiceDiccionario, 0);
 		}
 		return new int[tamanio][tamanio];
 	}
@@ -217,24 +217,24 @@ public class GrillaJuego {
 	private int[][] generarGrillaSolucion(int tamanio) {
 		int[][] grilla = new int[tamanio][tamanio];
 		
-		for(int i = 0; i < tamanio ; i++) {
-			_resultadosSolucion.put("f" + i, 0);
-			_resultadosSolucion.put("c" + i, 0);
+		for(int indiceDiccionario = 0; indiceDiccionario < tamanio ; indiceDiccionario++) {
+			_resultadosSolucion.put("f" + indiceDiccionario, 0);
+			_resultadosSolucion.put("c" + indiceDiccionario, 0);
 		}
 		/*
 		 * Creo que aca hay un error en el diccionario en los indices en la parte de las columnas, tendria que ir j no i creo.
 		 */
 		
-		for(int i = 0; i < tamanio; i++) {
-			for(int j = 0; j < tamanio; j++) {
+		for(int fila = 0; fila < tamanio; fila++) {
+			for(int columna = 0; columna < tamanio; columna++) {
 				// Genero la grilla random
-				grilla[i][j] = rand(1,tamanio*2);
+				grilla[fila][columna] = rand(1,tamanio*2);
 				
 				// Sumando a cada fila
-				_resultadosSolucion.put("f" + i, _resultadosSolucion.get("f"+i) + grilla[i][j]);
+				_resultadosSolucion.put("f" + fila, _resultadosSolucion.get("f"+fila) + grilla[fila][columna]);
 				
 				// Sumando a cada columna
-				_resultadosSolucion.put("c" + i, _resultadosSolucion.get("c"+i) + grilla[i][j]);
+				_resultadosSolucion.put("c" + fila, _resultadosSolucion.get("c"+fila) + grilla[fila][columna]);
 				
 			}
 		
