@@ -49,7 +49,7 @@ public class Juego {
 //			_grilla.imprimirGrillaSolucion();
 
 			
-			System.out.println("Coloque 1 si desea dejar de jugar: ");
+			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");
 			_estaJugando = ingreso.nextLine() == "";
 		}
 	}
