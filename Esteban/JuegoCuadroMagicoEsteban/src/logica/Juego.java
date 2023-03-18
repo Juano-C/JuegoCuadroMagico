@@ -57,7 +57,7 @@ public class Juego {
 	}
 	
 	public boolean gano() { 
-		return _grilla.estaCompletaMatriz();
+		return _grilla.estaBienMatriz();
 	}
 	/* 
 	 * Hay que agregar este metodo

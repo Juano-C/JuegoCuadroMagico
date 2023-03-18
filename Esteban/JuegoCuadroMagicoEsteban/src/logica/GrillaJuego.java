@@ -116,7 +116,7 @@ public class GrillaJuego {
 	/*
 	 * Verificamos que la matriz esta bien resuleta, esto podemos ver de cambiar la firma del metodo
 	 */
-	public boolean estaCompletaMatriz() {
+	public boolean estaBienMatriz() {
 		for(int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
 			// Comprobamos la suma de las filas
 			if(_resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario)) {
