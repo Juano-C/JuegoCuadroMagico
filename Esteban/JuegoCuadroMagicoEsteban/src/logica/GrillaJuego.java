@@ -243,7 +243,7 @@ public class GrillaJuego {
 				_resultadosSolucion.put("f" + fila, _resultadosSolucion.get("f"+fila) + grilla[fila][columna]);
 				
 				// Sumando a cada columna
-				_resultadosSolucion.put("c" + fila, _resultadosSolucion.get("c"+fila) + grilla[fila][columna]);
+				_resultadosSolucion.put("c" + fila, _resultadosSolucion.get("c"+columna) + grilla[fila][columna]);
 				
 			}
 		
