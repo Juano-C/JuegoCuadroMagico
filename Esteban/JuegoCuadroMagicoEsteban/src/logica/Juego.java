@@ -6,11 +6,11 @@ public class Juego {
 
 	GrillaJuego _grilla;
 	Boolean _estaJugando;
-	Scanner ingreso = new Scanner(System.in);
-	String tmp;
-	int fila;
-	int columna;
-	int num;
+	Scanner ingresoUsuario = new Scanner(System.in);
+	String entradaSistema;
+	int filaSeleccionada;
+	int columnaSeleccionada;
+	int numeroSeleccionado;
 	
 	public Juego(int tamanioDeGrilla) {
 		_grilla = new GrillaJuego(tamanioDeGrilla);
@@ -29,9 +29,9 @@ public class Juego {
 //			Estaba viendo como se generaban los numeros
 //			_grilla.imprimirGrillaSolucion();
 			
-			ingresarNumero();
+			ingresar();
 
-			modificar(fila, columna, num);
+			modificar(filaSeleccionada, columnaSeleccionada, numeroSeleccionado);
 			/* 
 			 * Esto para que sirve 
 			 */
@@ -48,7 +48,7 @@ public class Juego {
 
 			
 			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");
-			_estaJugando = ingreso.nextLine() == "";
+			_estaJugando = ingresoUsuario.nextLine() == "";
 		}
 	}
 	
@@ -68,31 +68,37 @@ public class Juego {
 	/*
 	 * Aca hacemos para que el usuario 
 	 */
-	private boolean ingresarNumero() {
+	private boolean ingresar() {
 		
-		fila=ingresarFila();
-		columna=ingresarColumna();
-		
-		fila = Integer.valueOf(tmp.toLowerCase().charAt(0)+"");	
-		columna = Integer.valueOf(tmp.toLowerCase().charAt(1)+"");
-		System.out.println("Ingrese el numero: ");
-		num = Integer.valueOf(ingreso.nextLine());
+		filaSeleccionada=ingresarFila()-1;
+		columnaSeleccionada=ingresarColumna()-1;
+		numeroSeleccionado=ingresarNumero();
+
 		return true;
 		
 	}
 
+	private int ingresarNumero() {
+		System.out.println("Ingrese la numero(1,9)");
+		entradaSistema=ingresoUsuario.nextLine();
+		this.verificacionDeDatos(Integer.parseInt(entradaSistema.toLowerCase()));
+		return Integer.parseInt(entradaSistema.toLowerCase());
+	}
+
 	private int ingresarColumna() {
 		
-		System.out.println("Ingrese la columna(1,"+this._grilla.getTamanio());
-		this.verificacionDeDatos(Integer.parseInt(tmp.toLowerCase()));
-		return Integer.parseInt(tmp.toLowerCase());
+		System.out.println("Ingrese la columna(1,"+this._grilla.getTamanio()+")");
+		entradaSistema=ingresoUsuario.nextLine();
+		this.verificacionDeDatos(Integer.parseInt(entradaSistema.toLowerCase()));
+		return Integer.parseInt(entradaSistema.toLowerCase());
 		
 	}
 
 	private int ingresarFila() {
-		System.out.println("Ingrese la fila(1,"+this._grilla.getTamanio());
-		this.verificacionDeDatos(Integer.parseInt(tmp.toLowerCase()));
-		return Integer.parseInt(tmp.toLowerCase());
+		System.out.println("Ingrese la fila(1,"+this._grilla.getTamanio()+")");
+		entradaSistema=ingresoUsuario.nextLine();
+		this.verificacionDeDatos(Integer.parseInt(entradaSistema.toLowerCase()));
+		return Integer.parseInt(entradaSistema.toLowerCase());
 	}
 	
 }
