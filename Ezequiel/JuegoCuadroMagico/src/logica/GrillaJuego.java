@@ -95,11 +95,17 @@ public class GrillaJuego {
 		sacarNumero(i, j);
 		agregarNumero(i, j, num);
 	}
-	
+	/*
+	 * Tendriamos que ver esta funcion, ver si lo que retornar es si la columna o la fila esta completo o si nos dice si esta bien esta fila o columna
+	 */
 	// Falta implementar
 	private boolean estaCompletaFyC() {
 		return false;
 	}
+	
+	/*
+	 * Vaciamos una grilla para que el usuario intenete de vuelva jugar la grilla
+	 */
 	
 	public void vaciarMatriz() {
 		_grilla = new int[_tamanio][_tamanio];
