@@ -63,7 +63,9 @@ public class Juego {
 	public boolean gano() { 
 		return _grilla.estaCompletaMatriz();
 	}
-	
+	/* 
+	 * Hay que agregar este metodo
+	 */
 	public boolean verificacionDeDatos() {
 		return false;
 	}
