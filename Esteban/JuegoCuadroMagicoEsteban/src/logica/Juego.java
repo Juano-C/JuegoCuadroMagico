@@ -13,7 +13,7 @@ public class Juego {
 	int numeroSeleccionado;
 	
 	public Juego(int tamanioDeGrilla) {
-		_grilla = new GrillaJuego(tamanioDeGrilla);
+		_grilla = new GrillaJuego(tamanioDeGrilla,1,9);
 		_estaJugando = false;
 	}
 	

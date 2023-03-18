@@ -12,16 +12,18 @@ public class GrillaJuego {
 	 */
 	private int[][] _grilla;
 	private Map<String, Integer> _resultados;
-
+	
 	private int[][] _grillaSol;
 	private Map<String, Integer> _resultadosSolucion;
 	private int _tamanio;
 	
+	private int _minimoValorAceptable;
+	private int _maximoValorAceptable;
 	
 	/*
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
-	public GrillaJuego(int tamanio) {
+	public GrillaJuego(int tamanio,int minimoValor,int maximoValor) {
 		if(tamanio <= 0) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
 		}
@@ -32,8 +34,10 @@ public class GrillaJuego {
 		_resultados = new HashMap<String, Integer>();
 		_resultadosSolucion = new HashMap<String, Integer>();
 		_grilla = generarGrilla(tamanio);
-		_grillaSol = generarGrillaSolucion(tamanio);
-
+		_grillaSol = generarGrillaSolucion(tamanio,minimoValor,maximoValor);
+		
+		_minimoValorAceptable=minimoValor;
+		_maximoValorAceptable=maximoValor;
 	
 	}
 	/*
@@ -146,6 +150,9 @@ public class GrillaJuego {
 	 * Imprime la matriz del jugador, aca creo que estamos haciendo verificaciones hay que revisar
 	 */
 	
+	
+
+	
 	public void imprimir() {
 		
 		for(int fila = 0; fila < _tamanio; fila++) {
@@ -227,7 +234,7 @@ public class GrillaJuego {
 	}
 	
 	
-	private int[][] generarGrillaSolucion(int tamanio) {
+	private int[][] generarGrillaSolucion(int tamanio, int minimoValor, int maximoValor) {
 		int[][] grilla = new int[tamanio][tamanio];
 		
 		for(int indiceDiccionario = 0; indiceDiccionario < tamanio ; indiceDiccionario++) {
@@ -241,7 +248,7 @@ public class GrillaJuego {
 		for(int fila = 0; fila < tamanio; fila++) {
 			for(int columna = 0; columna < tamanio; columna++) {
 				// Genero la grilla random
-				grilla[fila][columna] = numeroAleatorio(1,tamanio*2);
+				grilla[fila][columna] = numeroAleatorio(minimoValor,maximoValor);
 				
 				// Sumando a cada fila
 				_resultadosSolucion.put("f" + fila, _resultadosSolucion.get("f"+fila) + grilla[fila][columna]);
