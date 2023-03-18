@@ -164,6 +164,9 @@ public class GrillaJuego {
 		System.out.println("");
 	}
 	
+	/* 
+	 * Imprime grilla solucion
+	 */
 	public void imprimirGrillaSolucion() {
 		for(int i = 0; i < _tamanio; i++) {
 			for(int j = 0; j < _tamanio; j++) {
