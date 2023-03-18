@@ -258,4 +258,7 @@ public class GrillaJuego {
 			throw new IllegalArgumentException("Debe introducir f - fila o ' - columna: " + fila_o_col);
 		}
 	}
+	public int getTamanio() {
+		return this._tamanio;
+	}
 }
