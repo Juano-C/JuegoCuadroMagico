@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class GrillaJuego {
 
+	
+	/**
+	 * Atributos la grilla normal y la grilla Solucion cada una con su respectivo resultado
+	 */
 	private int[][] _grilla;
 	private Map<String, Integer> _resultados;
 
@@ -22,6 +26,9 @@ public class GrillaJuego {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
 		}
 		_tamanio = tamanio;
+		
+		
+		
 		_resultados = new HashMap<String, Integer>();
 		_resultadosSolucion = new HashMap<String, Integer>();
 		_grilla = generarGrilla(tamanio);
@@ -29,8 +36,10 @@ public class GrillaJuego {
 
 	
 	}
-
-	public void agregarNumero(int i, int j, int num) {
+	/*
+	 * Agrega un numero en la posicion dada de la grilla
+	 */
+	private  void agregarNumero(int i, int j, int num) {
 		if(i < 0 || i >= _tamanio) {
 			throw new IllegalArgumentException("Fuera de rango: " + i);
 		}
@@ -46,12 +55,14 @@ public class GrillaJuego {
 		_resultados.put( "c" + j   , _resultados.get("c" + j)  +  num );
 	}
 	
-	
+	/*
+	 * Elimina el numero en una posicion dada de la grilla 
+	 */
 	
 	// Podria llamarse borrarNumero - eliminarPoscion 
 	// sacar se podria referir a obtener 
 	
-	public void sacarNumero(int i, int j) {
+	private void sacarNumero(int i, int j) {
 		if(i < 0 || i >= _tamanio) {
 			throw new IllegalArgumentException("Fuera de rango: " + i);
 		}
@@ -64,7 +75,9 @@ public class GrillaJuego {
 		_grilla[i][j] = 0;
 		
 	}
-	
+	/*
+	 * Modifica el valor de una celda en la grilla
+	 */
 	public void modificar(int i, int j, int num) {
 		if(i < 0 || i >= _tamanio) {
 			throw new IllegalArgumentException("Fuera de rango: " + i);
@@ -72,6 +85,9 @@ public class GrillaJuego {
 		if(j < 0 || j >= _tamanio) {
 			throw new IllegalArgumentException("Fuera de rango: " + j);
 		}
+		/*
+		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
+		 */
 		if(num <= 0) {
 			throw new IllegalArgumentException("El numero debe ser un entero positivo: " + num); 
 		}
@@ -172,6 +188,10 @@ public class GrillaJuego {
 	 * -------------- Metodos Privados ----------------
 	 */
 	
+	
+	/*
+	 * Este metodo seria mejor que lo hagamos que generar grilla vacia y por separado la del resultado
+	 */
 	private int[][] generarGrilla(int tamanio) {
 		for(int i=0; i < _tamanio; i++) {
 			_resultados.put("f" + i, 0);
@@ -179,6 +199,8 @@ public class GrillaJuego {
 		}
 		return new int[tamanio][tamanio];
 	}
+	
+	
 	private int[][] generarGrillaSolucion(int tamanio) {
 		int[][] grilla = new int[tamanio][tamanio];
 		
@@ -186,6 +208,9 @@ public class GrillaJuego {
 			_resultadosSolucion.put("f" + i, 0);
 			_resultadosSolucion.put("c" + i, 0);
 		}
+		/*
+		 * Creo que aca hay un error en el diccionario en los indices en la parte de las columnas, tendria que ir j no i creo.
+		 */
 		
 		for(int i = 0; i < tamanio; i++) {
 			for(int j = 0; j < tamanio; j++) {
@@ -203,6 +228,7 @@ public class GrillaJuego {
 		}
 		return grilla;
 	}
+	
 	
 	private static int rand(int min, int max) {
 		Random r = new Random(); return r.nextInt(max-min+1) + min;
