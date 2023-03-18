@@ -113,7 +113,9 @@ public class GrillaJuego {
 			_resultados.put(f_c, 0);
 		}
 	}
-	
+	/*
+	 * Verificamos que la matriz esta bien resuleta, esto podemos ver de cambiar la firma del metodo
+	 */
 	public boolean estaCompletaMatriz() {
 		for(int i = 0; i < _tamanio; i++) {
 			// Comprobamos la suma de las filas
@@ -127,7 +129,9 @@ public class GrillaJuego {
 		}
 		return true;
 	}
-	
+	/*
+	 * Imprime la matriz del jugador, aca creo que estamos haciendo verificaciones hay que revisar
+	 */
 	
 	public void imprimir() {
 		
