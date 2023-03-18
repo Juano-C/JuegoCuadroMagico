@@ -36,7 +36,9 @@ public class Juego {
 			num = Integer.valueOf(ingreso.nextLine());
 
 			modificar(fila, columna, num);
-			
+			/* 
+			 * Esto para que sirve 
+			 */
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
