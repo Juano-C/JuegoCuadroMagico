@@ -44,15 +44,7 @@ public class GrillaJuego {
 	 * Agrega un numero en la posicion dada de la grilla
 	 */
 	private  void agregarNumero(int fila, int columna, int num) {
-		if(fila < 0 || fila >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + fila);
-		}
-		if(columna < 0 || columna >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + columna);
-		}
-		if(num <= 0) {
-			throw new IllegalArgumentException("El numero debe ser un entero positivo: " + num); 
-		}
+		verificacionIngresoNumeros(fila, columna, num);
 		
 		_grilla[fila][columna] = num;
 		_resultados.put( "f" + fila   , _resultados.get("f" + fila)  +  num );
@@ -82,22 +74,29 @@ public class GrillaJuego {
 	/*
 	 * Modifica el valor de una celda en la grilla
 	 */
-	public void modificar(int fila, int columna, int num) {
-		if(fila < 0 || fila >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + fila);
-		}
-		if(columna < 0 || columna >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + columna);
-		}
-		/*
-		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
-		 */
-		if(num <= 0) {
-			throw new IllegalArgumentException("El numero debe ser un entero positivo: " + num); 
+	public boolean modificar(int fila, int columna, int num) {
+		if(!verificacionIngresoNumeros(fila, columna, num)) {
+			return false;
 		}
 		
 		sacarNumero(fila, columna);
 		agregarNumero(fila, columna, num);
+		return true;
+	}
+	private boolean verificacionIngresoNumeros(int fila, int columna, int num) {
+		if(fila < 0 || fila >= _tamanio) {
+			return false;
+		}
+		if(columna < 0 || columna >= _tamanio) {
+			return false;
+		}
+		/*
+		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
+		 */
+		if(num <_minimoValorAceptable  || num>_maximoValorAceptable ) {
+			return false;
+		}
+		return true;
 	}
 	/*
 	 * Tendriamos que ver esta funcion, ver si lo que retornar es si la columna o la fila esta completo o si nos dice si esta bien esta fila o columna
@@ -112,9 +111,14 @@ public class GrillaJuego {
 	 */
 	
 	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
+		
 		/*
-		 * Si es verdadero va a recorrer la filas sino las columnas
+		 * Verificamos que el indice este dentro del rango
 		 */
+		if(!indiceValido(indiceDiccionario)) {
+			return false;
+		}
+		
 		if(fila_columna) {
 			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
 			
@@ -124,6 +128,10 @@ public class GrillaJuego {
 		
 	}
 	
+	private boolean indiceValido(int indiceDiccionario) {
+		
+		this._tamanio<indiceDiccionario;
+	}
 	/*
 	 * Vaciamos una grilla para que el usuario intenete de vuelva jugar la grilla
 	 */
