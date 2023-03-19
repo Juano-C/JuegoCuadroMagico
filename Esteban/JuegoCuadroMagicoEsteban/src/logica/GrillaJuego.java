@@ -267,7 +267,7 @@ public class GrillaJuego {
 	 */
 	private static int numeroAleatorio(int min, int max) {
 		Random r = new Random(); 
-		return r.nextInt(max-min) + min;
+		return r.nextInt(max) + min;
 	}
 	
 	private int obtenerResultado(String fila_o_col, int indice) {
