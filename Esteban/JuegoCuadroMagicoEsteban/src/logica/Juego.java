@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.font.NumericShaper;
 import java.util.Scanner;
 
 public class Juego {
@@ -11,6 +12,7 @@ public class Juego {
 	private int filaSeleccionada;
 	private int columnaSeleccionada;
 	private int numeroSeleccionado;
+	final private static String ingresosInvalidos="1234567890";
 	
 	public Juego(int tamanioDeGrilla) {
 		_grilla = new GrillaJuego(tamanioDeGrilla,1,9);
@@ -79,12 +81,16 @@ public class Juego {
 		System.out.println("Ingrese la numero(1,9)");
 		entradaSistema=ingresoUsuario.nextLine();
 		
-		return Integer.parseInt(entradaSistema.toLowerCase());
+		if(verificacionDeDatos(entradaSistema)) {
+			return Integer.parseInt(entradaSistema.toLowerCase());
+		}
+		return 0;
 	}
 
 	private int ingresarColumna() {
 		
 		System.out.println("Ingrese la columna(1,"+this._grilla.getTamanio()+")");
+		
 		entradaSistema=ingresoUsuario.nextLine();
 		
 		return Integer.parseInt(entradaSistema.toLowerCase());
@@ -96,6 +102,15 @@ public class Juego {
 		entradaSistema=ingresoUsuario.nextLine();
 		
 		return Integer.parseInt(entradaSistema.toLowerCase());
+	}
+	private boolean verificacionDeDatos(String verficarEntrada){
+		try {
+			Integer.parseInt(verficarEntrada);
+			return true;
+			
+		}catch (Exception e) {
+			return false;
+		}
 	}
 	
 }
