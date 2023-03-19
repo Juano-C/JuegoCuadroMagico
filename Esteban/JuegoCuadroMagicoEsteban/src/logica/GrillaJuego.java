@@ -130,7 +130,10 @@ public class GrillaJuego {
 	
 	private boolean indiceValido(int indiceDiccionario) {
 		
-		this._tamanio<indiceDiccionario;
+		if(indiceDiccionario<this._maximoValorAceptable&&indiceDiccionario>this._minimoValorAceptable) {
+			return true;
+		}
+		return false;
 	}
 	/*
 	 * Vaciamos una grilla para que el usuario intenete de vuelva jugar la grilla
