@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Juego {
 
-	GrillaJuego _grilla;
-	Boolean _estaJugando;
-	Scanner ingresoUsuario = new Scanner(System.in);
-	String entradaSistema;
-	int filaSeleccionada;
-	int columnaSeleccionada;
-	int numeroSeleccionado;
+	private GrillaJuego _grilla;
+	private Boolean _estaJugando;
+	private Scanner ingresoUsuario = new Scanner(System.in);
+	private String entradaSistema;
+	private int filaSeleccionada;
+	private int columnaSeleccionada;
+	private int numeroSeleccionado;
 	
 	public Juego(int tamanioDeGrilla) {
 		_grilla = new GrillaJuego(tamanioDeGrilla,1,9);
@@ -26,16 +26,13 @@ public class Juego {
 			
 			_grilla.imprimir();
 			
-//			Estaba viendo como se generaban los numeros
-//			_grilla.imprimirGrillaSolucion();
+
 			
 			ingresar();
 			if(this.verificacionDeDatos(filaSeleccionada, columnaSeleccionada, numeroSeleccionado)) {
 			modificar(filaSeleccionada, columnaSeleccionada, numeroSeleccionado);
 			}
-			/* 
-			 * Esto para que sirve 
-			 */
+
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -45,8 +42,6 @@ public class Juego {
 			_grilla.imprimir();
 
 			
-//          Estaba viendo como se generaban los numeros 
-//			_grilla.imprimirGrillaSolucion();
 
 			
 			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");
