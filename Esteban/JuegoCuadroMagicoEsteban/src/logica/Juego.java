@@ -22,7 +22,7 @@ public class Juego {
 
 		
 		while(_estaJugando) {
-			
+			_grilla.imprimirGrillaSolucion();
 			
 			_grilla.imprimir();
 			
@@ -42,6 +42,7 @@ public class Juego {
 			}
 			
 			_grilla.imprimir();
+
 			
 //          Estaba viendo como se generaban los numeros 
 //			_grilla.imprimirGrillaSolucion();
