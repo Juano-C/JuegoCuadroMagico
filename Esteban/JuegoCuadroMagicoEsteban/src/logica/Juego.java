@@ -84,6 +84,8 @@ public class Juego {
 		if(verificacionDeDatos(entradaSistema)) {
 			return Integer.parseInt(entradaSistema.toLowerCase());
 		}
+		
+		//Le ponemos 0 asi no se muestra en el imprimir 
 		return 0;
 	}
 
