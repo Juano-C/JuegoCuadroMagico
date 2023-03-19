@@ -43,7 +43,11 @@ public class Juego {
 			
 			_grilla.imprimir();
 
-			
+			if(this._grilla.estaBienMatriz()) {
+				_estaJugando=false;
+				System.out.println("Felicidades usted gano");
+				continue;
+			}
 
 			
 			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");

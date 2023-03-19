@@ -128,7 +128,7 @@ public class GrillaJuego {
 	
 	private boolean indiceValido(int indiceDiccionario) {
 		
-		if(indiceDiccionario<this._maximoValorAceptable&&indiceDiccionario>this._minimoValorAceptable) {
+		if(indiceDiccionario<this._tamanio&&indiceDiccionario>=0) {
 			return true;
 		}
 		return false;
