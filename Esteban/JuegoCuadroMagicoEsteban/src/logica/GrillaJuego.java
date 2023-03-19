@@ -74,16 +74,14 @@ public class GrillaJuego {
 	/*
 	 * Modifica el valor de una celda en la grilla
 	 */
-	public boolean modificar(int fila, int columna, int num) {
-		if(!verificacionIngresoNumeros(fila, columna, num)) {
-			return false;
-		}
+	public void modificar(int fila, int columna, int num) {
+		
 		
 		sacarNumero(fila, columna);
 		agregarNumero(fila, columna, num);
-		return true;
+		
 	}
-	private boolean verificacionIngresoNumeros(int fila, int columna, int num) {
+	public boolean verificacionIngresoNumeros(int fila, int columna, int num) {
 		if(fila < 0 || fila >= _tamanio) {
 			return false;
 		}

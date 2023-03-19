@@ -30,8 +30,9 @@ public class Juego {
 //			_grilla.imprimirGrillaSolucion();
 			
 			ingresar();
-
+			if(this.verificacionDeDatos(filaSeleccionada, columnaSeleccionada, numeroSeleccionado)) {
 			modificar(filaSeleccionada, columnaSeleccionada, numeroSeleccionado);
+			}
 			/* 
 			 * Esto para que sirve 
 			 */
@@ -63,8 +64,8 @@ public class Juego {
 	/* 
 	 * Hay que agregar este metodo
 	 */
-	public void verificacionDeDatos(Integer num) {
-		return ;
+	public boolean verificacionDeDatos(int fila,int columna,int numero) {
+		return this._grilla.verificacionIngresoNumeros(fila,columna,numero);
 	}
 	/*
 	 * Aca hacemos para que el usuario 
@@ -82,7 +83,7 @@ public class Juego {
 	private int ingresarNumero() {
 		System.out.println("Ingrese la numero(1,9)");
 		entradaSistema=ingresoUsuario.nextLine();
-		this.verificacionDeDatos(Integer.parseInt(entradaSistema.toLowerCase()));
+		
 		return Integer.parseInt(entradaSistema.toLowerCase());
 	}
 
@@ -90,7 +91,7 @@ public class Juego {
 		
 		System.out.println("Ingrese la columna(1,"+this._grilla.getTamanio()+")");
 		entradaSistema=ingresoUsuario.nextLine();
-		this.verificacionDeDatos(Integer.parseInt(entradaSistema.toLowerCase()));
+		
 		return Integer.parseInt(entradaSistema.toLowerCase());
 		
 	}
@@ -98,7 +99,7 @@ public class Juego {
 	private int ingresarFila() {
 		System.out.println("Ingrese la fila(1,"+this._grilla.getTamanio()+")");
 		entradaSistema=ingresoUsuario.nextLine();
-		this.verificacionDeDatos(Integer.parseInt(entradaSistema.toLowerCase()));
+		
 		return Integer.parseInt(entradaSistema.toLowerCase());
 	}
 	
