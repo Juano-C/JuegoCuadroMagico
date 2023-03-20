@@ -67,6 +67,7 @@ public class VentanaPrueba extends JFrame {
 		setMinimumSize(new Dimension(800, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 689, 554);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,11 +78,7 @@ public class VentanaPrueba extends JFrame {
 		textField.setFont(new Font("Helvetica", Font.BOLD, 30));
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setColumns(10);
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 0c8fd0959fad37ec92f8cc202839de81cd57e65e
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Helvetica", Font.BOLD, 30));
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
