@@ -4,7 +4,7 @@ import logica.Juego;
 
 /* Lo que falta:
  * private boolean estaCompletaFyC() - Falta implementarla (no se muy bien lo que buscaba hacer)
- * añadir al diagrama las variables/metodos de ser requerido
+ * aï¿½adir al diagrama las variables/metodos de ser requerido
  * 
  * 
  * 
@@ -33,7 +33,7 @@ import logica.Juego;
 public class Main {
 	
 	public static void main(String[] args) {
-		Juego jueguito = new Juego(4);
+		Juego jueguito = new Juego(2);
 		jueguito.iniciar();
 	}
 }

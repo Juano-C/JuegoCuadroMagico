@@ -1,6 +1,5 @@
 package visualizacion;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,13 +12,15 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
+@SuppressWarnings("serial")
 public class VentanaPrueba extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -64,7 +65,6 @@ public class VentanaPrueba extends JFrame {
 	 */
 	public VentanaPrueba() {
 		setMinimumSize(new Dimension(800, 600));
-		setMaximumSize(new Dimension(800, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 689, 554);
 		contentPane = new JPanel();
@@ -73,16 +73,20 @@ public class VentanaPrueba extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-
+		JTextField textField = new JTextField();
 		textField.setFont(new Font("Helvetica", Font.BOLD, 30));
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setColumns(10);
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 0c8fd0959fad37ec92f8cc202839de81cd57e65e
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Helvetica", Font.BOLD, 30));
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setColumns(10);
+		textField_1.setColumns(10);	
+		
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Helvetica", Font.BOLD, 30));
@@ -235,10 +239,80 @@ public class VentanaPrueba extends JFrame {
 		c3.setForeground(Color.WHITE);
 		c3.setHorizontalAlignment(SwingConstants.CENTER);
 		resultados_columna.add(c3);
-	
-		System.out.println("haaaaa");
+		
+		
+		// -------- Eventos  ----------
+		
+		textField.addFocusListener(new MyFocus(textField));		
+		textField_1.addFocusListener(new MyFocus(textField_1));		
+		textField_2.addFocusListener(new MyFocus(textField_2));		
+		textField_3.addFocusListener(new MyFocus(textField_3));		
+		textField_4.addFocusListener(new MyFocus(textField_4));		
+		textField_5.addFocusListener(new MyFocus(textField_5));		
+		textField_6.addFocusListener(new MyFocus(textField_6));		
+		textField_7.addFocusListener(new MyFocus(textField_7));		
+		textField_8.addFocusListener(new MyFocus(textField_8));	
+		textField_9.addFocusListener(new MyFocus(textField_9));		
+		textField_10.addFocusListener(new MyFocus(textField_10));		
+		textField_11.addFocusListener(new MyFocus(textField_11));		
+		textField_12.addFocusListener(new MyFocus(textField_12));		
+		textField_13.addFocusListener(new MyFocus(textField_13));		
+		textField_14.addFocusListener(new MyFocus(textField_14));		
+		textField_15.addFocusListener(new MyFocus(textField_15));		;	
 		
 	}
-	
+
+	/*
+	 * Clase privada para manejar interracion en los JTextField
+	 * Implementa FocusListener: para controlar cuando esta en focus
+	 * 			  KeyListener: para controlar las teclas pulsadas
+	 */
+	private class MyFocus implements FocusListener, KeyListener{
+
+		private JTextField _jtext;
+		
+		private MyFocus(JTextField jtext) {
+			_jtext = jtext;
+		}
+		
+		// Cuando el componente (JTextField) gana el focus (atencion) llama a esta funcion
+		@Override
+		public void focusGained(FocusEvent e) {
+			
+			_jtext.addKeyListener(this);
+			
+		}
+
+		// Cuando pierde el focus llama a esta otra
+		@Override
+		public void focusLost(FocusEvent e) {
+
+		}
+
+		// Cuando presiona y suelta una tecla, llama a esta funcion.
+		@Override
+		public void keyTyped(KeyEvent e) {
+			int key = e.getKeyChar();
+			boolean esNumero = (key >= 49) && (key <= 57);
+			if(!esNumero || _jtext.getText().length() > 1) {
+				e.consume();
+			}
+		}
+
+		// Cuando presiona una teclada, llama a esta funcion.
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				_jtext.getParent().requestFocus();
+			}
+		}
+		
+		// Cuando suelta una tecla, llama a esta funcion.
+		@Override
+		public void keyReleased(KeyEvent e) {
+			
+		}		
+		
+	}	
 
 }
