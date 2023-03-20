@@ -201,7 +201,6 @@ public class GrillaJuego {
 	 * -------------- Metodos Privados ----------------
 	 */
 	
-	
 	/*
 	 * Este metodo seria mejor que lo hagamos que generar grilla vacia y por separado la del resultado
 	 */
@@ -244,7 +243,8 @@ public class GrillaJuego {
 	
 	
 	private static int rand(int min, int max) {
-		Random r = new Random(); return r.nextInt(max-min+1) + min;
+		Random r = new Random(); 
+		return r.nextInt(max-min+1) + min;
 	}
 	
 	private int obtenerResultado(String fila_o_col, int i) {

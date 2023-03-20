@@ -79,7 +79,6 @@ public class VentanaPrueba extends JFrame {
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setColumns(10);
 
-		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Helvetica", Font.BOLD, 30));
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
