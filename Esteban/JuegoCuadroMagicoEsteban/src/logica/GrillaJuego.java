@@ -152,7 +152,7 @@ public class GrillaJuego {
 	public void vaciarMatriz() {
 		_grilla = new int[_tamanio][_tamanio];
 		for(String f_c : _resultados.keySet()) {
-			_resultados.put(f_c, null);
+			_resultados.put(f_c, 0);
 		}
 	}
 	/*
@@ -287,7 +287,7 @@ public class GrillaJuego {
 		return r.nextInt(max) + min;
 	}
 	
-	private int obtenerResultado(String fila_o_col, int indice) {
+	protected int obtenerResultado(String fila_o_col, int indice) {
 		if(fila_o_col.equals("f") || fila_o_col.equals("c")) {
 			if(indice >= 0 && indice < _tamanio) {
 				return _resultados.get(fila_o_col + indice);
