@@ -7,8 +7,8 @@ import org.junit.Test;
 public class construirGrillaJuego {
 
 	@Test(expected = IllegalArgumentException.class)
-	public void construirGrillaTamanioNegativa() {
-		GrillaJuego grilla=new GrillaJuego(-1, 3, 8);
+	public void construirGrillaTamanioInvalido() {
+		GrillaJuego grilla=new GrillaJuego(0, 3, 8);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

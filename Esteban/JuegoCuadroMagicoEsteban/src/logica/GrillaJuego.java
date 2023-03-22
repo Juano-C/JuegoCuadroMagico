@@ -45,8 +45,8 @@ public class GrillaJuego {
 		_grilla = generarGrilla(tamanio);
 		_grillaSol = generarGrillaSolucion(tamanio,minimoValor,maximoValor);
 		
-		_minimoValorAceptable=minimoValor;
-		_maximoValorAceptable=maximoValor;
+		_minimoValorAceptable=Math.min(minimoValor, maximoValor);
+		_maximoValorAceptable=Math.max(minimoValor, maximoValor);
 	
 	}
 	/*
