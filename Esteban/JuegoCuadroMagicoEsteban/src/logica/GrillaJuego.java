@@ -23,17 +23,17 @@ public class GrillaJuego {
 	/*
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
-	public GrillaJuego(int tamanio,int minimoValor,int maximoValor) {
+	public GrillaJuego(int tamanio,int numero1,int numero2) {
 		if(tamanio <= 0) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
 		}
-		if(minimoValor<1 ) {
-			throw new IllegalArgumentException("El valor minimo debe ser un entero positivo: " + minimoValor);
+		if(numero1<1 ) {
+			throw new IllegalArgumentException("El valor minimo debe ser un entero positivo: " + numero1);
 		}
-		if( maximoValor<1) {
-			throw new IllegalArgumentException("El valor minimo debe ser un entero positivo: " + maximoValor);
+		if( numero2<1) {
+			throw new IllegalArgumentException("El valor minimo debe ser un entero positivo: " + numero2);
 		}
-		if(maximoValor==minimoValor) {
+		if(numero2==numero1) {
 			throw new IllegalArgumentException("El valor minimo tiene que ser diferente de valor maximo");
 		}
 		_tamanio = tamanio;
@@ -43,10 +43,10 @@ public class GrillaJuego {
 		_resultados = new HashMap<String, Integer>();
 		_resultadosSolucion = new HashMap<String, Integer>();
 		_grilla = generarGrilla(tamanio);
-		_grillaSol = generarGrillaSolucion(tamanio,minimoValor,maximoValor);
+		_grillaSol = generarGrillaSolucion(tamanio,numero1,numero2);
 		
-		_minimoValorAceptable=Math.min(minimoValor, maximoValor);
-		_maximoValorAceptable=Math.max(minimoValor, maximoValor);
+		_minimoValorAceptable=Math.min(numero1, numero2);
+		_maximoValorAceptable=Math.max(numero1, numero2);
 	
 	}
 	/*
