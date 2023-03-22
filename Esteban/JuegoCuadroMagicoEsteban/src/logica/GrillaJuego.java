@@ -99,10 +99,10 @@ public class GrillaJuego {
 	}
 	
 	private boolean verificacionFila(int fila,int columna) {
-		if(fila < 0 || fila >= _tamanio) {
+		if(fila <= 0 || fila >= _tamanio) {
 			return false;
 		}
-		if(columna < 0 || columna >= _tamanio) {
+		if(columna <= 0 || columna >= _tamanio) {
 			return false;
 		}
 		return true;

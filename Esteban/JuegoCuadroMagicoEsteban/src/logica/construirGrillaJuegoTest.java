@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class construirGrillaJuego {
+public class construirGrillaJuegoTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void construirGrillaTamanioInvalido() {
