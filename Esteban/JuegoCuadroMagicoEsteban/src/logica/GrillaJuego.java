@@ -27,6 +27,15 @@ public class GrillaJuego {
 		if(tamanio <= 0) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
 		}
+		if(minimoValor<1 ) {
+			throw new IllegalArgumentException("El valor minimo debe ser un entero positivo: " + minimoValor);
+		}
+		if( maximoValor<1) {
+			throw new IllegalArgumentException("El valor minimo debe ser un entero positivo: " + maximoValor);
+		}
+		if(maximoValor==minimoValor) {
+			throw new IllegalArgumentException("El valor minimo tiene que ser diferente de valor maximo");
+		}
 		_tamanio = tamanio;
 		
 		
