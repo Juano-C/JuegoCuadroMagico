@@ -66,7 +66,7 @@ public class Juego {
 	 * Hay que agregar este metodo
 	 */
 	public boolean verificacionDeDatos(int fila,int columna,int numero) {
-		return this._grilla.verificacionIngresoNumeros(fila,columna,numero);
+		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
 	/*
 	 * Aca hacemos para que el usuario 

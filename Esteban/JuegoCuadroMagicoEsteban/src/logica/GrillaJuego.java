@@ -44,7 +44,7 @@ public class GrillaJuego {
 	 * Agrega un numero en la posicion dada de la grilla
 	 */
 	private  void agregarNumero(int fila, int columna, int num) {
-		verificacionIngresoNumeros(fila, columna, num);
+		
 		
 		_grilla[fila][columna] = num;
 		_resultados.put( "f" + fila   , _resultados.get("f" + fila)  +  num );
@@ -59,12 +59,7 @@ public class GrillaJuego {
 	// sacar se podria referir a obtener 
 	
 	private void sacarNumero(int fila, int columna) {
-		if(fila < 0 || fila >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + fila);
-		}
-		if(columna < 0 || columna >= _tamanio) {
-			throw new IllegalArgumentException("Fuera de rango: " + columna);
-		}
+		
 		
 		_resultados.put( "f" + fila   , _resultados.get("f" + fila)  -  _grilla[fila][columna] );
 		_resultados.put( "f" + columna   , _resultados.get("f" + columna)  -  _grilla[fila][columna] );
@@ -74,24 +69,36 @@ public class GrillaJuego {
 	/*
 	 * Modifica el valor de una celda en la grilla
 	 */
-	public void modificar(int fila, int columna, int num) {
+	public boolean modificar(int fila, int columna, int num) {
 		
-		
+		if(!verificacionIngresos(fila, columna, num)) {
+			return false;
+		}
 		sacarNumero(fila, columna);
 		agregarNumero(fila, columna, num);
-		
+		return true;
 	}
-	public boolean verificacionIngresoNumeros(int fila, int columna, int num) {
+	public boolean verificacionIngresos(int fila, int columna, int num) {
+		
+		/*
+		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
+		 */
+		
+		return verificacionFila(fila,columna)&&verificacionNumero(num);
+	}
+	
+	private boolean verificacionFila(int fila,int columna) {
 		if(fila < 0 || fila >= _tamanio) {
 			return false;
 		}
 		if(columna < 0 || columna >= _tamanio) {
 			return false;
 		}
-		/*
-		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
-		 */
-		if(num <_minimoValorAceptable  || num>_maximoValorAceptable ) {
+		return true;
+	}
+	
+	private boolean verificacionNumero(int numeroIngreso) {
+		if(numeroIngreso <_minimoValorAceptable  || numeroIngreso>_maximoValorAceptable ) {
 			return false;
 		}
 		return true;
