@@ -152,7 +152,7 @@ public class GrillaJuego {
 	public void vaciarMatriz() {
 		_grilla = new int[_tamanio][_tamanio];
 		for(String f_c : _resultados.keySet()) {
-			_resultados.put(f_c, 0);
+			_resultados.put(f_c, null);
 		}
 	}
 	/*
