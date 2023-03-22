@@ -64,10 +64,9 @@ public class GrillaJuego {
 	 * Elimina el numero en una posicion dada de la grilla 
 	 */
 	
-	// Podria llamarse borrarNumero - eliminarPoscion 
-	// sacar se podria referir a obtener 
 	
-	private void sacarNumero(int fila, int columna) {
+	
+	private void eliminarNumero(int fila, int columna) {
 		
 		
 		_resultados.put( "f" + fila   , _resultados.get("f" + fila)  -  _grilla[fila][columna] );
@@ -83,15 +82,18 @@ public class GrillaJuego {
 		if(!verificacionIngresos(fila, columna, num)) {
 			return false;
 		}
-		sacarNumero(fila, columna);
+		eliminarNumero(fila, columna);
 		agregarNumero(fila, columna, num);
 		return true;
 	}
+	
+	
+	/*
+	 * Este metodo me parece que hay que borrar 
+	 */
 	public boolean verificacionIngresos(int fila, int columna, int num) {
 		
-		/*
-		 * Aca hay que agregar cota superior dependiendo la cantidad de digitos que tomemos 
-		 */
+		
 		
 		return verificacionFila(fila,columna)&&verificacionNumero(num);
 	}
@@ -112,13 +114,7 @@ public class GrillaJuego {
 		}
 		return true;
 	}
-	/*
-	 * Tendriamos que ver esta funcion, ver si lo que retornar es si la columna o la fila esta completo o si nos dice si esta bien esta fila o columna
-	 */
-	// Falta implementar
-	private boolean estaCompletaFyC() {
-		return false;
-	}
+
 	
 	/*
 	 * Se fija si esta bien la columna o fila dada
@@ -247,9 +243,7 @@ public class GrillaJuego {
 	 */
 	
 	
-	/*
-	 * Este metodo seria mejor que lo hagamos que generar grilla vacia y por separado la del resultado
-	 */
+	
 	private int[][] generarGrilla(int tamanio) {
 		for(int indiceDiccionario=0; indiceDiccionario < _tamanio; indiceDiccionario++) {
 			_resultados.put("f" + indiceDiccionario, 0);
@@ -266,9 +260,7 @@ public class GrillaJuego {
 			_resultadosSolucion.put("f" + indiceDiccionario, 0);
 			_resultadosSolucion.put("c" + indiceDiccionario, 0);
 		}
-		/*
-		 * Creo que aca hay un error en el diccionario en los indices en la parte de las columnas, tendria que ir j no i creo.
-		 */
+		
 		
 		for(int fila = 0; fila < tamanio; fila++) {
 			for(int columna = 0; columna < tamanio; columna++) {
