@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 public class VentanaBase extends JFrame {
 	
 	public VentanaBase() {
-		// Tamaños
+		// Tamaï¿½os
 		super();
 		setVisible(true);
 		setMinimumSize(new Dimension(800, 600));
@@ -24,7 +24,7 @@ public class VentanaBase extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new Grilla(8,8);
+		JPanel panel = new GrillaGUI(8,8);
 		panel.setBounds(10, 11, 659, 464);
 		contentPane.add(panel);
 		
