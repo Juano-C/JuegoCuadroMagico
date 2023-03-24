@@ -98,6 +98,9 @@ public class Juego {
 		System.out.println("Ingrese la columna(1,"+this._grilla.getTamanio()+")");
 		
 		entradaSistema=ingresoUsuario.nextLine();
+		if(verificacionDeDatos(entradaSistema)) {
+			return Integer.parseInt(entradaSistema.toLowerCase());
+		}
 		
 		return Integer.parseInt(entradaSistema.toLowerCase());
 		
@@ -106,6 +109,9 @@ public class Juego {
 	private int ingresarFila() {
 		System.out.println("Ingrese la fila(1,"+this._grilla.getTamanio()+")");
 		entradaSistema=ingresoUsuario.nextLine();
+		if(verificacionDeDatos(entradaSistema)) {
+			return Integer.parseInt(entradaSistema.toLowerCase());
+		}
 		
 		return Integer.parseInt(entradaSistema.toLowerCase());
 	}
