@@ -68,6 +68,18 @@ public class Juego {
 	public boolean verificacionDeDatos(int fila,int columna,int numero) {
 		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
+	
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////////////Metodos Privados//////////////////////////////////
+	
+	
+	
+	
 	/*
 	 * Aca hacemos para que el usuario ingrese la fila columna y numero 
 	 */

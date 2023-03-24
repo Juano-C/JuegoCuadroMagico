@@ -95,56 +95,9 @@ public class GrillaJuego {
 		
 		
 		
-		return verificacionFila(fila,columna)&&verificacionNumero(num);
+		return verificacionFilaColumna(fila,columna)&&verificacionNumero(num);
 	}
 	
-	private boolean verificacionFila(int fila,int columna) {
-		if(fila < 0 || fila >= _tamanio) {
-			return false;
-		}
-		if(columna < 0 || columna >= _tamanio) {
-			return false;
-		}
-		return true;
-	}
-	
-	private boolean verificacionNumero(int numeroIngreso) {
-		if(numeroIngreso <_minimoValorAceptable  || numeroIngreso>_maximoValorAceptable ) {
-			return false;
-		}
-		return true;
-	}
-
-	
-	/*
-	 * Se fija si esta bien la columna o fila dada
-	 */
-	
-	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
-		
-		/*
-		 * Verificamos que el indice este dentro del rango
-		 */
-		if(!indiceValido(indiceDiccionario)) {
-			return false;
-		}
-		
-		if(fila_columna) {
-			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
-			
-		}
-		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
-		
-		
-	}
-	
-	private boolean indiceValido(int indiceDiccionario) {
-		
-		if(indiceDiccionario<this._tamanio&&indiceDiccionario>=0) {
-			return true;
-		}
-		return false;
-	}
 	/*
 	 * Vaciamos una grilla para que el usuario intenete de vuelva jugar la grilla
 	 */
@@ -237,9 +190,28 @@ public class GrillaJuego {
 		}
 		System.out.println("");
 	}
+	
+	
+	/*
+	 * Obtenemos el tamanio de la matriz en una direccion
+	 */
+	public int getTamanio() {
+		return this._tamanio;
+	}
+	
+	/*
+	 * Nos fijamos si la matriz esta vacia
+	 */
+	public boolean estaVacia() {
+		boolean TodasFilasyColumnasEstanVacia = true;
+		for(int indiceDiccionario=0;indiceDiccionario<_tamanio;indiceDiccionario++) {
+			TodasFilasyColumnasEstanVacia=TodasFilasyColumnasEstanVacia&&_resultados.get("f"+indiceDiccionario).equals(0)&&_resultados.get("c"+indiceDiccionario).equals(0);
+		}
+		return TodasFilasyColumnasEstanVacia; 
+	}
 
 	/*
-	 * -------------- Metodos Privados ----------------
+	 * ----------------------------------------------------------------- Metodos Privados ----------------
 	 */
 	
 	
@@ -299,18 +271,57 @@ public class GrillaJuego {
 		}
 	}
 	
-	/*
-	 * Obtenemos el tamanio de la matriz en una direccion
-	 */
-	public int getTamanio() {
-		return this._tamanio;
-	}
-	public boolean estaVacia() {
-		boolean TodasFilasyColumnasEstanVacia = true;
-		for(int indiceDiccionario=0;indiceDiccionario<_tamanio;indiceDiccionario++) {
-			TodasFilasyColumnasEstanVacia=TodasFilasyColumnasEstanVacia&&_resultados.get("f"+indiceDiccionario).equals(0)&&_resultados.get("c"+indiceDiccionario).equals(0);
+	private boolean indiceValido(int indiceDiccionario) {
+		
+		if(indiceDiccionario<this._tamanio&&indiceDiccionario>=0) {
+			return true;
 		}
-		return TodasFilasyColumnasEstanVacia; 
+		return false;
 	}
+	/*
+	 * Se fija si esta bien la columna o fila dada
+	 */
+	
+	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
+		
+		/*
+		 * Verificamos que el indice este dentro del rango
+		 */
+		if(!indiceValido(indiceDiccionario)) {
+			return false;
+		}
+		
+		if(fila_columna) {
+			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
+			
+		}
+		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
+		
+		
+	}
+	/*
+	 * Se fija si el numero que ingreso el usuario esta bien
+	 */
+	private boolean verificacionNumero(int numeroIngreso) {
+		if(numeroIngreso <_minimoValorAceptable  || numeroIngreso>_maximoValorAceptable ) {
+			return false;
+		}
+		return true;
+	}
+	/*
+	 * Se fija si la fila y columna estan dentro de rango
+	 */
+	
+	private boolean verificacionFilaColumna(int fila,int columna) {
+		if(fila < 0 || fila >= _tamanio) {
+			return false;
+		}
+		if(columna < 0 || columna >= _tamanio) {
+			return false;
+		}
+		return true;
+	}
+
+
 	
 }
