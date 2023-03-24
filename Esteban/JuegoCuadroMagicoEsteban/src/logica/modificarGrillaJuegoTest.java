@@ -29,7 +29,7 @@ public class modificarGrillaJuegoTest {
 	@Test
 	public void agregarNumeroFueraFilaInferior() {
 		GrillaJuego grilla=new GrillaJuego(3, 1, 2);
-		assertFalse(grilla.modificar(0, 1, 1));
+		assertFalse(grilla.modificar(-1, 1, 1));
 	}
 	@Test
 	public void agregarNumeroFueraColumnaSuperior() {
