@@ -69,7 +69,7 @@ public class Juego {
 		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
 	/*
-	 * Aca hacemos para que el usuario 
+	 * Aca hacemos para que el usuario ingrese la fila columna y numero 
 	 */
 	private boolean ingresar() {
 		
