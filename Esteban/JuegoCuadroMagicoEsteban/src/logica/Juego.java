@@ -102,7 +102,7 @@ public class Juego {
 			return Integer.parseInt(entradaSistema.toLowerCase());
 		}
 		
-		return Integer.parseInt(entradaSistema.toLowerCase());
+		return 0;
 		
 	}
 
@@ -113,7 +113,7 @@ public class Juego {
 			return Integer.parseInt(entradaSistema.toLowerCase());
 		}
 		
-		return Integer.parseInt(entradaSistema.toLowerCase());
+		return 0;
 	}
 	private boolean verificacionDeDatos(String verficarEntrada){
 		try {
