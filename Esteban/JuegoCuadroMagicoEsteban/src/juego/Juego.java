@@ -1,7 +1,9 @@
-package grillaJuego;
+package juego;
 
 import java.awt.font.NumericShaper;
 import java.util.Scanner;
+
+import grillaJuego.GrillaJuego;
 
 public class Juego {
 
