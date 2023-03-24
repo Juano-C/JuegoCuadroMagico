@@ -88,9 +88,7 @@ public class GrillaJuego {
 	}
 	
 	
-	/*
-	 * Este metodo me parece que hay que borrar 
-	 */
+	
 	public boolean verificacionIngresos(int fila, int columna, int num) {
 		
 		
