@@ -1,4 +1,4 @@
-package logica;
+package grillaJuego;
 
 import java.util.HashMap;
 import java.util.Map;

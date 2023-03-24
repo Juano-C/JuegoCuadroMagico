@@ -1,6 +1,6 @@
 package visualizacion;
 
-import logica.Juego;
+import grillaJuego.Juego;
 
 /* Lo que falta:
  * private boolean estaCompletaFyC() - Falta implementarla (no se muy bien lo que buscaba hacer)

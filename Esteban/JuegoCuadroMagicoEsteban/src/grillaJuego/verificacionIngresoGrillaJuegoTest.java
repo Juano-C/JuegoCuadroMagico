@@ -1,4 +1,4 @@
-package logica;
+package grillaJuego;
 
 import static org.junit.Assert.*;
 
