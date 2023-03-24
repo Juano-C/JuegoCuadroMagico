@@ -39,7 +39,7 @@ public class modificarGrillaJuegoTest {
 	@Test
 	public void agregarNumeroFueraColumnaInferior() {
 		GrillaJuego grilla=new GrillaJuego(3, 1, 2);
-		assertFalse(grilla.modificar(1, 0, 1));
+		assertFalse(grilla.modificar(1, -1, 1));
 	}
 	@Test
 	public void agregarNumero() {

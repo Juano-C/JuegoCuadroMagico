@@ -31,7 +31,7 @@ public class Juego {
 
 			
 			ingresar();
-			if(this.verificacionDeDatos(filaSeleccionada, columnaSeleccionada, numeroSeleccionado)) {
+			if(this.verificacionDeDatos(filaSeleccionada-1, columnaSeleccionada-1, numeroSeleccionado)) {
 			modificar(filaSeleccionada, columnaSeleccionada, numeroSeleccionado);
 			}
 
@@ -73,8 +73,8 @@ public class Juego {
 	 */
 	private boolean ingresar() {
 		
-		filaSeleccionada=ingresarFila()-1;
-		columnaSeleccionada=ingresarColumna()-1;
+		filaSeleccionada=ingresarFila();
+		columnaSeleccionada=ingresarColumna();
 		numeroSeleccionado=ingresarNumero();
 
 		return true;
