@@ -24,7 +24,7 @@ public class Juego {
 	public void iniciar() {
 		_estaJugando = true;
 
-		
+		/* Logica de juego en general 
 		while(_estaJugando) {
 			_grilla.imprimirGrillaSolucion();
 			
@@ -55,9 +55,14 @@ public class Juego {
 			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");
 			_estaJugando = ingresoUsuario.nextLine() == "";
 		}
+		*/
 	}
 	
-	public void modificar(int i, int j, int num) {
+	
+	/*
+	 * Va a ser el ingreso de la grilla
+	 */
+	public void ingresoNumeroEn(int i, int j, int num) {
 		_grilla.modificar(i, j, num);
 	}
 	
@@ -71,6 +76,15 @@ public class Juego {
 		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
 	
+	public boolean entradaDeDatos() {
+		
+		filaSeleccionada=ingresarFila()-1;
+		columnaSeleccionada=ingresarColumna()-1;
+		numeroSeleccionado=ingresarNumero();
+
+		return true;
+		
+	}
 	
 	
 	
@@ -85,15 +99,7 @@ public class Juego {
 	/*
 	 * Aca hacemos para que el usuario ingrese la fila columna y numero 
 	 */
-	private boolean ingresar() {
-		
-		filaSeleccionada=ingresarFila()-1;
-		columnaSeleccionada=ingresarColumna()-1;
-		numeroSeleccionado=ingresarNumero();
 
-		return true;
-		
-	}
 
 	private int ingresarNumero() {
 		System.out.println("Ingrese la numero(1,9)");
