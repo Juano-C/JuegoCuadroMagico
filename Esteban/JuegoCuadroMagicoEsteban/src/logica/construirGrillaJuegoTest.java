@@ -23,6 +23,7 @@ public class construirGrillaJuegoTest {
 	public void construirGrillaValor2IgualValor1() {
 		GrillaJuego grilla=new GrillaJuego(3, 5, 5);
 	}
+
 	
 
 }

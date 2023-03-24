@@ -287,7 +287,7 @@ public class GrillaJuego {
 		return r.nextInt(max) + min;
 	}
 	
-	protected int obtenerResultado(String fila_o_col, int indice) {
+	private int obtenerResultado(String fila_o_col, int indice) {
 		if(fila_o_col.equals("f") || fila_o_col.equals("c")) {
 			if(indice >= 0 && indice < _tamanio) {
 				return _resultados.get(fila_o_col + indice);
