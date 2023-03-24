@@ -305,4 +305,12 @@ public class GrillaJuego {
 	public int getTamanio() {
 		return this._tamanio;
 	}
+	public boolean estaVacia() {
+		boolean TodasFilasyColumnasEstanVacia = true;
+		for(int indiceDiccionario=0;indiceDiccionario<_tamanio;indiceDiccionario++) {
+			TodasFilasyColumnasEstanVacia=TodasFilasyColumnasEstanVacia&&_resultados.get("f"+indiceDiccionario).equals(0)&&_resultados.get("c"+indiceDiccionario).equals(0);
+		}
+		return TodasFilasyColumnasEstanVacia; 
+	}
+	
 }

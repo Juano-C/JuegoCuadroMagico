@@ -24,7 +24,7 @@ public class modificarGrillaJuegoTest {
 	@Test
 	public void agregarNumeroFueraFilaSuperior() {
 		GrillaJuego grilla=new GrillaJuego(2, 1, 2);
-		assertFalse(grilla.modificar(3, 1, 1));
+		assertFalse(grilla.modificar(2, 1, 1));
 	}
 	@Test
 	public void agregarNumeroFueraFilaInferior() {
