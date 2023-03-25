@@ -20,6 +20,12 @@ public class GrillaJuego {
 	private int _minimoValorAceptable;
 	private int _maximoValorAceptable;
 	
+	
+	/*
+	 * Esto sirve para el Junite hay que ver en el futuro como hago para sacarlo
+	 */
+	private static int seed=5;
+	
 	/*
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
@@ -254,6 +260,7 @@ public class GrillaJuego {
 	 */
 	private static int numeroAleatorio(int min, int max) {
 		Random r = new Random(); 
+		r.setSeed(seed);
 		return r.nextInt(max) + min;
 	}
 	
@@ -320,6 +327,6 @@ public class GrillaJuego {
 		return true;
 	}
 
-
+	
 	
 }

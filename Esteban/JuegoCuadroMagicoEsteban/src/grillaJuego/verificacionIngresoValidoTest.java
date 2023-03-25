@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class verificacionIngresoGrillaJuegoTest {
+public class verificacionIngresoValidoTest {
 
 	@Test
 	public void filaInvalidaSuperior() {

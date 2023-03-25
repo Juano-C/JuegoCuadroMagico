@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class vacioGrillaJuegoTest {
+public class vacioTest {
 
 	@Test
 	public void grillaVacioAcierto() {

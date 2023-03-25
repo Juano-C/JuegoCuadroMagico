@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class modificarGrillaJuegoTest {
+public class modificarTest {
 
 	@Test
 	public void agregarNumeroFueraValoresInferior() {
