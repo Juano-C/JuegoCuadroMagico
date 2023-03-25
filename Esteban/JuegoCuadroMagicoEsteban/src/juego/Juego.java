@@ -62,7 +62,7 @@ public class Juego {
 	/*
 	 * Va a ser el ingreso de la grilla
 	 */
-	public void ingresoNumeroEn(int i, int j, int num) {
+	public void ingresoNumeroEnGrillaJuego(int i, int j, int num) {
 		_grilla.modificar(i, j, num);
 	}
 	
@@ -70,12 +70,16 @@ public class Juego {
 		return _grilla.estaBienMatriz();
 	}
 	/* 
-	 * Hay que agregar este metodo
+	 * Verifica que los datos esten bien dentro del rango para que la grilla no se rompa
 	 */
-	public boolean verificacionDeDatos(int fila,int columna,int numero) {
+	public boolean verificacionDeDatosValidos(int fila,int columna,int numero) {
 		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
 	
+	
+	/*
+	 * Aca sucede la entrada de datos, me parece que esta de mas pero bueno
+	 */
 	public boolean entradaDeDatos() {
 		
 		filaSeleccionada=ingresarFila()-1;
@@ -135,7 +139,11 @@ public class Juego {
 		
 		return 0;
 	}
-	private boolean verificacionDeDatos(String verficarEntrada){
+	
+	/*
+	 * Verifica que el numero y columna se puedan convertir,me parece que de esto se encarga el GUI
+	 */
+	private boolean verificacionDeConversion(String verficarEntrada){
 		try {
 			Integer.parseInt(verficarEntrada);
 			return true;
@@ -144,5 +152,7 @@ public class Juego {
 			return false;
 		}
 	}
+	
+
 	
 }
