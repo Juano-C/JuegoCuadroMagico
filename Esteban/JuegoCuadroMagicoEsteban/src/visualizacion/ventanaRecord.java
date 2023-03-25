@@ -9,12 +9,18 @@ import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import frontend.VentanaMain;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ventanaRecord {
 
@@ -104,8 +110,23 @@ public class ventanaRecord {
 		));
 		table.setBackground(new Color(153, 204, 255));
 		table.setForeground(new Color(0, 0, 51));
-		table.setBounds(34, 93, 390, 157);
+		table.setBounds(20, 80, 388, 130);
 		marcoPrincipal.getContentPane().add(table);
+		
+		JButton botonVolver = new JButton("Volver");
+		botonVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			marcoPrincipal.setVisible(false);
+			VentanaMain main=new VentanaMain();
+			main.setVisible(true);
+			
+			}
+		});
+		botonVolver.setFont(new Font("Goudy Stout", Font.BOLD, 9));
+		botonVolver.setBackground(new Color(128, 255, 128));
+		botonVolver.setBounds(10, 221, 106, 37);
+		marcoPrincipal.getContentPane().add(botonVolver);
 		
 		
 		String columnas[]={"Puesto","Nombre","Apellido"};
