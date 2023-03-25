@@ -21,9 +21,9 @@ public class Juego {
 		_estaJugando = false;
 	}
 	
-	public void iniciar() {
+	public boolean iniciar() {
 		_estaJugando = true;
-
+		return _estaJugando;
 		/* Logica de juego en general 
 		while(_estaJugando) {
 			_grilla.imprimirGrillaSolucion();
@@ -77,9 +77,14 @@ public class Juego {
 	}
 	
 	
+	public boolean parar() {
+		_estaJugando = false;
+		return _estaJugando;
+	}
+	
 	/*
-	 * Aca sucede la entrada de datos, me parece que esta de mas pero bueno
-	 */
+	 * Aca sucede la entrada de datos, me parece que esta de mal porque de esto se encarga la Gui
+	 
 	public boolean entradaDeDatos() {
 		
 		filaSeleccionada=ingresarFila()-1;
@@ -90,7 +95,7 @@ public class Juego {
 		
 	}
 	
-	
+	*/
 	
 	
 	
@@ -104,7 +109,7 @@ public class Juego {
 	 * Aca hacemos para que el usuario ingrese la fila columna y numero 
 	 */
 
-
+/*
 	private int ingresarNumero() {
 		System.out.println("Ingrese la numero(1,9)");
 		entradaSistema=ingresoUsuario.nextLine();
@@ -139,6 +144,9 @@ public class Juego {
 		
 		return 0;
 	}
+	*/
+	
+	
 	
 	/*
 	 * Verifica que el numero y columna se puedan convertir,me parece que de esto se encarga el GUI

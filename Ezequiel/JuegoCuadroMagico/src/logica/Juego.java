@@ -8,6 +8,8 @@ public class Juego {
 	Boolean _estaJugando;
 	
 	public Juego(int tamanioDeGrilla) {
+		
+		
 		_grilla = new GrillaJuego(tamanioDeGrilla);
 		_estaJugando = false;
 	}

@@ -24,7 +24,7 @@ public class GrillaJuego {
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
 	public GrillaJuego(int tamanio,int cota1,int cota2) {
-		if(tamanio <= 0) {
+		if(tamanio <= 1) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
 		}
 		if(cota1<1 ) {
