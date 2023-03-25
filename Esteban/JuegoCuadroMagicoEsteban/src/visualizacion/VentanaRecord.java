@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ventanaRecord {
+public class VentanaRecord {
 
 	private JFrame marcoPrincipal;
 	private JLabel lblNewLabel_1;
@@ -37,7 +37,7 @@ public class ventanaRecord {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ventanaRecord window = new ventanaRecord();
+					VentanaRecord window = new VentanaRecord();
 					window.marcoPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class ventanaRecord {
 	/**
 	 * Create the application.
 	 */
-	public ventanaRecord() {
+	public VentanaRecord() {
 		initialize();
 	}
 

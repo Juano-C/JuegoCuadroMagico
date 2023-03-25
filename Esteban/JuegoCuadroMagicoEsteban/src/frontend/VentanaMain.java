@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import backend.Juego;
+import visualizacion.VentanaRecord;
 
 import java.applet.AudioClip;
 import javax.swing.JLabel;
@@ -79,7 +80,7 @@ public class VentanaMain extends JFrame
             }
         });
         btnComenzar.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnComenzar.setBounds(144, 56, 159, 46);
+        btnComenzar.setBounds(144, 24, 159, 46);
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
@@ -97,7 +98,7 @@ public class VentanaMain extends JFrame
             }
         });
         btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnDificultad.setBounds(144, 138, 159, 46);
+        btnDificultad.setBounds(144, 96, 159, 46);
         contentPane.add(btnDificultad);
 
         //-------------------autor/es
@@ -125,7 +126,7 @@ public class VentanaMain extends JFrame
             }
         });
         btnReglas.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnReglas.setBounds(144, 216, 159, 46);
+        btnReglas.setBounds(144, 165, 159, 46);
         contentPane.add(btnReglas);
 
         //-------------------boton Salir
@@ -140,6 +141,8 @@ public class VentanaMain extends JFrame
         btnSalir.setBounds(144, 299, 159, 46);
 
         contentPane.add(btnSalir);
+        
+        
 
         //-------------------boton de musica
         JButton btnMuteSoundMusic = new JButton("");
@@ -155,6 +158,23 @@ public class VentanaMain extends JFrame
         });
         btnMuteSoundMusic.setBounds(440, 367, 34, 33);
         contentPane.add(btnMuteSoundMusic);
+        
+    
+        
+        /////////////////Creo boton records //////////7
+        JButton btnNewButton = new JButton("Records");
+        btnNewButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		VentanaRecord ventanaRecord = new VentanaRecord();
+               ventanaRecord.main(null);
+
+                dispose();
+        	}
+        });
+        btnNewButton.setFont(new Font("Georgia", Font.PLAIN, 25));
+        btnNewButton.setBounds(144, 224, 159, 52);
+        contentPane.add(btnNewButton);
     }
 
 }
