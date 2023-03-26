@@ -129,6 +129,12 @@ public class VentanaRecord {
 			main.setVisible(true);
 			
 			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				marcoPrincipal.setVisible(false);
+				VentanaMain main=new VentanaMain();
+				main.setVisible(true);
+			}
 		});
 		botonVolver.setFont(new Font("Goudy Stout", Font.BOLD, 9));
 		botonVolver.setBackground(new Color(128, 255, 128));
