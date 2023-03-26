@@ -190,6 +190,13 @@ public class VentanaMain extends JFrame
 
                 dispose();
         	}
+        	@Override
+            public void mousePressed(MouseEvent e) {
+        		VentanaRecord ventanaRecord = new VentanaRecord();
+                ventanaRecord.main(null);
+
+                 dispose();
+        	}
         });
         btnNewButton.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnNewButton.setBounds(144, 224, 159, 52);
