@@ -33,6 +33,30 @@ public class juegoTest {
 		juego.parar();
 		assertFalse(juego.parar());
 	}
+	@Test
+	public void ingresoLetraFila() {
+		Juego juego=new Juego(2);
+		
+		assertFalse(juego.verificacionDeDatosValidos("a", "1", "3"));
+	}
+	@Test
+	public void ingresoLetraColumna() {
+		Juego juego=new Juego(2);
+		
+		assertFalse(juego.verificacionDeDatosValidos("1", "a", "3"));
+	}
+	@Test
+	public void ingresoLetraNumero() {
+		Juego juego=new Juego(2);
+		
+		assertFalse(juego.verificacionDeDatosValidos("1", "1", "a"));
+	}
+	@Test
+	public void ingresoBien() {
+		Juego juego=new Juego(2);
+		
+		assertTrue(juego.verificacionDeDatosValidos("1", "1", "1"));
+	}
 
 
 }
