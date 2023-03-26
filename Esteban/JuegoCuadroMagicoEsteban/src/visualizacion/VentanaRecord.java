@@ -65,6 +65,8 @@ public class VentanaRecord {
 		marcoPrincipal.setBounds(100, 100, 450, 300);
 		marcoPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		marcoPrincipal.getContentPane().setLayout(null);
+		marcoPrincipal.setLocationRelativeTo(null);
+		
 		
 		JLabel lblNewLabel = new JLabel("Puntajes");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -97,6 +99,11 @@ public class VentanaRecord {
 		table = new JTable();
 		table.setShowGrid(false);
 		table.setFont(new Font("Goudy Stout", Font.BOLD, 12));
+		
+		/*
+		 * Aca agregas los campos y las columnas
+		 */
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"1", "Lola", "22"},
@@ -112,7 +119,7 @@ public class VentanaRecord {
 		table.setForeground(new Color(0, 0, 51));
 		table.setBounds(20, 80, 388, 130);
 		marcoPrincipal.getContentPane().add(table);
-		
+		/////////Boton Volver/////////////////
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addMouseListener(new MouseAdapter() {
 			@Override

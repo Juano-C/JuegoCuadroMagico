@@ -61,7 +61,8 @@ public class VentanaMain extends JFrame
         setBounds(100, 100, 500, 450);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(6, 5, 5, 5));
-
+        setLocationRelativeTo(null);
+        setResizable(false);
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
