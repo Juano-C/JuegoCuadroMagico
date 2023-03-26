@@ -24,11 +24,14 @@ public class GrillaJuego {
 	/*
 	 * Esto sirve para el Junite hay que ver en el futuro como hago para sacarlo
 	 */
-	private static int seed=5;
+	private static Integer seed;
 	
 	/*
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
+	protected static void cambiarSemilla(int numero) {
+		GrillaJuego.seed=numero;
+	}
 	public GrillaJuego(int tamanio,int cota1,int cota2) {
 		if(tamanio <= 1) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
@@ -55,6 +58,7 @@ public class GrillaJuego {
 		_maximoValorAceptable=Math.max(cota1, cota2);
 	
 	}
+
 	/*
 	 * Agrega un numero en la posicion dada de la grilla
 	 */
@@ -258,9 +262,13 @@ public class GrillaJuego {
 	/*
 	 * Generamos un numero aleatorio entre el min y max
 	 */
-	private static int numeroAleatorio(int min, int max) {
+	private  int numeroAleatorio(int min, int max) {
 		Random r = new Random(); 
-		r.setSeed(seed);
+		if(seed!=null) {
+			
+			r.setSeed(seed);
+		}
+		
 		return r.nextInt(max) + min;
 	}
 	
