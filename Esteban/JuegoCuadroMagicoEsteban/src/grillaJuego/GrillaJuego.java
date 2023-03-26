@@ -1,4 +1,4 @@
-package logica;
+package grillaJuego;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +20,20 @@ public class GrillaJuego {
 	private int _minimoValorAceptable;
 	private int _maximoValorAceptable;
 	
+	
+	/*
+	 * Esto sirve para el Junite hay que ver en el futuro como hago para sacarlo
+	 */
+	private static Integer seed;
+	
 	/*
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
+	protected static void cambiarSemilla(int numero) {
+		GrillaJuego.seed=numero;
+	}
 	public GrillaJuego(int tamanio,int cota1,int cota2) {
-		if(tamanio <= 0) {
+		if(tamanio <= 1) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
 		}
 		if(cota1<1 ) {
@@ -49,6 +58,7 @@ public class GrillaJuego {
 		_maximoValorAceptable=Math.max(cota1, cota2);
 	
 	}
+
 	/*
 	 * Agrega un numero en la posicion dada de la grilla
 	 */
@@ -88,63 +98,14 @@ public class GrillaJuego {
 	}
 	
 	
-	/*
-	 * Este metodo me parece que hay que borrar 
-	 */
+	
 	public boolean verificacionIngresos(int fila, int columna, int num) {
 		
 		
 		
-		return verificacionFila(fila,columna)&&verificacionNumero(num);
+		return verificacionFilaColumna(fila,columna)&&verificacionNumero(num);
 	}
 	
-	private boolean verificacionFila(int fila,int columna) {
-		if(fila < 0 || fila >= _tamanio) {
-			return false;
-		}
-		if(columna < 0 || columna >= _tamanio) {
-			return false;
-		}
-		return true;
-	}
-	
-	private boolean verificacionNumero(int numeroIngreso) {
-		if(numeroIngreso <_minimoValorAceptable  || numeroIngreso>_maximoValorAceptable ) {
-			return false;
-		}
-		return true;
-	}
-
-	
-	/*
-	 * Se fija si esta bien la columna o fila dada
-	 */
-	
-	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
-		
-		/*
-		 * Verificamos que el indice este dentro del rango
-		 */
-		if(!indiceValido(indiceDiccionario)) {
-			return false;
-		}
-		
-		if(fila_columna) {
-			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
-			
-		}
-		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
-		
-		
-	}
-	
-	private boolean indiceValido(int indiceDiccionario) {
-		
-		if(indiceDiccionario<this._tamanio&&indiceDiccionario>=0) {
-			return true;
-		}
-		return false;
-	}
 	/*
 	 * Vaciamos una grilla para que el usuario intenete de vuelva jugar la grilla
 	 */
@@ -237,9 +198,28 @@ public class GrillaJuego {
 		}
 		System.out.println("");
 	}
+	
+	
+	/*
+	 * Obtenemos el tamanio de la matriz en una direccion
+	 */
+	public int getTamanio() {
+		return this._tamanio;
+	}
+	
+	/*
+	 * Nos fijamos si la matriz esta vacia
+	 */
+	public boolean estaVacia() {
+		boolean TodasFilasyColumnasEstanVacia = true;
+		for(int indiceDiccionario=0;indiceDiccionario<_tamanio;indiceDiccionario++) {
+			TodasFilasyColumnasEstanVacia=TodasFilasyColumnasEstanVacia&&_resultados.get("f"+indiceDiccionario).equals(0)&&_resultados.get("c"+indiceDiccionario).equals(0);
+		}
+		return TodasFilasyColumnasEstanVacia; 
+	}
 
 	/*
-	 * -------------- Metodos Privados ----------------
+	 * ----------------------------------------------------------------- Metodos Privados ----------------
 	 */
 	
 	
@@ -282,12 +262,17 @@ public class GrillaJuego {
 	/*
 	 * Generamos un numero aleatorio entre el min y max
 	 */
-	private static int numeroAleatorio(int min, int max) {
+	private  int numeroAleatorio(int min, int max) {
 		Random r = new Random(); 
+		if(seed!=null) {
+			
+			r.setSeed(seed);
+		}
+		
 		return r.nextInt(max) + min;
 	}
 	
-	protected int obtenerResultado(String fila_o_col, int indice) {
+	private int obtenerResultado(String fila_o_col, int indice) {
 		if(fila_o_col.equals("f") || fila_o_col.equals("c")) {
 			if(indice >= 0 && indice < _tamanio) {
 				return _resultados.get(fila_o_col + indice);
@@ -299,10 +284,57 @@ public class GrillaJuego {
 		}
 	}
 	
-	/*
-	 * Obtenemos el tamanio de la matriz en una direccion
-	 */
-	public int getTamanio() {
-		return this._tamanio;
+	private boolean indiceValido(int indiceDiccionario) {
+		
+		if(indiceDiccionario<this._tamanio&&indiceDiccionario>=0) {
+			return true;
+		}
+		return false;
 	}
+	/*
+	 * Se fija si esta bien la columna o fila dada
+	 */
+	
+	private boolean estaBienFilayColumna(boolean fila_columna,int indiceDiccionario) {
+		
+		/*
+		 * Verificamos que el indice este dentro del rango
+		 */
+		if(!indiceValido(indiceDiccionario)) {
+			return false;
+		}
+		
+		if(fila_columna) {
+			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
+			
+		}
+		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
+		
+		
+	}
+	/*
+	 * Se fija si el numero que ingreso el usuario esta bien
+	 */
+	private boolean verificacionNumero(int numeroIngreso) {
+		if(numeroIngreso <_minimoValorAceptable  || numeroIngreso>_maximoValorAceptable ) {
+			return false;
+		}
+		return true;
+	}
+	/*
+	 * Se fija si la fila y columna estan dentro de rango
+	 */
+	
+	private boolean verificacionFilaColumna(int fila,int columna) {
+		if(fila < 0 || fila >= _tamanio) {
+			return false;
+		}
+		if(columna < 0 || columna >= _tamanio) {
+			return false;
+		}
+		return true;
+	}
+
+	
+	
 }

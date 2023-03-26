@@ -1,14 +1,14 @@
-package logica;
+package grillaJuego;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class construirGrillaJuegoTest {
+public class constructorTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void construirGrillaTamanioInvalido() {
-		GrillaJuego grilla=new GrillaJuego(0, 3, 8);
+		GrillaJuego grilla=new GrillaJuego(1, 3, 8);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -23,6 +23,7 @@ public class construirGrillaJuegoTest {
 	public void construirGrillaValor2IgualValor1() {
 		GrillaJuego grilla=new GrillaJuego(3, 5, 5);
 	}
+
 	
 
 }

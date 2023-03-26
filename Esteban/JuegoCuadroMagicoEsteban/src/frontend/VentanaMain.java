@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import backend.Juego;
+import visualizacion.VentanaRecord;
 
 import java.applet.AudioClip;
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ import java.awt.event.MouseEvent;
 
 public class VentanaMain extends JFrame
 {
-    private Juego juego;
+   // private Juego juego;
     private JPanel contentPane;
     private JFrame frmCuadroMagico;
     private JButton reglas;
@@ -60,7 +61,8 @@ public class VentanaMain extends JFrame
         setBounds(100, 100, 500, 450);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(6, 5, 5, 5));
-
+        setLocationRelativeTo(null);
+        setResizable(false);
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
@@ -74,12 +76,21 @@ public class VentanaMain extends JFrame
                 VentanaCronometro.setVisible(true);
                 
                 VentanaCronometro.setLocationRelativeTo(null);
-
+                VentanaCronometro.setResizable(false);
+                dispose();
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+            	VentanaComenzar VentanaCronometro = new VentanaComenzar();
+                VentanaCronometro.setVisible(true);
+                
+                VentanaCronometro.setLocationRelativeTo(null);
+                VentanaCronometro.setResizable(false);
                 dispose();
             }
         });
         btnComenzar.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnComenzar.setBounds(144, 56, 159, 46);
+        btnComenzar.setBounds(144, 24, 159, 46);
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
@@ -92,12 +103,21 @@ public class VentanaMain extends JFrame
                 ventanaDificultad.setVisible(true);
                 
                 ventanaDificultad.setLocationRelativeTo(null);
-
+                ventanaDificultad.setResizable(false);
+                dispose();
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+            	VentanaDificultad ventanaDificultad = new VentanaDificultad();
+                ventanaDificultad.setVisible(true);
+                
+                ventanaDificultad.setLocationRelativeTo(null);
+                ventanaDificultad.setResizable(false);
                 dispose();
             }
         });
         btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnDificultad.setBounds(144, 138, 159, 46);
+        btnDificultad.setBounds(144, 96, 159, 46);
         contentPane.add(btnDificultad);
 
         //-------------------autor/es
@@ -110,22 +130,22 @@ public class VentanaMain extends JFrame
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
-                        "OBJETIVO: El objetivo del juego consiste en igualar los números presentados como RESULTADO \n" +
-                        "tanto en las filas como en las columnas. Para ello se deben completar los casilleros con números \n"+
-                        "mayores a 0 (cero), los cuales se irán sumando por fila y por columna. Una vez completada una fila\n"+
+                        "OBJETIVO: El objetivo del juego consiste en igualar los nï¿½meros presentados como RESULTADO \n" +
+                        "tanto en las filas como en las columnas. Para ello se deben completar los casilleros con nï¿½meros \n"+
+                        "mayores a 0 (cero), los cuales se irï¿½n sumando por fila y por columna. Una vez completada una fila\n"+
                         "y/o  columna,  si  la  suma  equivale  al  respectivo  \"RESULTADO\"  entonces dicha  fila/columna  se \n"+
-                        "considerará   como  acertada  y se marcará en color VERDE,  si se pasa  del valor se  marcará   en \n"+
+                        "considerarï¿½   como  acertada  y se marcarï¿½ en color VERDE,  si se pasa  del valor se  marcarï¿½   en \n"+
                         "color ROJO.\n"+
                         "El juego se gana cuando todas las filas y todas las columnas equivalen al resultado.\r\n" + 
                         "\r\n" + 
-                        "INSERTAR NÚMERO: Para insertar un número en el tablero hay que hacer un click sobre el casillero \n"+
-                        " a insertar, luego escribir el número deseado y dar ENTER (*).\r\n" + 
+                        "INSERTAR Nï¿½MERO: Para insertar un nï¿½mero en el tablero hay que hacer un click sobre el casillero \n"+
+                        " a insertar, luego escribir el nï¿½mero deseado y dar ENTER (*).\r\n" + 
                         "\r\n" + 
-                        "(*) Una vez pulsado ENTER no se podrá modificar el valor del casillero.");
+                        "(*) Una vez pulsado ENTER no se podrï¿½ modificar el valor del casillero.");
             }
         });
         btnReglas.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnReglas.setBounds(144, 216, 159, 46);
+        btnReglas.setBounds(144, 165, 159, 46);
         contentPane.add(btnReglas);
 
         //-------------------boton Salir
@@ -140,6 +160,8 @@ public class VentanaMain extends JFrame
         btnSalir.setBounds(144, 299, 159, 46);
 
         contentPane.add(btnSalir);
+        
+        
 
         //-------------------boton de musica
         JButton btnMuteSoundMusic = new JButton("");
@@ -155,6 +177,30 @@ public class VentanaMain extends JFrame
         });
         btnMuteSoundMusic.setBounds(440, 367, 34, 33);
         contentPane.add(btnMuteSoundMusic);
+        
+    
+        
+        /////////////////Creo boton records //////////7
+        JButton btnNewButton = new JButton("Records");
+        btnNewButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		VentanaRecord ventanaRecord = new VentanaRecord();
+               ventanaRecord.main(null);
+
+                dispose();
+        	}
+        	@Override
+            public void mousePressed(MouseEvent e) {
+        		VentanaRecord ventanaRecord = new VentanaRecord();
+                ventanaRecord.main(null);
+
+                 dispose();
+        	}
+        });
+        btnNewButton.setFont(new Font("Georgia", Font.PLAIN, 25));
+        btnNewButton.setBounds(144, 224, 159, 52);
+        contentPane.add(btnNewButton);
     }
 
 }

@@ -1,7 +1,9 @@
-package logica;
+package juego;
 
 import java.awt.font.NumericShaper;
 import java.util.Scanner;
+
+import grillaJuego.GrillaJuego;
 
 public class Juego {
 
@@ -19,10 +21,10 @@ public class Juego {
 		_estaJugando = false;
 	}
 	
-	public void iniciar() {
+	public boolean iniciar() {
 		_estaJugando = true;
-
-		
+		return _estaJugando;
+		/* Logica de juego en general 
 		while(_estaJugando) {
 			_grilla.imprimirGrillaSolucion();
 			
@@ -53,25 +55,42 @@ public class Juego {
 			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");
 			_estaJugando = ingresoUsuario.nextLine() == "";
 		}
+		*/
 	}
 	
-	public void modificar(int i, int j, int num) {
+	
+	/*
+	 * Va a ser el ingreso de la grilla
+	 */
+	public void ingresoNumeroEnGrillaJuego(int i, int j, int num) {
 		_grilla.modificar(i, j, num);
 	}
 	
 	public boolean gano() { 
 		return _grilla.estaBienMatriz();
 	}
-	/* 
-	 * Hay que agregar este metodo
-	 */
-	public boolean verificacionDeDatos(int fila,int columna,int numero) {
-		return this._grilla.verificacionIngresos(fila,columna,numero);
+	
+	public boolean verificacionDeDatosValidos(String fila,String columna,String numero) {
+		if(!(verificacionDeConversion(fila)&&verificacionDeConversion(columna)&&verificacionDeConversion(numero))) {
+			return false;
+		}
+		return verificacionDeDatosValidos( Integer.parseInt(fila),Integer.parseInt(columna),Integer.parseInt(numero)) ;
 	}
-	/*
-	 * Aca hacemos para que el usuario 
+	/* 
+	 * Verifica que los datos esten bien dentro del rango para que la grilla no se rompa
 	 */
-	private boolean ingresar() {
+
+	
+	
+	public boolean parar() {
+		_estaJugando = false;
+		return _estaJugando;
+	}
+	
+	/*
+	 * Aca sucede la entrada de datos, me parece que esta de mal porque de esto se encarga la Gui
+	 
+	public boolean entradaDeDatos() {
 		
 		filaSeleccionada=ingresarFila()-1;
 		columnaSeleccionada=ingresarColumna()-1;
@@ -80,7 +99,22 @@ public class Juego {
 		return true;
 		
 	}
+	
+	*/
+	
+	
+	
+	
+	///////////////////////////////////////////Metodos Privados//////////////////////////////////
+	
+	
+	
+	
+	/*
+	 * Aca hacemos para que el usuario ingrese la fila columna y numero 
+	 */
 
+/*
 	private int ingresarNumero() {
 		System.out.println("Ingrese la numero(1,9)");
 		entradaSistema=ingresoUsuario.nextLine();
@@ -102,7 +136,7 @@ public class Juego {
 			return Integer.parseInt(entradaSistema.toLowerCase());
 		}
 		
-		return Integer.parseInt(entradaSistema.toLowerCase());
+		return 0;
 		
 	}
 
@@ -113,9 +147,16 @@ public class Juego {
 			return Integer.parseInt(entradaSistema.toLowerCase());
 		}
 		
-		return Integer.parseInt(entradaSistema.toLowerCase());
+		return 0;
 	}
-	private boolean verificacionDeDatos(String verficarEntrada){
+	*/
+	
+	
+	
+	/*
+	 * Verifica que el numero y columna se puedan convertir,me parece que de esto se encarga el GUI
+	 */
+	private boolean verificacionDeConversion(String verficarEntrada){
 		try {
 			Integer.parseInt(verficarEntrada);
 			return true;
@@ -124,5 +165,10 @@ public class Juego {
 			return false;
 		}
 	}
+	private boolean verificacionDeDatosValidos(int fila,int columna,int numero) {
+		return this._grilla.verificacionIngresos(fila,columna,numero);
+	}
+	
+
 	
 }

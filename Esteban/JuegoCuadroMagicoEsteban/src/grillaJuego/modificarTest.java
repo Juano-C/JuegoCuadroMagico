@@ -1,10 +1,10 @@
-package logica;
+package grillaJuego;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class modificarGrillaJuegoTest {
+public class modificarTest {
 
 	@Test
 	public void agregarNumeroFueraValoresInferior() {
@@ -24,7 +24,7 @@ public class modificarGrillaJuegoTest {
 	@Test
 	public void agregarNumeroFueraFilaSuperior() {
 		GrillaJuego grilla=new GrillaJuego(2, 1, 2);
-		assertFalse(grilla.modificar(3, 1, 1));
+		assertFalse(grilla.modificar(2, 1, 1));
 	}
 	@Test
 	public void agregarNumeroFueraFilaInferior() {
