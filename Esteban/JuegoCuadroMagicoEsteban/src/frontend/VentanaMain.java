@@ -76,7 +76,7 @@ public class VentanaMain extends JFrame
                 VentanaCronometro.setVisible(true);
                 
                 VentanaCronometro.setLocationRelativeTo(null);
-
+                VentanaCronometro.setResizable(false);
                 dispose();
             }
         });
@@ -94,7 +94,7 @@ public class VentanaMain extends JFrame
                 ventanaDificultad.setVisible(true);
                 
                 ventanaDificultad.setLocationRelativeTo(null);
-
+                ventanaDificultad.setResizable(false);
                 dispose();
             }
         });
