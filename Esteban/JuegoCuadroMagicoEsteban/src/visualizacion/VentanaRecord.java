@@ -97,6 +97,7 @@ public class VentanaRecord {
 		marcoPrincipal.getContentPane().add(lblNewLabel_3);
 		
 		table = new JTable();
+		table.setRowSelectionAllowed(false);
 		table.setShowGrid(false);
 		table.setFont(new Font("Goudy Stout", Font.BOLD, 12));
 		
