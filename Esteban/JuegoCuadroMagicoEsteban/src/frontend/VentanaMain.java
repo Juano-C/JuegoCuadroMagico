@@ -79,6 +79,15 @@ public class VentanaMain extends JFrame
                 VentanaCronometro.setResizable(false);
                 dispose();
             }
+            @Override
+            public void mousePressed(MouseEvent e) {
+            	VentanaComenzar VentanaCronometro = new VentanaComenzar();
+                VentanaCronometro.setVisible(true);
+                
+                VentanaCronometro.setLocationRelativeTo(null);
+                VentanaCronometro.setResizable(false);
+                dispose();
+            }
         });
         btnComenzar.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnComenzar.setBounds(144, 24, 159, 46);
@@ -91,6 +100,15 @@ public class VentanaMain extends JFrame
             public void mouseClicked(MouseEvent e)
             {
                 VentanaDificultad ventanaDificultad = new VentanaDificultad();
+                ventanaDificultad.setVisible(true);
+                
+                ventanaDificultad.setLocationRelativeTo(null);
+                ventanaDificultad.setResizable(false);
+                dispose();
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+            	VentanaDificultad ventanaDificultad = new VentanaDificultad();
                 ventanaDificultad.setVisible(true);
                 
                 ventanaDificultad.setLocationRelativeTo(null);

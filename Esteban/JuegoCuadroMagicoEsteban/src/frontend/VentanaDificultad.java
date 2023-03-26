@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 public class VentanaDificultad extends JFrame {
 
     public VentanaDificultad() {
-        // Tamaños
+        // Tamaï¿½os
         super();
         setTitle("Cuadro Magico");
         setVisible(true);
@@ -66,6 +66,26 @@ public class VentanaDificultad extends JFrame {
 
         //-------------------Boton de Atras
         JButton btnAtras = new JButton("Atras");
+        btnAtras.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		 VentanaMain ventanaDificultad = new VentanaMain();
+                 ventanaDificultad.setVisible(true);
+
+                 ventanaDificultad.setLocationRelativeTo(null);
+
+                 dispose();
+        	}
+        	@Override
+        	public void mousePressed(MouseEvent e) {
+        		VentanaMain ventanaDificultad = new VentanaMain();
+                ventanaDificultad.setVisible(true);
+
+                ventanaDificultad.setLocationRelativeTo(null);
+
+                dispose();
+        	}
+        });
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
@@ -76,6 +96,7 @@ public class VentanaDificultad extends JFrame {
 
                 dispose();
             }
+            
         });
         btnAtras.setFont(new Font("Serif", Font.PLAIN, 15));
         btnAtras.setBounds(10, 421, 85, 29);
