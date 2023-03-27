@@ -4,10 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.Timer;
 
+import disenio.DisenioBoton;
 import disenio.GrillaGUI;
+import disenio.IconoCerrarVentana;
 import juego.Juego;
 
 import javax.swing.GroupLayout.Alignment;
@@ -40,6 +43,7 @@ public class VentanaComenzar extends JFrame
     private GrillaGUI grillaVisual;
     
     private final static int WIDTH = 800, HEIGHT = 600;
+    private static int TAMANIOJUEGO = 4; // Esto luego iria en la parte de eventos.
 
     public VentanaComenzar()
     {
@@ -93,12 +97,17 @@ public class VentanaComenzar extends JFrame
             @Override
             public void mousePressed(MouseEvent e)
             {
-                Controlador.crearJuego(4);
-                grillaVisual = new GrillaGUI(5,5);
+            	// Si la grillaVisual no es nula significa que ya hay una. La quito y creo otra
+            	if(grillaVisual != null) {
+            		getContentPane().remove(grillaVisual);
+            	}            	
+                Controlador.crearJuego(TAMANIOJUEGO);
+                grillaVisual = new GrillaGUI(TAMANIOJUEGO+1,TAMANIOJUEGO+1);
                 grillaVisual.setBounds(10, 100, 750, 410);
                 getContentPane().add(grillaVisual);
             }
         });
+        botonIniciar.addMouseListener(new DisenioBoton(botonIniciar));;
         
         //---------boton de Pausar (pausa el cronometro)
         botonPausar.setText("Pausar");
@@ -108,6 +117,7 @@ public class VentanaComenzar extends JFrame
                 botonPausarActionPerformed(evt);
             }
         });
+        botonPausar.addMouseListener(new DisenioBoton(botonPausar));
 
         JLabel labelTiempo = new JLabel("Tiempo:");
         labelTiempo.setForeground(new Color(255, 255, 255));
@@ -115,6 +125,7 @@ public class VentanaComenzar extends JFrame
 
         //---------boton de salir (cierra juego)
         JButton botonSalir = new JButton("Salir");
+        botonSalir.setFocusable(false);
         botonSalir.setBackground(new Color(255, 255, 255));
         botonSalir.setBorderPainted(false);
         botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -143,45 +154,12 @@ public class VentanaComenzar extends JFrame
                 dispose();
             }
         });
+        botonRendirse.addMouseListener(new DisenioBoton(botonRendirse));
         
         /*
          * --------- Icono cerrar ventana ----------------
          */
-        JLabel iconoXcerrar = new JLabel("X");
-        iconoXcerrar.setForeground(new Color(255, 255, 255));
-        iconoXcerrar.setFont(new Font("Verdana", Font.BOLD, 18));
-        iconoXcerrar.setHorizontalAlignment(SwingConstants.CENTER);
-        iconoXcerrar.setOpaque(true);
-        iconoXcerrar.setBackground(new Color(0, 0, 51));
-        
-		// Cerrar ventana
-		iconoXcerrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.red);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconoXcerrar.setBackground(new Color(0, 0, 51));
-				iconoXcerrar.setForeground(new Color(255, 255, 255));
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.lightGray);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-        
-        
-        
+        JLabel iconoXcerrar = new IconoCerrarVentana();
 
         //---------agregado en el layout de los botones
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,6 +207,7 @@ public class VentanaComenzar extends JFrame
         getContentPane().setLayout(layout);
 
         pack();
+        
     }
     
     private ActionListener acciones = new ActionListener()
@@ -279,6 +258,7 @@ public class VentanaComenzar extends JFrame
         botonPausar.setEnabled(true);
         botonIniciar.setEnabled(false);
     }
+    
     
     /* ------------------------------------------------------------------------ */
     public static void main(String args[])

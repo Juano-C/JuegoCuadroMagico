@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import disenio.DisenioBoton;
+import disenio.IconoCerrarVentana;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -94,6 +98,7 @@ public class VentanaMain extends JFrame
         });
         btnComenzar.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnComenzar.setBounds(162, 61, 159, 46);
+        btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
@@ -125,6 +130,7 @@ public class VentanaMain extends JFrame
         });
         btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnDificultad.setBounds(162, 133, 159, 46);
+        btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
         contentPane.add(btnDificultad);
 
         //-------------------autor/es
@@ -158,6 +164,7 @@ public class VentanaMain extends JFrame
         });
         btnReglas.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnReglas.setBounds(162, 202, 159, 46);
+        btnReglas.addMouseListener(new DisenioBoton(btnReglas));
         contentPane.add(btnReglas);
 
         //-------------------boton Salir
@@ -174,7 +181,7 @@ public class VentanaMain extends JFrame
         });
         btnSalir.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnSalir.setBounds(162, 336, 159, 46);
-
+        btnSalir.addMouseListener(new DisenioBoton(btnSalir));
         contentPane.add(btnSalir);
         
         
@@ -198,12 +205,12 @@ public class VentanaMain extends JFrame
     
         
         /////////////////Creo boton records //////////7
-        JButton btnNewButton = new JButton("Records");
-        btnNewButton.setFocusable(false);
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setBackground(new Color(0, 0, 51));
-        btnNewButton.setForeground(new Color(255, 255, 255));
-        btnNewButton.addMouseListener(new MouseAdapter() {
+        JButton btnRecords = new JButton("Records");
+        btnRecords.setFocusable(false);
+        btnRecords.setBorderPainted(false);
+        btnRecords.setBackground(new Color(0, 0, 51));
+        btnRecords.setForeground(new Color(255, 255, 255));
+        btnRecords.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		VentanaRecord ventanaRecord = new VentanaRecord();
@@ -219,46 +226,19 @@ public class VentanaMain extends JFrame
                  dispose();
         	}
         });
-        btnNewButton.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnNewButton.setBounds(162, 261, 159, 52);
-        contentPane.add(btnNewButton);
+        btnRecords.setFont(new Font("Georgia", Font.PLAIN, 25));
+        btnRecords.setBounds(162, 261, 159, 52);
+        btnRecords.addMouseListener(new DisenioBoton(btnRecords));
+        contentPane.add(btnRecords);
         
         
-        
-        JLabel iconoXcerrar = new JLabel("X");
-        iconoXcerrar.setOpaque(true);
-        iconoXcerrar.setHorizontalAlignment(SwingConstants.CENTER);
-        iconoXcerrar.setForeground(Color.WHITE);
-        iconoXcerrar.setFont(new Font("Verdana", Font.BOLD, 18));
-        iconoXcerrar.setBackground(new Color(0, 0, 51));
+        /*
+         * --------- Icono cerrar ventana ----------------
+         */
+        JLabel iconoXcerrar = new IconoCerrarVentana();
         iconoXcerrar.setBounds(461, 0, 39, 34);
-        contentPane.add(iconoXcerrar);
-		// Cerrar ventana
-		iconoXcerrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.red);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconoXcerrar.setBackground(new Color(0, 0, 51));
-				iconoXcerrar.setForeground(new Color(255, 255, 255));
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.lightGray);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-        
+        getContentPane().add(iconoXcerrar);
+  
     }
 
 }

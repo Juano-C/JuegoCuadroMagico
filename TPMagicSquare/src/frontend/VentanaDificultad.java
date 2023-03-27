@@ -25,7 +25,7 @@ public class VentanaDificultad extends JFrame {
         setTitle("Cuadro Magico");
         setMinimumSize(new Dimension(500, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 600, 500);
+        setBounds(100, 100, 584, 500);
 
         //-------------------ContentePane
         JPanel contentPane = new JPanel();
@@ -41,7 +41,7 @@ public class VentanaDificultad extends JFrame {
         btnFacil.setBorderPainted(false);
         btnFacil.setBackground(new Color(0, 0, 51));
         btnFacil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        btnFacil.setBounds(59, 100, 114, 34);
+        btnFacil.setBounds(52, 100, 114, 34);
         contentPane.add(btnFacil);
 
         //-------------------Boton de medio
@@ -51,7 +51,7 @@ public class VentanaDificultad extends JFrame {
         btnMedio.setBorderPainted(false);
         btnMedio.setForeground(new Color(255, 255, 255));
         btnMedio.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        btnMedio.setBounds(59, 188, 114, 34);
+        btnMedio.setBounds(52, 188, 114, 34);
         contentPane.add(btnMedio);
 
         //-------------------Boton de dificil
@@ -61,7 +61,7 @@ public class VentanaDificultad extends JFrame {
         btnDificil.setBorderPainted(false);
         btnDificil.setForeground(new Color(255, 255, 255));
         btnDificil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        btnDificil.setBounds(59, 276, 114, 34);
+        btnDificil.setBounds(52, 276, 114, 34);
         contentPane.add(btnDificil);
 
         //-------------------Boton salir pantalla de dificultad
@@ -76,7 +76,7 @@ public class VentanaDificultad extends JFrame {
             }
         });
         btnSalir.setFont(new Font("Serif", Font.PLAIN, 15));
-        btnSalir.setBounds(495, 421, 75, 29);
+        btnSalir.setBounds(485, 460, 85, 29);
         contentPane.add(btnSalir);
 
         //-------------------Boton de Atras
@@ -116,26 +116,26 @@ public class VentanaDificultad extends JFrame {
             
         });
         btnAtras.setFont(new Font("Serif", Font.PLAIN, 15));
-        btnAtras.setBounds(10, 421, 85, 29);
+        btnAtras.setBounds(10, 460, 85, 29);
         contentPane.add(btnAtras);
 
         //-----------Textos de dificultad de grilla--------------
         JLabel lblNewLabel = new JLabel("Grilla de 3x3 con valores de 0 a 9");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblNewLabel.setBounds(230, 100, 271, 27);
+        lblNewLabel.setBounds(223, 100, 271, 27);
         contentPane.add(lblNewLabel);
 
         JLabel lblGrillaDex = new JLabel("Grilla de 4x4 con valores de 0 a 20");
         lblGrillaDex.setForeground(new Color(255, 255, 255));
         lblGrillaDex.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblGrillaDex.setBounds(230, 188, 281, 27);
+        lblGrillaDex.setBounds(223, 188, 281, 27);
         contentPane.add(lblGrillaDex);
         
         JLabel lblGrillaDex_1 = new JLabel("Grilla de 5x5 con valores de 0 a 50");
         lblGrillaDex_1.setForeground(new Color(255, 255, 255));
         lblGrillaDex_1.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblGrillaDex_1.setBounds(230, 276, 281, 27);
+        lblGrillaDex_1.setBounds(223, 276, 281, 27);
         contentPane.add(lblGrillaDex_1);
         
         JLabel iconoXcerrar = new JLabel("X");
@@ -144,7 +144,7 @@ public class VentanaDificultad extends JFrame {
         iconoXcerrar.setForeground(Color.WHITE);
         iconoXcerrar.setFont(new Font("Verdana", Font.BOLD, 18));
         iconoXcerrar.setBackground(new Color(0, 0, 51));
-        iconoXcerrar.setBounds(561, 0, 39, 34);
+        iconoXcerrar.setBounds(545, 0, 39, 34);
         contentPane.add(iconoXcerrar);
 		// Cerrar ventana
 		iconoXcerrar.addMouseListener(new MouseAdapter() {

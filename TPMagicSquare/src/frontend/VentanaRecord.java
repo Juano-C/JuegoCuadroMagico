@@ -9,6 +9,9 @@ import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import disenio.IconoCerrarVentana;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
@@ -162,40 +165,12 @@ public class VentanaRecord {
 		botonVolver.setBounds(20, 412, 123, 27);
 		marcoPrincipal.getContentPane().add(botonVolver);
 		
-		iconoXcerrar = new JLabel("X");
-		iconoXcerrar.setOpaque(true);
-		iconoXcerrar.setHorizontalAlignment(SwingConstants.CENTER);
-		iconoXcerrar.setForeground(Color.WHITE);
-		iconoXcerrar.setFont(new Font("Verdana", Font.BOLD, 18));
-		iconoXcerrar.setBackground(new Color(0, 0, 51));
+		/*
+		 * --------- Icono cerrar ventana ----------------
+		 */
+		iconoXcerrar = new IconoCerrarVentana();
 		iconoXcerrar.setBounds(447, 0, 39, 34);
 		marcoPrincipal.getContentPane().add(iconoXcerrar);
-		// Cerrar ventana
-		iconoXcerrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.red);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconoXcerrar.setBackground(new Color(0, 0, 51));
-				iconoXcerrar.setForeground(new Color(255, 255, 255));
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.lightGray);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-		
 		
 		String columnas[]={"Puesto","Nombre","Apellido"};
 		String filas[][]={{"1","Pee","Leo"},{"2","Caa","til"}};
