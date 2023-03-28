@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
+import sonido.Audios;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -238,6 +239,11 @@ public class VentanaMain extends JFrame
         JLabel iconoXcerrar = new IconoCerrarVentana();
         iconoXcerrar.setBounds(461, 0, 39, 34);
         getContentPane().add(iconoXcerrar);
+        
+        /*
+         * Musica del Juego
+         */
+        try{Audios.musicaPlay();}catch(Exception c) {};
   
     }
 
