@@ -10,10 +10,12 @@ public class ganaJuegoTest {
 	
 	
 	GrillaJuego grilla;
+	
 	@Before
 	public void incializar() {
 	GrillaJuego.cambiarSemilla(5);
 	grilla=new GrillaJuego(2, 1, 9);
+	
 	
 	
 	}
@@ -36,6 +38,16 @@ public class ganaJuegoTest {
 		grilla.modificar(1, 0, 9);
 		assertFalse(grilla.estaBienMatriz());
 		
+	}
+
+	@Test 
+	public void grillaNoCompleta() {
+	
+	grilla=new GrillaJuego(2, 1, 9);
+	
+	grilla.imprimirGrillaSolucion();
+	
+	
 	}
 
 }

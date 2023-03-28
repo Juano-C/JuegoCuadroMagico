@@ -3,6 +3,7 @@ package grillaJuego;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class GrillaJuego {
 
@@ -19,7 +20,7 @@ public class GrillaJuego {
 	
 	private int _minimoValorAceptable;
 	private int _maximoValorAceptable;
-	
+	private Random r= new Random();
 	
 	/*
 	 * Esto sirve para el Junite hay que ver en el futuro como hago para sacarlo
@@ -29,9 +30,12 @@ public class GrillaJuego {
 	/*
 	 * Genera la grilla tamanio x tamanio = n x n (cuadrada)
 	 */
-	protected static void cambiarSemilla(int numero) {
+	protected static void cambiarSemilla(Integer numero) {
 		GrillaJuego.seed=numero;
 	}
+	
+	
+	
 	public GrillaJuego(int tamanio,int cota1,int cota2) {
 		if(tamanio <= 1) {
 			throw new IllegalArgumentException("El tamanio debe ser un entero positivo: " + tamanio);
@@ -120,14 +124,14 @@ public class GrillaJuego {
 	 * Verificamos que la matriz esta bien resuleta, esto podemos ver de cambiar la firma del metodo
 	 */
 	public boolean estaBienMatriz() {
-		for(int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
-			// Comprobamos la suma de las filas
-			if( !(estaBienFilayColumna(true,indiceDiccionario)&&estaBienFilayColumna(false,indiceDiccionario))) {
-				return false;
-			}
-		}
-		return true;
+		
+		return noHayFilasVacias()&&sumaDeLasFilasCorrecto();
+		
+		
 	}
+	
+	
+	
 	/*
 	 * Imprime la matriz del jugador, aca creo que estamos haciendo verificaciones hay que revisar
 	 */
@@ -263,13 +267,14 @@ public class GrillaJuego {
 	 * Generamos un numero aleatorio entre el min y max
 	 */
 	private  int numeroAleatorio(int min, int max) {
-		Random r = new Random(); 
+		 
 		if(seed!=null) {
 			
 			r.setSeed(seed);
+			
 		}
 		
-		return r.nextInt(max) + min;
+		return r.nextInt(min,max+1) ;
 	}
 	
 	private int obtenerResultado(String fila_o_col, int indice) {
@@ -334,7 +339,35 @@ public class GrillaJuego {
 		}
 		return true;
 	}
-
+	/*
+	 * Verifica que todas las filas no tengan espaciosVacios
+	 */
+	
+	
+	private boolean noHayFilasVacias() {
+		for(int fila=0;fila<_tamanio;fila++) {
+			for(int columna=0;columna>_tamanio;columna++) {
+				if(_grilla[fila][columna]==0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	/*
+	 * Veirifica si el diccionario solucion es igual al diccionario del jugador
+	 */
+	
+	private boolean sumaDeLasFilasCorrecto() {
+		for(int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
+			// Comprobamos la suma de las filas
+			if( !(estaBienFilayColumna(true,indiceDiccionario)&&estaBienFilayColumna(false,indiceDiccionario))) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	
 }
