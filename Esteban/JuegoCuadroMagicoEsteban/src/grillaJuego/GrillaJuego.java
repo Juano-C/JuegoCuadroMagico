@@ -366,6 +366,11 @@ public class GrillaJuego {
 	 * Se fija si el numero que ingreso el usuario esta bien
 	 */
 	private boolean verificacionNumero(int numeroIngreso) {
+		
+		if(numeroIngreso==0) {
+			return true;
+		}
+		
 		if (numeroIngreso < _minimoValorAceptable || numeroIngreso > _maximoValorAceptable) {
 			return false;
 		}
