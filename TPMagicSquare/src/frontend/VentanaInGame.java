@@ -13,16 +13,13 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JLayeredPane;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class VentanaInGame extends JFrame {
 
 	private JPanel contentPane;
@@ -96,7 +93,7 @@ public class VentanaInGame extends JFrame {
 	}
 
 	// Usar celda en ves de JTextField;
-	@SuppressWarnings("serial")
+	@SuppressWarnings({ "unused" })
 	private class Celda extends JTextField {
 
 		Tupla _posicion;
@@ -118,7 +115,9 @@ public class VentanaInGame extends JFrame {
 	private class Tupla {
 		private int _x, _y;
 		public Tupla(int x, int y) {_x = x; _y = y;}
+		@SuppressWarnings("unused")
 		public int getX() {return _x;}
+		@SuppressWarnings("unused")
 		public int getY() { return _y;}
 	}
 

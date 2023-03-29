@@ -7,9 +7,16 @@ import org.junit.Test;
 public class modificarTest {
 
 	@Test
+	public void agregarNumero0() {
+		GrillaJuego grilla=new GrillaJuego(3, 1, 2);
+		assertTrue(grilla.modificar(1, 1, 0));
+	}
+	
+	
+	@Test
 	public void agregarNumeroFueraValoresInferior() {
 		GrillaJuego grilla=new GrillaJuego(3, 1, 2);
-		assertFalse(grilla.modificar(1, 1, 0));
+		assertFalse(grilla.modificar(1, 1, -1));
 	}
 	@Test
 	public void agregarNumeroFueraValoresSuperior() {
