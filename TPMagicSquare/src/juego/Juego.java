@@ -1,5 +1,7 @@
 package juego;
 
+import java.util.Map;
+
 import grillaJuego.GrillaJuego;
 
 public class Juego {
@@ -75,4 +77,7 @@ public class Juego {
 	
 	}
 	
+	public Map<String, boolean[]> filasYColumnasQueEstanBien() {
+		return _grilla.filasYColumnasQueEstanBien();
+	}
 }

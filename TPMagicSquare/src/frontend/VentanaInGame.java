@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controladores.Controlador;
 import disenio.DisenioBoton;
@@ -20,9 +22,12 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -35,7 +40,7 @@ public class VentanaInGame extends JFrame {
 	private JTextField[][] matriz;
 	private Juego __juego__;
 
-	private static int TAMANIO = 5;
+	private static int TAMANIO = 4;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
 	public VentanaInGame() {
@@ -205,9 +210,34 @@ public class VentanaInGame extends JFrame {
 				} else {
 					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, 0);
 				}
+				
+				cambiarEstadosCasillas();
+
 				if (__juego__.gano()) {
 					frenarTodo();
 					jugadorGano();
+				}
+			}
+		}
+
+		private void cambiarEstadosCasillas() {
+			if(__juego__!= null && matriz != null) {
+				Map<String, boolean[]> filasYcolumnas = __juego__.filasYColumnasQueEstanBien();
+				boolean[] filas = filasYcolumnas.get("fila");
+				boolean[] columnas = filasYcolumnas.get("columna");
+				for(int i=0; i < filas.length; i++) {
+					if(filas[i] == true) {
+						matriz[i][matriz.length - 1].setBackground(Color.green);;
+					}else {
+						matriz[i][matriz.length - 1].setBackground(Color.red);;
+					}
+				}
+				for(int i=0; i < columnas.length; i++) {
+					if(columnas[i] == true) {
+						matriz[matriz.length-1][i].setBackground(Color.green);
+					}else {
+						matriz[matriz.length-1][i].setBackground(Color.red);
+					}
 				}
 			}
 		}
@@ -318,6 +348,8 @@ public class VentanaInGame extends JFrame {
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
 	}
+	
+	
 
 	public static void main(String[] args) {
 		VentanaInGame v = new VentanaInGame();
