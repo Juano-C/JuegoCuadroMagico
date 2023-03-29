@@ -48,7 +48,6 @@ public class VentanaComenzar extends JFrame
     public VentanaComenzar()
     {
     	setUndecorated(true);
-    	setType(Type.UTILITY);
     	getContentPane().setFocusable(false);
     	getContentPane().setBackground(new Color(0, 0, 51));
         setFont(null);

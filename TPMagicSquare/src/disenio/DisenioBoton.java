@@ -44,7 +44,7 @@ public class DisenioBoton implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(_boton != null) {
+		if(_boton != null && _boton.isEnabled()) {
 			_boton.setBackground(_backgroundOriginal);
 			_boton.setForeground(_letraOriginal);
 		}

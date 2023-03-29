@@ -3,10 +3,13 @@ package frontend;
 import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import disenio.DisenioBoton;
+import disenio.IconoCerrarVentana;
 import juego.Juego;
 
 import java.awt.Color;
@@ -29,14 +32,15 @@ public class VentanaInGame extends JFrame {
 	private JPanel Grilla;
 	private JTextField[][] matriz;
 	private Juego __juego__;
-	
+
 	private static int TAMANIO = 2;
 	private static Color COLORFONDO = new Color(0, 0, 51);
-	
+
 	public VentanaInGame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		setLocationRelativeTo(null);
+		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBackground(COLORFONDO);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,30 +48,47 @@ public class VentanaInGame extends JFrame {
 		contentPane.setLayout(null);
 
 		iniciar = new JButton("Iniciar");
-		iniciar.setBounds(15, 11, 89, 34);
+		iniciar.setBounds(10, 30, 89, 23);
 		iniciar.setFocusable(false);
+		iniciar.setBorderPainted(false);
+		iniciar.setForeground(new Color(255, 255, 255));
+		iniciar.setBackground(new Color(0, 0, 51));
+		iniciar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		iniciar.addMouseListener(new DisenioBoton(iniciar));
 		contentPane.add(iniciar);
-		
+
 		rendirse = new JButton("Rendirse");
-		rendirse.setBounds(114, 11, 89, 34);
+		rendirse.setBounds(109, 30, 89, 23);
 		rendirse.setFocusable(false);
+		rendirse.setBorderPainted(false);
 		rendirse.setEnabled(false);
+		rendirse.setForeground(new Color(255, 255, 255));
+		rendirse.setBackground(new Color(0, 0, 51));
+		rendirse.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rendirse.addMouseListener(new DisenioBoton(rendirse));
 		contentPane.add(rendirse);
-						
+
+		JLabel iconoXcerrar = new IconoCerrarVentana();
+		iconoXcerrar.setBounds(761, 0, 39, 34);
+		contentPane.add(iconoXcerrar);
+
 		iniciar.addActionListener(new AccionesIniciar());
 		rendirse.addActionListener(new AccionesRendirse());
+
+		// Creo la Grilla GUI para el usuario.
+		crearGrilla(TAMANIO + 1);
 	}
 
 	private void crearGrilla(int tamanio) {
 		// Si la grilla no es nula tengo que remover la anterior
-		if(Grilla != null) {
+		if (Grilla != null) {
 			contentPane.remove(Grilla);
 		}
 		matriz = new JTextField[tamanio][tamanio];
 		Grilla = new JPanel();
 		Grilla.setVisible(false); // Evito que se vea
 		Grilla.setOpaque(false);
-		Grilla.setBounds(15, 69, 750, 476);
+		Grilla.setBounds(10, 64, 780, 507);
 		contentPane.add(Grilla);
 		Grilla.setLayout(new GridLayout(tamanio, tamanio, 20, 20));
 
@@ -77,18 +98,18 @@ public class VentanaInGame extends JFrame {
 				celda.setColumns(10); // No se que hace lo puso window builder
 				celda.setFont(new Font("Helvetica", Font.BOLD, 30));
 				celda.setHorizontalAlignment(SwingConstants.CENTER);
-				
-				if (i == tamanio-1 && j == tamanio-1) {
+
+				if (i == tamanio - 1 && j == tamanio - 1) {
 					// Estoy en la esquina derecha inferior. No la quiero mostrar
 					celda.setVisible(false);
-				}else if (i == tamanio - 1 || j == tamanio - 1) {
+				} else if (i == tamanio - 1 || j == tamanio - 1) {
 					// Las ultima fla y la ultima columna se pintan en rojo.
 					celda.setBackground(Color.RED);
 					celda.setForeground(Color.WHITE);
 					celda.setEditable(false);
-				}else {
+				} else {
 					// Si no son las ultimas les agrego interaccion
-					celda.addKeyListener(new AccionesCelda(celda,i,j));
+					celda.addKeyListener(new AccionesCelda(celda, i, j));
 				}
 
 				matriz[i][j] = celda;
@@ -119,11 +140,21 @@ public class VentanaInGame extends JFrame {
 
 	private class Tupla {
 		private int _x, _y;
-		public Tupla(int x, int y) {_x = x; _y = y;}
+
+		public Tupla(int x, int y) {
+			_x = x;
+			_y = y;
+		}
+
 		@SuppressWarnings("unused")
-		public int getX() {return _x;}
+		public int getX() {
+			return _x;
+		}
+
 		@SuppressWarnings("unused")
-		public int getY() { return _y;}
+		public int getY() {
+			return _y;
+		}
 	}
 
 	private class AccionesCelda implements KeyListener {
@@ -136,7 +167,7 @@ public class VentanaInGame extends JFrame {
 		int _fila;
 		int _columna;
 
-		public AccionesCelda(JTextField celda,int fila,int columna) {
+		public AccionesCelda(JTextField celda, int fila, int columna) {
 			super();
 			if (celda != null) {
 				_celda = celda;
@@ -155,115 +186,136 @@ public class VentanaInGame extends JFrame {
 				e.consume();
 			}
 		}
+
 		@Override
-		public void keyPressed(KeyEvent e) {}
+		public void keyPressed(KeyEvent e) {
+		}
+
 		@Override
 		public void keyReleased(KeyEvent e) {
-		// Al soltar la tecla se ejecuta este evento.	
-			if(__juego__ != null) 
-			{   
-				if(_celda.getText().length() != 0) {
-					__juego__.ingresoNumeroEnGrillaJuego(_fila,_columna,Integer.valueOf(_celda.getText()) );
-					System.out.println("Se ingreso el numero " + _celda.getText() + " en la posicion (" + _fila +","+ _columna +")." );
-				}else {
-					__juego__.ingresoNumeroEnGrillaJuego(_fila,_columna,0);
+			// Al soltar la tecla se ejecuta este evento.
+			if (__juego__ != null) {
+				if (_celda.getText().length() != 0) {
+					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, Integer.valueOf(_celda.getText()));
+					System.out.println("Se ingreso el numero " + _celda.getText() + " en la posicion (" + _fila + ","
+							+ _columna + ").");
+				} else {
+					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, 0);
 				}
-				if(__juego__.gano()) {
+				if (__juego__.gano()) {
 					frenarTodo();
 					jugadorGano();
 				}
 			}
 		}
 	}
-	
-	private class AccionesIniciar implements ActionListener{
-		
+
+	private class AccionesIniciar implements ActionListener {
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Creo la Grilla GUI para el usuario.
-			crearGrilla(TAMANIO+1);
-			
+			// Vacio la Grilla
+			vaciarGrilla();
+
 			// Inicia la instancia de Juego. Creo la grilla logica.
 			__juego__ = new Juego(TAMANIO);
 
 			// Carga a la grilla los valores de la instancia de Juego
 			cargarValoresAlaGrilla();
-			
+
 			// Muestro la grilla
 			Grilla.setVisible(true);
-			
+
 			// Deshabilita la opcion del boton
-			iniciar.setEnabled(false);
-			
+			deshabilitar();
+
 			// Habilito la opcion de rendirse
 			rendirse.setEnabled(true);
 		}
 
+		private void deshabilitar() {
+			iniciar.setBackground(new Color(0,0,51));
+			iniciar.setForeground(new Color(255, 255, 255));
+			iniciar.setEnabled(false);
+		}
+
 		private void cargarValoresAlaGrilla() {
-			if(__juego__ != null) {
+			if (__juego__ != null) {
 				// Carga los valores en las casillas rojas.
-				for(int indice=0; indice < matriz.length-1; indice++) {
-					matriz[matriz.length-1][indice].setText("" + __juego__.obtenerResultadosSolucion("c", indice));
-					matriz[indice][matriz.length-1].setText("" + __juego__.obtenerResultadosSolucion("f", indice));
-					
+				for (int indice = 0; indice < matriz.length - 1; indice++) {
+					matriz[matriz.length - 1][indice].setText("" + __juego__.obtenerResultadosSolucion("c", indice));
+					matriz[indice][matriz.length - 1].setText("" + __juego__.obtenerResultadosSolucion("f", indice));
+
 				}
 			}
 		}
-		
+
+		private void vaciarGrilla() {
+			for (int fila = 0; fila < TAMANIO; fila++) {
+				for (int columna = 0; columna < TAMANIO; columna++) {
+					matriz[fila][columna].setText("");
+				}
+			}
+		}
+
 	}
-	
-	
-	private class AccionesRendirse implements ActionListener{
+
+	private class AccionesRendirse implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// Freno el juego
 			frenarTodo();
-			
+
 			// Explicar al usuario
 			mensajeRendirse();
-			
+
 			// Cargo una posible Solucion
 			cargarSolucion();
-			
+
 			// Deshabilito rendirse
-			rendirse.setEnabled(false);
-			
+			deshabilitar();
+
 			// Habilito iniciar
 			iniciar.setEnabled(true);
 		}
+		
+		private void deshabilitar() {
+			rendirse.setBackground(new Color(0,0,51));
+			rendirse.setForeground(new Color(255, 255, 255));
+			rendirse.setEnabled(false);
+		}
 
 		private void mensajeRendirse() {
-			JOptionPane.showMessageDialog(getContentPane(), "Usted se ha rendido. A continuacion se mostrara una solucion.");
+			JOptionPane.showMessageDialog(getContentPane(),
+					"Usted se ha rendido. A continuacion se mostrara una solucion.");
 		}
 
 		private void cargarSolucion() {
-			if(__juego__ != null) {
-				for(int fila=0; fila < matriz.length-1; fila++) {
-					for(int columna=0; columna < matriz.length-1; columna++) {
+			if (__juego__ != null) {
+				for (int fila = 0; fila < matriz.length - 1; fila++) {
+					for (int columna = 0; columna < matriz.length - 1; columna++) {
 						matriz[fila][columna].setText("" + __juego__.obtenerValoresGrillaSolucion(fila, columna));
 					}
 				}
 				Grilla.setVisible(true);
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	private void frenarTodo() {
 		Grilla.setVisible(false);
-		
+
 	}
-	
+
 	private void jugadorGano() {
 		JOptionPane.showMessageDialog(getContentPane(), "Usted a ganado.");
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
 	}
-	
-	
-	
+
 	public static void main(String[] args) {
 		VentanaInGame v = new VentanaInGame();
 		v.setVisible(true);
