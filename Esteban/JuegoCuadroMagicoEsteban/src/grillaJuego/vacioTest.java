@@ -23,7 +23,7 @@ public class vacioTest {
 		GrillaJuego grilla=new GrillaJuego(3, 1, 2);
 		grilla.modificar(0, 0, 1);
 		grilla.estaVacia();
-			assertFalse(grilla.estaVacia());
+		assertFalse(grilla.estaVacia());
 		}
 	}
 

@@ -66,5 +66,12 @@ public class ganaJuegoTest {
 		assertFalse(grilla.estaBienMatriz());
 
 	}
+	@Test
+	public void grillaVaciaTest() {
+		grilla.vaciarMatriz();
+		
+		assertFalse(grilla.estaBienMatriz());
+
+	}
 
 }

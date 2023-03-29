@@ -1,6 +1,8 @@
 package grillaJuego;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -76,7 +78,7 @@ public class GrillaJuego {
 	private void eliminarNumero(int fila, int columna) {
 
 		_resultados.put("f" + fila, _resultados.get("f" + fila) - _grilla[fila][columna]);
-		_resultados.put("f" + columna, _resultados.get("f" + columna) - _grilla[fila][columna]);
+		_resultados.put("c" + columna, _resultados.get("c" + columna) - _grilla[fila][columna]);
 		_grilla[fila][columna] = 0;
 
 	}
@@ -116,9 +118,12 @@ public class GrillaJuego {
 	 */
 	public boolean estaBienMatriz() {
 
-		return noHayFilasVacias() && sumaDeLasFilasCorrecto();
+		//return noHayFilasVacias() && sumaDeLasFilasCorrecto();
+		return this.estaBienFilasyColumnas();
 
 	}
+
+
 
 	/*
 	 * Imprime la matriz del jugador, aca creo que estamos haciendo verificaciones
@@ -200,14 +205,38 @@ public class GrillaJuego {
 	 * Nos fijamos si la matriz esta vacia
 	 */
 	public boolean estaVacia() {
-		boolean TodasFilasyColumnasEstanVacia = true;
-		for (int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
-			TodasFilasyColumnasEstanVacia = TodasFilasyColumnasEstanVacia
-					&& _resultados.get("f" + indiceDiccionario).equals(0)
-					&& _resultados.get("c" + indiceDiccionario).equals(0);
+		boolean acum=true;
+		for(int fila=0;fila<this._tamanio;fila++) {
+			for(int columna=0;columna<this._tamanio;columna++) {
+				acum=acum&&celdaVacia(fila, columna);
+			}
 		}
-		return TodasFilasyColumnasEstanVacia;
+			
+		
+		return acum;
+
+		
 	}
+	/*
+	 * Esto nos devuelve una lista con las columnas y filas que estan bien
+	 */
+	public Map<String,boolean[]> filasYColumnasQueEstanBien(){
+		Map<String,boolean[]> salida= new HashMap<String,boolean[]>();
+		salida.put("fila", new boolean[this._tamanio]);
+		salida.put("columna", new boolean[this._tamanio]);
+		for(int indice=0;indice<this._tamanio;indice++) {
+			if(this.resultadoDeLaFilaEstaBien(indice)&&!estaFilaTieneCeldasVacias(indice)) {
+				salida.get("fila")[indice]=true;
+			}
+			if(resultadoDeLaColumnaEstaBien(indice)&&!estaColumnaTieneCeldaVacia(indice)) {
+				salida.get("columna")[indice]=true;
+			}
+		}
+		return salida;
+		
+		
+	}
+	
 
 	/*
 	 * ----------------------------------------------------------------- Metodos
@@ -287,7 +316,29 @@ public class GrillaJuego {
 	 * Se fija si esta bien la columna o fila dada
 	 */
 
-	private boolean estaBienFilayColumna(boolean fila_columna, int indiceDiccionario) {
+	
+	
+	private boolean estaBienFilasyColumnas() {
+		return sumaDeLasFilasYColumnasCorrecto() && !hayCeldasVacias();
+	}
+	
+	/*
+	 * Veirifica si el diccionario solucion es igual al diccionario del jugador
+	 */
+
+	private boolean sumaDeLasFilasYColumnasCorrecto() {
+		for (int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
+			// Comprobamos la suma de las filas
+			if (!(resultadoDeLaFilaEstaBien(indiceDiccionario) && resultadoDeLaColumnaEstaBien( indiceDiccionario))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	
+	
+	private boolean resultadoDeLaFilaEstaBien(int indiceDiccionario) {
 
 		/*
 		 * Verificamos que el indice este dentro del rango
@@ -295,11 +346,18 @@ public class GrillaJuego {
 		if (!indiceValido(indiceDiccionario)) {
 			return false;
 		}
+		/*
+		 * Verificamos si fila_columna es true es porque el usuario se refiere a que es una fila
+		 */
 
-		if (fila_columna) {
+		
 			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
 
-		}
+		
+		
+	}
+	
+	private boolean resultadoDeLaColumnaEstaBien(int indiceDiccionario) {
 		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
 
 	}
@@ -326,36 +384,64 @@ public class GrillaJuego {
 		}
 		return true;
 	}
+	
+	private boolean hayCeldasVacias() {
+		return hayFilasConCeldasVacias() || hayColumnasConCeldasVacias();
+	}
+	
+	
+	
 	/*
 	 * Verifica que todas las filas no tengan espaciosVacios
 	 */
 
-	private boolean noHayFilasVacias() {
+	private boolean hayFilasConCeldasVacias() {
 		for (int fila = 0; fila < _tamanio; fila++) {
-			for (int columna = 0; columna > _tamanio; columna++) {
-				if (_grilla[fila][columna] == 0) {
-					return false;
-				}
+			if(estaFilaTieneCeldasVacias(fila)) {
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
-
-	/*
-	 * Veirifica si el diccionario solucion es igual al diccionario del jugador
-	 */
-
-	private boolean sumaDeLasFilasCorrecto() {
-		for (int indiceDiccionario = 0; indiceDiccionario < _tamanio; indiceDiccionario++) {
-			// Comprobamos la suma de las filas
-			if (!(estaBienFilayColumna(true, indiceDiccionario) && estaBienFilayColumna(false, indiceDiccionario))) {
-				return false;
+	
+	private boolean estaFilaTieneCeldasVacias(int fila) {
+		
+		
+		for (int columna = 0; columna < _tamanio; columna++) {
+			if (celdaVacia(fila, columna)) {
+				return true;
 			}
 		}
-		return true;
+		return false;
+	}
+	
+	private boolean hayColumnasConCeldasVacias() {
+		for (int columna = 0; columna < _tamanio; columna++) {
+			if(estaColumnaTieneCeldaVacia(columna)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
-	protected boolean modificarSolucion(int fila, int columna, int num) {
+
+	 private boolean estaColumnaTieneCeldaVacia(int columna) {
+		for(int fila=0;fila<this._tamanio;fila++) {
+			if(celdaVacia(fila, columna)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	 
+	 private boolean celdaVacia(int fila,int columna) {
+		 if(this._grilla[fila][columna]==0){
+			 return true;
+		 }
+		 return false;
+	 }
+
+	boolean modificarSolucion(int fila, int columna, int num) {
 
 		if (!verificacionIngresos(fila, columna, num)) {
 			return false;
@@ -388,7 +474,7 @@ public class GrillaJuego {
 		
 	}
 
-	protected void vaciarMatrizSolucion() {
+	 void vaciarMatrizSolucion() {
 		_grillaSol = new int[_tamanio][_tamanio];
 		for (String f_c : _resultados.keySet()) {
 			_resultadosSolucion.put(f_c, 0);
