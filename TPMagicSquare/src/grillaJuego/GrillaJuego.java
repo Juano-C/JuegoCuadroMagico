@@ -458,6 +458,12 @@ public class GrillaJuego {
 			return 0;
 		}
 	}
+
+	public int obtenerValoresGrillaSolucion(int fila, int columna) {
+		// Verificacion....
+		
+		return _grillaSol[fila][columna];
+	}
 	
 	
 	}

@@ -70,6 +70,9 @@ public class Juego {
 		}
 	}
 	
-
+	public int obtenerValoresGrillaSolucion(int fila, int columna) {		
+		return _grilla.obtenerValoresGrillaSolucion(fila,columna);
+	
+	}
 	
 }
