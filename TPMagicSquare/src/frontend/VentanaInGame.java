@@ -34,12 +34,16 @@ import java.awt.event.ActionEvent;
 public class VentanaInGame extends JFrame {
 
 	private JPanel contentPane;
-	JButton iniciar;
+	private JButton iniciar;
 	private JButton rendirse;
 	private JPanel Grilla;
 	private JTextField[][] matriz;
 	private Juego __juego__;
 
+	private JLabel tiempoText;
+	private JLabel tiempoJuego;
+	private Thread actualizarTiempo;
+	
 	private static int TAMANIO = 4;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
@@ -56,25 +60,43 @@ public class VentanaInGame extends JFrame {
 		contentPane.setLayout(null);
 
 		iniciar = new JButton("Iniciar");
-		iniciar.setBounds(10, 30, 89, 23);
+		iniciar.setBounds(10, 22, 89, 23);
 		iniciar.setFocusable(false);
 		iniciar.setBorderPainted(false);
 		iniciar.setForeground(new Color(255, 255, 255));
 		iniciar.setBackground(new Color(0, 0, 51));
-		iniciar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		iniciar.setFont(new Font("Leelawadee UI", Font.BOLD, 13));
 		iniciar.addMouseListener(new DisenioBoton(iniciar));
 		contentPane.add(iniciar);
 
 		rendirse = new JButton("Rendirse");
-		rendirse.setBounds(109, 30, 89, 23);
+		rendirse.setBounds(98, 22, 89, 23);
 		rendirse.setFocusable(false);
 		rendirse.setBorderPainted(false);
 		rendirse.setEnabled(false);
 		rendirse.setForeground(new Color(255, 255, 255));
 		rendirse.setBackground(new Color(0, 0, 51));
-		rendirse.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rendirse.setFont(new Font("Leelawadee UI", Font.BOLD, 13));
 		rendirse.addMouseListener(new DisenioBoton(rendirse));
 		contentPane.add(rendirse);
+		
+		tiempoText = new JLabel("Tiempo: ");
+		tiempoText.setHorizontalAlignment(SwingConstants.CENTER);
+		tiempoText.setBounds(185, 22, 89, 23);
+		tiempoText.setFocusable(false);
+		tiempoText.setForeground(new Color(255, 255, 255));
+		tiempoText.setBackground(new Color(0, 0, 51));
+		tiempoText.setFont(new Font("Leelawadee UI", Font.BOLD, 13));
+		contentPane.add(tiempoText);
+		
+		tiempoJuego = new JLabel("");
+		tiempoJuego.setHorizontalAlignment(SwingConstants.CENTER);
+		tiempoJuego.setForeground(Color.WHITE);
+		tiempoJuego.setBounds(263, 22, 89, 23);
+		tiempoJuego.setForeground(new Color(255, 255, 255));
+		tiempoJuego.setBackground(new Color(0, 0, 51));
+		tiempoJuego.setFont(new Font("Tahoma", Font.BOLD, 18));
+		contentPane.add(tiempoJuego);
 
 		JLabel iconoXcerrar = new IconoCerrarVentana();
 		iconoXcerrar.setBounds(761, 0, 39, 34);
@@ -252,6 +274,7 @@ public class VentanaInGame extends JFrame {
 
 			// Inicia la instancia de Juego. Creo la grilla logica.
 			__juego__ = new Juego(TAMANIO);
+			__juego__.iniciar();
 
 			// Carga a la grilla los valores de la instancia de Juego
 			cargarValoresAlaGrilla();
@@ -264,6 +287,10 @@ public class VentanaInGame extends JFrame {
 
 			// Habilito la opcion de rendirse
 			rendirse.setEnabled(true);
+			
+			// Correr cronometro
+			actualizarTiempo = new Thread(new  ActualizadorCronometro());
+			actualizarTiempo.start();
 		}
 
 		private void deshabilitar() {
@@ -274,11 +301,12 @@ public class VentanaInGame extends JFrame {
 
 		private void cargarValoresAlaGrilla() {
 			if (__juego__ != null) {
-				// Carga los valores en las casillas rojas.
+				// Carga los valores en las casillas rojas y setea su color Rojo
 				for (int indice = 0; indice < matriz.length - 1; indice++) {
 					matriz[matriz.length - 1][indice].setText("" + __juego__.obtenerResultadosSolucion("c", indice));
 					matriz[indice][matriz.length - 1].setText("" + __juego__.obtenerResultadosSolucion("f", indice));
-
+					matriz[matriz.length - 1][indice].setBackground(Color.red);
+					matriz[indice][matriz.length - 1].setBackground(Color.red);
 				}
 			}
 		}
@@ -338,8 +366,13 @@ public class VentanaInGame extends JFrame {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void frenarTodo() {
 		Grilla.setVisible(false);
+		if(actualizarTiempo != null) {
+			// Freno el cronometro
+			actualizarTiempo.stop();
+		}
 
 	}
 
@@ -349,7 +382,20 @@ public class VentanaInGame extends JFrame {
 		rendirse.setEnabled(false);
 	}
 	
-	
+	private class ActualizadorCronometro implements Runnable{
+
+		@Override
+		public void run() {
+			while(true) {
+				if(__juego__ != null && !__juego__.gano()) {
+					tiempoJuego.setText(__juego__.getTiempo());
+				}else {
+					tiempoJuego.setText("00:00:00");
+				}
+			}
+		}
+		
+	}
 
 	public static void main(String[] args) {
 		VentanaInGame v = new VentanaInGame();

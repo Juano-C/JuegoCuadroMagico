@@ -1,6 +1,9 @@
 package juego;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
+import javax.swing.Timer;
 
 import grillaJuego.GrillaJuego;
 
@@ -8,6 +11,11 @@ public class Juego {
 
 	private GrillaJuego _grilla;
 	private Boolean _estaJugando;
+	private Timer _cronometro;
+	private String _textCronometro;
+	protected int centesimas_segundos;
+	protected int segundos;
+	protected int minutos;
 	
 	public Juego(int tamanioDeGrilla) {
 		_grilla = new GrillaJuego(tamanioDeGrilla,1,9);
@@ -16,6 +24,7 @@ public class Juego {
 	
 	public boolean iniciar() {
 		_estaJugando = true;
+		iniciarCronometro();
 		return _estaJugando;
 	}
 	
@@ -80,4 +89,52 @@ public class Juego {
 	public Map<String, boolean[]> filasYColumnasQueEstanBien() {
 		return _grilla.filasYColumnasQueEstanBien();
 	}
+	
+	public void iniciarCronometro() {
+		_cronometro = new Timer(10,_actualizadorCronometro);
+		_cronometro.start();
+		
+	}
+	
+	private ActionListener _actualizadorCronometro = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			 centesimas_segundos ++;
+	            if(centesimas_segundos == 100)
+	            {
+	                segundos++;
+	                centesimas_segundos = 0;
+	            }
+	            if(segundos == 60)
+	            {
+	                minutos ++;
+	                segundos = 0;
+	            }
+				
+				
+				
+				_textCronometro = (minutos<=9?"0":"")+minutos+":"+(segundos <= 9?"0":"")+segundos+":"+(centesimas_segundos <=9?"0":"")+centesimas_segundos;
+				try {Thread.sleep(20);} catch (InterruptedException e1) {}
+		}
+		
+	};
+	
+	public String getTiempo() {
+		return _textCronometro;
+	}
+
+//	public static void main(String[] args) {
+//		Juego game = new Juego(5);
+//		game.iniciar();
+//		while(true) {
+//			System.out.println(game.getTiempo());
+//			try {
+//				Thread.sleep(20);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 }
