@@ -8,9 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controladores.Controlador;
 import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 import juego.Juego;
+import sonido.Audios;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -33,10 +35,11 @@ public class VentanaInGame extends JFrame {
 	private JTextField[][] matriz;
 	private Juego __juego__;
 
-	private static int TAMANIO = 2;
+	private static int TAMANIO = 5;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
 	public VentanaInGame() {
+		try {Audios.musicaPlay();} catch (Exception e) {} // Pa relajar
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		setLocationRelativeTo(null);
