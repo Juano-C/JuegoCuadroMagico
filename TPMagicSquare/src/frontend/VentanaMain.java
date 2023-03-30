@@ -72,13 +72,23 @@ public class VentanaMain extends JFrame
         contentPane.setLayout(null);
 
         //-------------------Boton comenzar
+        
+        /*
+         * Crea el boton de comenzar
+         */
         JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
-    	btnComenzar.addActionListener(new ActionListener() {
+    	
+        /*
+         * Hace que si el boton comenzar es apretado se va a la pagina comenzar
+         */
+        btnComenzar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 Controlador.abrirVentana(Controlador.getVentanaComenzar(), Controlador.getVentanaMain());
             }
         });
+        
+        
 //        btnComenzar.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mouseClicked(MouseEvent e)
@@ -101,15 +111,31 @@ public class VentanaMain extends JFrame
 //            }
 //        });
         
+        /*
+         * Hace que cambie el color del boton comenzar
+         */
+        
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
+        /*
+         * agrega el boton comenzar al panel
+         */
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
-        JButton btnDificultad = new JButton("Dificultad");
-        btnDificultad.setFocusable(false);
-        btnDificultad.setForeground(new Color(255, 255, 255));
-        btnDificultad.setBackground(new Color(0, 0, 51));
-        btnDificultad.setBorderPainted(false);
+        JButton btnDificultad = fabricaInterfaz.crearBoton("Dificultad",162, 133, 159, 46);
+        		
+        /*
+         * Hace que si el boton dificultad es apretado se va a la pagina comenzar
+         */
+        btnDificultad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+       		
+                Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());
+                dispose();
+            }
+        });
+        /*
         btnDificultad.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e)
@@ -126,13 +152,12 @@ public class VentanaMain extends JFrame
             	VentanaDificultad ventanaDificultad = new VentanaDificultad();
                 ventanaDificultad.setVisible(true);
                 
-                ventanaDificultad.setLocationRelativeTo(null);
+               ventanaDificultad.setLocationRelativeTo(null);
                 ventanaDificultad.setResizable(false);
                 dispose();
             }
         });
-        btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnDificultad.setBounds(162, 133, 159, 46);
+        */
         btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
         contentPane.add(btnDificultad);
 

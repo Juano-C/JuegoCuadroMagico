@@ -19,6 +19,9 @@ public class Controlador {
 	public static void abrirVentana(JFrame ventanaAbrir,JFrame ventanaCerrar) {
 		ventanaCerrar.setVisible(false);
 		ventanaAbrir.setVisible(true);
+		ventanaAbrir.setLocationRelativeTo(null);
+		ventanaAbrir.setResizable(false);
+		
 	}
 	
 	public static VentanaComenzar getVentanaComenzar() {
