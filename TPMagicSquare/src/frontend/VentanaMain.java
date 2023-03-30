@@ -168,11 +168,8 @@ public class VentanaMain extends JFrame
         contentPane.add(lblAutors);
 
         //-------------------Boton Reglas
-        JButton btnReglas = new JButton("Reglas");
-        btnReglas.setFocusable(false);
-        btnReglas.setBorderPainted(false);
-        btnReglas.setBackground(new Color(0, 0, 51));
-        btnReglas.setForeground(new Color(255, 255, 255));
+        JButton btnReglas = fabricaInterfaz.crearBoton("Reglas", 162, 202, 159, 46);
+        
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
@@ -190,25 +187,22 @@ public class VentanaMain extends JFrame
                         "(*) Una vez pulsado ENTER no se podr� modificar el valor del casillero.");
             }
         });
-        btnReglas.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnReglas.setBounds(162, 202, 159, 46);
+        
         btnReglas.addMouseListener(new DisenioBoton(btnReglas));
         contentPane.add(btnReglas);
 
         //-------------------boton Salir
-        JButton btnSalir = new JButton("Salir");
-        btnSalir.setFocusable(false);
-        btnSalir.setBorderPainted(false);
-        btnSalir.setBackground(new Color(0, 0, 51));
-        btnSalir.setForeground(new Color(255, 255, 255));
+        JButton btnSalir = fabricaInterfaz.crearBoton("Salir", 162, 336, 159, 46);
+        		
+        		
+       
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 System.exit(0);
             }
         });
-        btnSalir.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnSalir.setBounds(162, 336, 159, 46);
+        
         btnSalir.addMouseListener(new DisenioBoton(btnSalir));
         contentPane.add(btnSalir);
         
