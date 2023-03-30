@@ -6,10 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import backend.Juego;
-import visualizacion.VentanaRecord;
+import disenio.DisenioBoton;
+import disenio.IconoCerrarVentana;
+import sonido.Audios;
 
-import java.applet.AudioClip;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -22,7 +22,9 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class VentanaMain extends JFrame
 {
    // private Juego juego;
@@ -56,10 +58,12 @@ public class VentanaMain extends JFrame
     //-------------------Create the frame.
     public VentanaMain()
     {
+    	setUndecorated(true); // Quita el marco a la ventana
         setTitle("Cuadro M\u00E1gico");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 450);
         contentPane = new JPanel();
+        contentPane.setBackground(new Color(0, 0, 51));
         contentPane.setBorder(new EmptyBorder(6, 5, 5, 5));
         setLocationRelativeTo(null);
         setResizable(false);
@@ -68,6 +72,10 @@ public class VentanaMain extends JFrame
 
         //-------------------Boton comenzar
         JButton btnComenzar = new JButton("Comenzar");
+        btnComenzar.setFocusable(false);
+        btnComenzar.setBorderPainted(false);
+        btnComenzar.setForeground(new Color(255, 255, 255));
+        btnComenzar.setBackground(new Color(0, 0, 51));
         btnComenzar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e)
@@ -90,11 +98,16 @@ public class VentanaMain extends JFrame
             }
         });
         btnComenzar.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnComenzar.setBounds(144, 24, 159, 46);
+        btnComenzar.setBounds(162, 61, 159, 46);
+        btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
         JButton btnDificultad = new JButton("Dificultad");
+        btnDificultad.setFocusable(false);
+        btnDificultad.setForeground(new Color(255, 255, 255));
+        btnDificultad.setBackground(new Color(0, 0, 51));
+        btnDificultad.setBorderPainted(false);
         btnDificultad.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e)
@@ -117,16 +130,22 @@ public class VentanaMain extends JFrame
             }
         });
         btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnDificultad.setBounds(144, 96, 159, 46);
+        btnDificultad.setBounds(162, 133, 159, 46);
+        btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
         contentPane.add(btnDificultad);
 
         //-------------------autor/es
-        JLabel lblNewLabel = new JLabel("Juan chauvet");
-        lblNewLabel.setBounds(10, 386, 141, 14);
-        contentPane.add(lblNewLabel);
+        JLabel lblAutors = new JLabel("Juan chauvet");
+        lblAutors.setForeground(new Color(255, 255, 255));
+        lblAutors.setBounds(10, 425, 141, 14);
+        contentPane.add(lblAutors);
 
         //-------------------Boton Reglas
         JButton btnReglas = new JButton("Reglas");
+        btnReglas.setFocusable(false);
+        btnReglas.setBorderPainted(false);
+        btnReglas.setBackground(new Color(0, 0, 51));
+        btnReglas.setForeground(new Color(255, 255, 255));
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
@@ -145,11 +164,16 @@ public class VentanaMain extends JFrame
             }
         });
         btnReglas.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnReglas.setBounds(144, 165, 159, 46);
+        btnReglas.setBounds(162, 202, 159, 46);
+        btnReglas.addMouseListener(new DisenioBoton(btnReglas));
         contentPane.add(btnReglas);
 
         //-------------------boton Salir
         JButton btnSalir = new JButton("Salir");
+        btnSalir.setFocusable(false);
+        btnSalir.setBorderPainted(false);
+        btnSalir.setBackground(new Color(0, 0, 51));
+        btnSalir.setForeground(new Color(255, 255, 255));
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
@@ -157,32 +181,37 @@ public class VentanaMain extends JFrame
             }
         });
         btnSalir.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnSalir.setBounds(144, 299, 159, 46);
-
+        btnSalir.setBounds(162, 336, 159, 46);
+        btnSalir.addMouseListener(new DisenioBoton(btnSalir));
         contentPane.add(btnSalir);
         
         
 
-        //-------------------boton de musica
+        //-------------------boton de musica 
         JButton btnMuteSoundMusic = new JButton("");
+        btnMuteSoundMusic.setFocusable(false);
         btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));
         btnMuteSoundMusic.addMouseListener(new MouseAdapter()
         {
             @Override
             public void mouseClicked(MouseEvent e) {
-                AudioClip Sound;
-                Sound = java.applet.Applet.newAudioClip(getClass().getResource("/frontend/tetrisSound.wav"));
-                Sound.play();
+                //AudioClip Sound;
+                //Sound = java.applet.Applet.newAudioClip(getClass().getResource("/frontend/tetrisSound.wav"));
+                //Sound.play();
             }
         });
-        btnMuteSoundMusic.setBounds(440, 367, 34, 33);
+        btnMuteSoundMusic.setBounds(456, 406, 34, 33);
         contentPane.add(btnMuteSoundMusic);
         
     
         
         /////////////////Creo boton records //////////7
-        JButton btnNewButton = new JButton("Records");
-        btnNewButton.addMouseListener(new MouseAdapter() {
+        JButton btnRecords = new JButton("Records");
+        btnRecords.setFocusable(false);
+        btnRecords.setBorderPainted(false);
+        btnRecords.setBackground(new Color(0, 0, 51));
+        btnRecords.setForeground(new Color(255, 255, 255));
+        btnRecords.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		VentanaRecord ventanaRecord = new VentanaRecord();
@@ -198,9 +227,24 @@ public class VentanaMain extends JFrame
                  dispose();
         	}
         });
-        btnNewButton.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnNewButton.setBounds(144, 224, 159, 52);
-        contentPane.add(btnNewButton);
+        btnRecords.setFont(new Font("Georgia", Font.PLAIN, 25));
+        btnRecords.setBounds(162, 261, 159, 52);
+        btnRecords.addMouseListener(new DisenioBoton(btnRecords));
+        contentPane.add(btnRecords);
+        
+        
+        /*
+         * --------- Icono cerrar ventana ----------------
+         */
+        JLabel iconoXcerrar = new IconoCerrarVentana();
+        iconoXcerrar.setBounds(461, 0, 39, 34);
+        getContentPane().add(iconoXcerrar);
+        
+        /*
+         * Musica del Juego
+         */
+        try{Audios.musicaPlay();}catch(Exception c) {};
+  
     }
 
 }

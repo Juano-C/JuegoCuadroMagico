@@ -1,7 +1,9 @@
 package juego;
 
-import java.awt.font.NumericShaper;
-import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
+import javax.swing.Timer;
 
 import grillaJuego.GrillaJuego;
 
@@ -9,53 +11,45 @@ public class Juego {
 
 	private GrillaJuego _grilla;
 	private Boolean _estaJugando;
-	private Scanner ingresoUsuario = new Scanner(System.in);
-	private String entradaSistema;
-	private int filaSeleccionada;
-	private int columnaSeleccionada;
-	private int numeroSeleccionado;
-	final private static String ingresosInvalidos="1234567890";
+	private Timer _cronometro;
+	private String _textCronometro;
+	protected int centesimas_segundos;
+	protected int segundos;
+	protected int minutos;
+	private int dificultad;
+	public enum Dificultad {
+		FACIL,
+		NORMAL,
+		DIFICIL;
+	}
 	
-	public Juego(int tamanioDeGrilla) {
-		_grilla = new GrillaJuego(tamanioDeGrilla,1,9);
+	public Juego(Dificultad tamanioDeGrilla) {
+		switch(tamanioDeGrilla) {
+		case FACIL:
+			this.dificultad=3;
+			break;
+		case NORMAL:
+			this.dificultad=4;
+			break;
+		case DIFICIL:
+			this.dificultad=5;
+			break;
+		default:
+			this.dificultad=4;
+		
+			
+		}
+		
+		
+		
+		_grilla = new GrillaJuego(dificultad,1,9);
 		_estaJugando = false;
 	}
 	
 	public boolean iniciar() {
 		_estaJugando = true;
+		iniciarCronometro();
 		return _estaJugando;
-		/* Logica de juego en general 
-		while(_estaJugando) {
-			_grilla.imprimirGrillaSolucion();
-			
-			_grilla.imprimir();
-			
-
-			
-			ingresar();
-			if(this.verificacionDeDatos(filaSeleccionada, columnaSeleccionada, numeroSeleccionado)) {
-			modificar(filaSeleccionada, columnaSeleccionada, numeroSeleccionado);
-			}
-
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			_grilla.imprimir();
-
-			if(this._grilla.estaBienMatriz()) {
-				_estaJugando=false;
-				System.out.println("Felicidades usted gano");
-				continue;
-			}
-
-			
-			System.out.println("Presione Enter para seguir jugando.Caso contrario escriba y presione ENTER");
-			_estaJugando = ingresoUsuario.nextLine() == "";
-		}
-		*/
 	}
 	
 	
@@ -88,72 +82,6 @@ public class Juego {
 	}
 	
 	/*
-	 * Aca sucede la entrada de datos, me parece que esta de mal porque de esto se encarga la Gui
-	 
-	public boolean entradaDeDatos() {
-		
-		filaSeleccionada=ingresarFila()-1;
-		columnaSeleccionada=ingresarColumna()-1;
-		numeroSeleccionado=ingresarNumero();
-
-		return true;
-		
-	}
-	
-	*/
-	
-	
-	
-	
-	///////////////////////////////////////////Metodos Privados//////////////////////////////////
-	
-	
-	
-	
-	/*
-	 * Aca hacemos para que el usuario ingrese la fila columna y numero 
-	 */
-
-/*
-	private int ingresarNumero() {
-		System.out.println("Ingrese la numero(1,9)");
-		entradaSistema=ingresoUsuario.nextLine();
-		
-		if(verificacionDeDatos(entradaSistema)) {
-			return Integer.parseInt(entradaSistema.toLowerCase());
-		}
-		
-		//Le ponemos 0 asi no se muestra en el imprimir 
-		return 0;
-	}
-
-	private int ingresarColumna() {
-		
-		System.out.println("Ingrese la columna(1,"+this._grilla.getTamanio()+")");
-		
-		entradaSistema=ingresoUsuario.nextLine();
-		if(verificacionDeDatos(entradaSistema)) {
-			return Integer.parseInt(entradaSistema.toLowerCase());
-		}
-		
-		return 0;
-		
-	}
-
-	private int ingresarFila() {
-		System.out.println("Ingrese la fila(1,"+this._grilla.getTamanio()+")");
-		entradaSistema=ingresoUsuario.nextLine();
-		if(verificacionDeDatos(entradaSistema)) {
-			return Integer.parseInt(entradaSistema.toLowerCase());
-		}
-		
-		return 0;
-	}
-	*/
-	
-	
-	
-	/*
 	 * Verifica que el numero y columna se puedan convertir,me parece que de esto se encarga el GUI
 	 */
 	private boolean verificacionDeConversion(String verficarEntrada){
@@ -168,7 +96,69 @@ public class Juego {
 	private boolean verificacionDeDatosValidos(int fila,int columna,int numero) {
 		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
-	
 
+	public int obtenerResultadosSolucion(String fila_o_columna, int indice) {
+		try {
+			return _grilla.obtenerResultadoSolucion(fila_o_columna, indice);
+		} catch (Exception e) {
+			return -1;
+		}
+	}
 	
+	public int obtenerValoresGrillaSolucion(int fila, int columna) {		
+		return _grilla.obtenerValoresGrillaSolucion(fila,columna);
+	
+	}
+	
+	public Map<String, boolean[]> filasYColumnasQueEstanBien() {
+		return _grilla.filasYColumnasQueEstanBien();
+	}
+	
+	public void iniciarCronometro() {
+		_cronometro = new Timer(10,_actualizadorCronometro);
+		_cronometro.start();
+		
+	}
+	
+	private ActionListener _actualizadorCronometro = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			 centesimas_segundos ++;
+	            if(centesimas_segundos == 100)
+	            {
+	                segundos++;
+	                centesimas_segundos = 0;
+	            }
+	            if(segundos == 60)
+	            {
+	                minutos ++;
+	                segundos = 0;
+	            }
+				
+				
+				
+				_textCronometro = (minutos<=9?"0":"")+minutos+":"+(segundos <= 9?"0":"")+segundos+":"+(centesimas_segundos <=9?"0":"")+centesimas_segundos;
+				try {Thread.sleep(20);} catch (InterruptedException e1) {}
+		}
+		
+	};
+	
+	public String getTiempo() {
+		return _textCronometro;
+	}
+
+//	public static void main(String[] args) {
+//		Juego game = new Juego(5);
+//		game.iniciar();
+//		while(true) {
+//			System.out.println(game.getTiempo());
+//			try {
+//				Thread.sleep(20);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 }

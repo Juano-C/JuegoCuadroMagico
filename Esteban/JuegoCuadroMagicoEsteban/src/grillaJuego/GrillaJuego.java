@@ -1,11 +1,8 @@
 package grillaJuego;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class GrillaJuego {
 
@@ -290,9 +287,10 @@ public class GrillaJuego {
 
 		}
 
-		return r.nextInt(min, max + 1);
+		return min + r.nextInt(max-min);
 	}
 
+	@SuppressWarnings("unused")
 	private int obtenerResultado(String fila_o_col, int indice) {
 		if (fila_o_col.equals("f") || fila_o_col.equals("c")) {
 			if (indice >= 0 && indice < _tamanio) {
@@ -348,18 +346,12 @@ public class GrillaJuego {
 		}
 		/*
 		 * Verificamos si fila_columna es true es porque el usuario se refiere a que es una fila
-		 */
-
-		
+		 */		
 			return _resultados.get("f" + indiceDiccionario) == _resultadosSolucion.get("f" + indiceDiccionario);
-
-		
-		
 	}
 	
 	private boolean resultadoDeLaColumnaEstaBien(int indiceDiccionario) {
 		return _resultados.get("c" + indiceDiccionario) == _resultadosSolucion.get("c" + indiceDiccionario);
-
 	}
 
 	/*
@@ -381,25 +373,16 @@ public class GrillaJuego {
 	 */
 
 	private boolean verificacionFilaColumna(int fila, int columna) {
-		if (fila < 0 || fila >= _tamanio) {
-			return false;
-		}
-		if (columna < 0 || columna >= _tamanio) {
-			return false;
-		}
-		return true;
+		// Si se cumple alguna lanza false.
+		return !(fila < 0 || fila >= _tamanio || columna < 0 || columna >= _tamanio);
 	}
 	
 	private boolean hayCeldasVacias() {
 		return hayFilasConCeldasVacias() || hayColumnasConCeldasVacias();
 	}
-	
-	
-	
 	/*
 	 * Verifica que todas las filas no tengan espaciosVacios
 	 */
-
 	private boolean hayFilasConCeldasVacias() {
 		for (int fila = 0; fila < _tamanio; fila++) {
 			if(estaFilaTieneCeldasVacias(fila)) {
@@ -410,8 +393,6 @@ public class GrillaJuego {
 	}
 	
 	private boolean estaFilaTieneCeldasVacias(int fila) {
-		
-		
 		for (int columna = 0; columna < _tamanio; columna++) {
 			if (celdaVacia(fila, columna)) {
 				return true;
@@ -419,7 +400,6 @@ public class GrillaJuego {
 		}
 		return false;
 	}
-	
 	private boolean hayColumnasConCeldasVacias() {
 		for (int columna = 0; columna < _tamanio; columna++) {
 			if(estaColumnaTieneCeldaVacia(columna)) {
@@ -428,8 +408,6 @@ public class GrillaJuego {
 		}
 		return false;
 	}
-
-
 	 private boolean estaColumnaTieneCeldaVacia(int columna) {
 		for(int fila=0;fila<this._tamanio;fila++) {
 			if(celdaVacia(fila, columna)) {
@@ -438,14 +416,12 @@ public class GrillaJuego {
 		}
 		return false;
 	}
-	 
 	 private boolean celdaVacia(int fila,int columna) {
 		 if(this._grilla[fila][columna]==0){
 			 return true;
 		 }
 		 return false;
 	 }
-
 	boolean modificarSolucion(int fila, int columna, int num) {
 
 		if (!verificacionIngresos(fila, columna, num)) {
@@ -455,23 +431,12 @@ public class GrillaJuego {
 		actualizarSolucion(fila,columna,num);
 		return true;
 	}
-
 	private void actualizarSolucion(int fila,int columna,int num) {
-		
-
-				
-
-				
-
 				// Sumando a cada fila
 				_resultadosSolucion.put("f" + fila, _resultadosSolucion.get("f" + fila) + num);
 
 				// Sumando a cada columna
 				_resultadosSolucion.put("c" + columna, _resultadosSolucion.get("c" + columna) + num);
-
-			
-		
-	
 	}
 
 	private void agregarNumeroSolucion(int fila, int columna, int num) {
@@ -484,6 +449,20 @@ public class GrillaJuego {
 		for (String f_c : _resultados.keySet()) {
 			_resultadosSolucion.put(f_c, 0);
 		}
+	}
+
+	public int obtenerResultadoSolucion(String fila_o_columna, int indice) {
+		try {
+			return _resultadosSolucion.get(fila_o_columna + indice);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	public int obtenerValoresGrillaSolucion(int fila, int columna) {
+		// Verificacion....
+		
+		return _grillaSol[fila][columna];
 	}
 	
 	
