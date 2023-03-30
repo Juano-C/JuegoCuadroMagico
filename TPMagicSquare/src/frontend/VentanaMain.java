@@ -71,11 +71,8 @@ public class VentanaMain extends JFrame
         contentPane.setLayout(null);
 
         //-------------------Boton comenzar
-        JButton btnComenzar = new JButton("Comenzar");
-        btnComenzar.setFocusable(false);
-        btnComenzar.setBorderPainted(false);
-        btnComenzar.setForeground(new Color(255, 255, 255));
-        btnComenzar.setBackground(new Color(0, 0, 51));
+        JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
+        
         btnComenzar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e)
@@ -97,8 +94,7 @@ public class VentanaMain extends JFrame
                 dispose();
             }
         });
-        btnComenzar.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnComenzar.setBounds(162, 61, 159, 46);
+        
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
         contentPane.add(btnComenzar);
 
