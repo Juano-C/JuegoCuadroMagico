@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controladores.Controlador;
 import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 import sonido.Audios;
@@ -32,28 +33,28 @@ public class VentanaMain extends JFrame
     private JFrame frmCuadroMagico;
     private JButton reglas;
 
-    //-------------------Launch the application.
-    public static void main(String[] args)
-    {
-
-        EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                try
-                {
-                    VentanaMain frame = new VentanaMain();
-                    frame.setVisible(true);
-                    
-                    frame.setLocationRelativeTo(null);
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+//    //-------------------Launch the application.
+//    public static void main(String[] args)
+//    {
+//
+//        EventQueue.invokeLater(new Runnable()
+//        {
+//            public void run()
+//            {
+//                try
+//                {
+//                    VentanaMain frame = new VentanaMain();
+//                    frame.setVisible(true);
+//                    
+//                    frame.setLocationRelativeTo(null);
+//                }
+//                catch (Exception e)
+//                {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//    }
 
     //-------------------Create the frame.
     public VentanaMain()
@@ -73,27 +74,12 @@ public class VentanaMain extends JFrame
         //-------------------Boton comenzar
         JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
         
-        btnComenzar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                VentanaComenzar VentanaCronometro = new VentanaComenzar();
-                VentanaCronometro.setVisible(true);
-                
-                VentanaCronometro.setLocationRelativeTo(null);
-                VentanaCronometro.setResizable(false);
-                dispose();
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	VentanaComenzar VentanaCronometro = new VentanaComenzar();
-                VentanaCronometro.setVisible(true);
-                
-                VentanaCronometro.setLocationRelativeTo(null);
-                VentanaCronometro.setResizable(false);
-                dispose();
-            }
-        });
+        btnComenzar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controlador.abrirVentanaInGame();
+			}
+		});
         
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
         contentPane.add(btnComenzar);
@@ -104,27 +90,12 @@ public class VentanaMain extends JFrame
         btnDificultad.setForeground(new Color(255, 255, 255));
         btnDificultad.setBackground(new Color(0, 0, 51));
         btnDificultad.setBorderPainted(false);
-        btnDificultad.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                VentanaDificultad ventanaDificultad = new VentanaDificultad();
-                ventanaDificultad.setVisible(true);
-                
-                ventanaDificultad.setLocationRelativeTo(null);
-                ventanaDificultad.setResizable(false);
-                dispose();
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	VentanaDificultad ventanaDificultad = new VentanaDificultad();
-                ventanaDificultad.setVisible(true);
-                
-                ventanaDificultad.setLocationRelativeTo(null);
-                ventanaDificultad.setResizable(false);
-                dispose();
-            }
-        });
+        btnDificultad.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controlador.abrirVentanaDificultad();
+			}
+		});
         btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnDificultad.setBounds(162, 133, 159, 46);
         btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
@@ -207,22 +178,13 @@ public class VentanaMain extends JFrame
         btnRecords.setBorderPainted(false);
         btnRecords.setBackground(new Color(0, 0, 51));
         btnRecords.setForeground(new Color(255, 255, 255));
-        btnRecords.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		VentanaRecord ventanaRecord = new VentanaRecord();
-               ventanaRecord.main(null);
-
-                dispose();
-        	}
-        	@Override
-            public void mousePressed(MouseEvent e) {
-        		VentanaRecord ventanaRecord = new VentanaRecord();
-                ventanaRecord.main(null);
-
-                 dispose();
-        	}
-        });
+        btnRecords.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controlador.abrirVentanaRecord();
+			}
+		});
         btnRecords.setFont(new Font("Georgia", Font.PLAIN, 25));
         btnRecords.setBounds(162, 261, 159, 52);
         btnRecords.addMouseListener(new DisenioBoton(btnRecords));

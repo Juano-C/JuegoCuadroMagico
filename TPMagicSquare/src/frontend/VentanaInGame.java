@@ -104,9 +104,6 @@ public class VentanaInGame extends JFrame {
 
 		iniciar.addActionListener(new AccionesIniciar());
 		rendirse.addActionListener(new AccionesRendirse());
-
-		// Creo la Grilla GUI para el usuario.
-		crearGrilla(TAMANIO + 1);
 	}
 
 	private void crearGrilla(int tamanio) {
@@ -271,10 +268,15 @@ public class VentanaInGame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// Vacio la Grilla
 			vaciarGrilla();
-
+			
 			// Inicia la instancia de Juego. Creo la grilla logica.
-			__juego__ = new Juego(TAMANIO);
-			__juego__.iniciar();
+			__juego__ = new Juego(Controlador.getDificultad());
+			__juego__.iniciar();			
+			TAMANIO = __juego__.getTamanio();
+			
+			// Creo la Grilla GUI para el usuario.
+			crearGrilla(TAMANIO + 1);
+
 
 			// Carga a la grilla los valores de la instancia de Juego
 			cargarValoresAlaGrilla();
@@ -312,11 +314,14 @@ public class VentanaInGame extends JFrame {
 		}
 
 		private void vaciarGrilla() {
-			for (int fila = 0; fila < TAMANIO; fila++) {
-				for (int columna = 0; columna < TAMANIO; columna++) {
-					matriz[fila][columna].setText("");
+			if(matriz != null) {
+				for (int fila = 0; fila < TAMANIO; fila++) {
+					for (int columna = 0; columna < TAMANIO; columna++) {
+						matriz[fila][columna].setText("");
+					}
 				}
 			}
+
 		}
 
 	}
@@ -398,7 +403,6 @@ public class VentanaInGame extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		VentanaInGame v = new VentanaInGame();
-		v.setVisible(true);
+		Controlador.abrirVentanaMain();
 	}
 }
