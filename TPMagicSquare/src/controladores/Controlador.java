@@ -1,4 +1,5 @@
 package controladores;
+import javax.swing.JFrame;
 
 import frontend.VentanaDificultad;
 import frontend.VentanaInGame;
@@ -17,6 +18,26 @@ public class Controlador {
 	private static String _sonido;
 	private static Dificultad _dificultad;
 	
+	public static void abrirVentana(JFrame ventanaAbrir,JFrame ventanaCerrar) {
+		ventanaAbrir.setLocationRelativeTo(null);
+		ventanaAbrir.setVisible(true);
+		ventanaCerrar.setVisible(false);
+		ventanaAbrir.setResizable(false);
+		
+	}
+	public static VentanaRecord getVentanaRecords() {
+		return _ventanaRecords;
+	}
+	public static VentanaInGame getVentanaComenzar() {
+		return _ventanaInGame;
+	}
+	public static VentanaDificultad getVentanaDificultad() {
+		return _ventanaDificultad;
+	}
+	public static VentanaMain getVentanaMain() {
+		return _ventanaMain;
+	}
+	
 	public static void abrirVentanaInGame() {
 		_ventanaInGame.setVisible(true);
 		_ventanaDificultad.setVisible(false);
@@ -26,17 +47,17 @@ public class Controlador {
 	
 	
 	public static void abrirVentanaDificultad() {
-		_ventanaMain.setVisible(false);
 		_ventanaDificultad.setVisible(true);
+		_ventanaMain.setVisible(false);
 		_ventanaInGame.setVisible(false);
 		_ventanaRecords.setVisible(false);
 
 	}
 	
 	public static void abrirVentanaMain() {
+		_ventanaMain.setVisible(true);
 		_ventanaDificultad.setVisible(false);
 		_ventanaInGame.setVisible(false);
-		_ventanaMain.setVisible(true);
 		_ventanaRecords.setVisible(false);
 	}
 	public static void abrirVentanaRecord() {
@@ -59,11 +80,6 @@ public class Controlador {
 		_ventanaRecords.setVisible(false);
 	}
 	
-//	public static void crearJuego(Dificultad dificultad) {
-//		_juego = new Juego(_dificultad);
-//		_juego.iniciar();
-//	}
-//	
 	public static void setearDificultad(Dificultad dificultad) {
 		_dificultad = dificultad;
 	}

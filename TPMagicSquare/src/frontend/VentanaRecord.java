@@ -29,39 +29,18 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("serial")
 public class VentanaRecord extends JFrame {
 
-	private JFrame marcoPrincipal;
+
+	
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JTable table;
 	private JLabel iconoXcerrar;
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VentanaRecord window = new VentanaRecord();
-//					window.marcoPrincipal.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-//
-//	/**
-//	 * Create the application.
-//	 */
 	public VentanaRecord() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 //		marcoPrincipal = new JFrame();
 		setUndecorated(true);
@@ -73,8 +52,23 @@ public class VentanaRecord extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		
-		
+		initComponentes();
+	}
+//	public void VentanaRecord() {
+//		
+//		setUndecorated(true);
+//		getContentPane().setBackground(new Color(0, 0, 51));
+//		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
+//		setTitle("Records");
+//		setForeground(new Color(0, 128, 64));
+//		setBounds(100, 100, 486, 450);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		getContentPane().setLayout(null);
+//		setLocationRelativeTo(null);
+//		initComponentes();
+//		
+//	}
+		private void initComponentes() {
 		JLabel lblNewLabel = new JLabel("Puntajes");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -147,7 +141,8 @@ public class VentanaRecord extends JFrame {
 		table.setForeground(new Color(0, 0, 51));
 		table.setBounds(20, 107, 442, 286);
 		getContentPane().add(table);
-		/////////Boton Volver/////////////////
+		
+		//--------------boton Volver
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.setForeground(new Color(0, 0, 0));
 		botonVolver.addActionListener(new ActionListener() {
@@ -155,6 +150,8 @@ public class VentanaRecord extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Controlador.abrirVentanaMain();
+
+
 			}
 		});
 		botonVolver.setFont(new Font("Tahoma", Font.BOLD, 15));

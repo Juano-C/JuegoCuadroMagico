@@ -28,33 +28,9 @@ import java.awt.Color;
 @SuppressWarnings("serial")
 public class VentanaMain extends JFrame
 {
-   // private Juego juego;
     private JPanel contentPane;
     private JFrame frmCuadroMagico;
     private JButton reglas;
-
-//    //-------------------Launch the application.
-//    public static void main(String[] args)
-//    {
-//
-//        EventQueue.invokeLater(new Runnable()
-//        {
-//            public void run()
-//            {
-//                try
-//                {
-//                    VentanaMain frame = new VentanaMain();
-//                    frame.setVisible(true);
-//                    
-//                    frame.setLocationRelativeTo(null);
-//                }
-//                catch (Exception e)
-//                {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 
     //-------------------Create the frame.
     public VentanaMain()
@@ -72,47 +48,52 @@ public class VentanaMain extends JFrame
         contentPane.setLayout(null);
 
         //-------------------Boton comenzar
-        JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
-        
+		JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
+    	
+        /*
+         * Hace que si el boton comenzar es apretado se va a la pagina comenzar
+         */
         btnComenzar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Controlador.abrirVentanaInGame();
-			}
-		});
+            public void actionPerformed(ActionEvent e)
+            {
+                Controlador.abrirVentana(Controlador.getVentanaComenzar(), Controlador.getVentanaMain());
+//				Controlador.abrirVentanaInGame();
+
+            }
+        });        
+        
+        /*
+         * Hace que cambie el color del boton comenzar
+         */
         
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
+        /*
+         * agrega el boton comenzar al panel
+         */
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
-        JButton btnDificultad = new JButton("Dificultad");
-        btnDificultad.setFocusable(false);
-        btnDificultad.setForeground(new Color(255, 255, 255));
-        btnDificultad.setBackground(new Color(0, 0, 51));
-        btnDificultad.setBorderPainted(false);
-        btnDificultad.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Controlador.abrirVentanaDificultad();
-			}
-		});
-        btnDificultad.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnDificultad.setBounds(162, 133, 159, 46);
+        JButton btnDificultad = fabricaInterfaz.crearBoton("Dificultad",162, 133, 159, 46);
         btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
+        
+        /*
+         * Hace que si el boton dificultad es apretado se va a la pagina comenzar
+         */
+        btnDificultad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+       		
+                Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());
+//				Controlador.abrirVentanaDificultad();
+                dispose();
+            }
+        });
+        
         contentPane.add(btnDificultad);
 
-        //-------------------autor/es
-        JLabel lblAutors = new JLabel("Juan chauvet");
-        lblAutors.setForeground(new Color(255, 255, 255));
-        lblAutors.setBounds(10, 425, 141, 14);
-        contentPane.add(lblAutors);
-
         //-------------------Boton Reglas
-        JButton btnReglas = new JButton("Reglas");
-        btnReglas.setFocusable(false);
-        btnReglas.setBorderPainted(false);
-        btnReglas.setBackground(new Color(0, 0, 51));
-        btnReglas.setForeground(new Color(255, 255, 255));
+        JButton btnReglas = fabricaInterfaz.crearBoton("Reglas", 162, 202, 159, 46);
+        
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
@@ -130,30 +111,52 @@ public class VentanaMain extends JFrame
                         "(*) Una vez pulsado ENTER no se podr� modificar el valor del casillero.");
             }
         });
-        btnReglas.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnReglas.setBounds(162, 202, 159, 46);
+        
         btnReglas.addMouseListener(new DisenioBoton(btnReglas));
         contentPane.add(btnReglas);
+        
+        //------------------boton records
+        JButton btnRecords = fabricaInterfaz.crearBoton("Records",162, 261, 159, 52);
+        		
+        		
+        btnRecords.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());
+//				Controlador.abrirVentanaRecord();
 
+            }
+        });	
+        btnRecords.addMouseListener(new DisenioBoton(btnRecords));
+        contentPane.add(btnRecords);
+        
         //-------------------boton Salir
-        JButton btnSalir = new JButton("Salir");
-        btnSalir.setFocusable(false);
-        btnSalir.setBorderPainted(false);
-        btnSalir.setBackground(new Color(0, 0, 51));
-        btnSalir.setForeground(new Color(255, 255, 255));
+        JButton btnSalir = fabricaInterfaz.crearBoton("Salir", 162, 336, 159, 46);
+        btnSalir.addMouseListener(new DisenioBoton(btnSalir));        		
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 System.exit(0);
             }
         });
-        btnSalir.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnSalir.setBounds(162, 336, 159, 46);
-        btnSalir.addMouseListener(new DisenioBoton(btnSalir));
+        
         contentPane.add(btnSalir);
         
         
-
+        /*
+         * --------- Icono cerrar ventana ----------------
+         */
+        JLabel iconoXcerrar = new IconoCerrarVentana();
+        iconoXcerrar.setBounds(461, 0, 39, 34);
+        getContentPane().add(iconoXcerrar);
+        
+        //-------------------autor/es
+        JLabel lblAutors = new JLabel("Juan chauvet");
+        lblAutors.setForeground(new Color(255, 255, 255));
+        lblAutors.setBounds(10, 425, 141, 14);
+        contentPane.add(lblAutors);
+        
+        
         //-------------------boton de musica 
         JButton btnMuteSoundMusic = new JButton("");
         btnMuteSoundMusic.setFocusable(false);
@@ -170,39 +173,11 @@ public class VentanaMain extends JFrame
         btnMuteSoundMusic.setBounds(456, 406, 34, 33);
         contentPane.add(btnMuteSoundMusic);
         
-    
-        
-        /////////////////Creo boton records //////////7
-        JButton btnRecords = new JButton("Records");
-        btnRecords.setFocusable(false);
-        btnRecords.setBorderPainted(false);
-        btnRecords.setBackground(new Color(0, 0, 51));
-        btnRecords.setForeground(new Color(255, 255, 255));
-        btnRecords.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Controlador.abrirVentanaRecord();
-			}
-		});
-        btnRecords.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnRecords.setBounds(162, 261, 159, 52);
-        btnRecords.addMouseListener(new DisenioBoton(btnRecords));
-        contentPane.add(btnRecords);
-        
-        
-        /*
-         * --------- Icono cerrar ventana ----------------
-         */
-        JLabel iconoXcerrar = new IconoCerrarVentana();
-        iconoXcerrar.setBounds(461, 0, 39, 34);
-        getContentPane().add(iconoXcerrar);
-        
         /*
          * Musica del Juego
          */
         try{Audios.musicaPlay();}catch(Exception c) {};
-  
+
     }
 
 }

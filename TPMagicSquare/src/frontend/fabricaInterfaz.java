@@ -10,11 +10,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import controladores.Controlador;
 import disenio.DisenioBoton;
 
 public class fabricaInterfaz extends JFrame {
 
 	public static JButton crearBoton(String texto, int x, int y, int ancho, int alto) {
+		
+		
 		JButton boton = new JButton(texto);
 
 		boton.setFocusable(false);
@@ -26,13 +29,6 @@ public class fabricaInterfaz extends JFrame {
 		return boton;
 	}
 	
-	public static void moverVentanaBoton(JButton boton) {
-		boton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                System.exit(0);
-            }
-        });
-	}
+
 
 }
