@@ -1,5 +1,7 @@
 package controladores;
 
+import javax.swing.JFrame;
+
 import frontend.VentanaComenzar;
 import frontend.VentanaDificultad;
 import frontend.VentanaMain;
@@ -12,6 +14,22 @@ public class Controlador {
 	private static VentanaMain _ventanaMain = new VentanaMain();
 	private static Juego _juego;
 	private static String _sonido;
+	
+	
+	public static void abrirVentana(JFrame ventanaAbrir,JFrame ventanaCerrar) {
+		ventanaCerrar.setVisible(false);
+		ventanaAbrir.setVisible(true);
+	}
+	
+	public static VentanaComenzar getVentanaComenzar() {
+		return _ventanaComenzar;
+	}
+	public static VentanaDificultad getVentanaDificultad() {
+		return _ventanaDificultad;
+	}
+	public static VentanaMain getVentanaMain() {
+		return _ventanaMain;
+	}
 	
 	public static void abrirVentanaComenzar() {
 		_ventanaComenzar.setVisible(true);

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controladores.Controlador;
 import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 import sonido.Audios;
@@ -72,28 +73,33 @@ public class VentanaMain extends JFrame
 
         //-------------------Boton comenzar
         JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
-        
-        btnComenzar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e)
+    	btnComenzar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
             {
-                VentanaComenzar VentanaCronometro = new VentanaComenzar();
-                VentanaCronometro.setVisible(true);
-                
-                VentanaCronometro.setLocationRelativeTo(null);
-                VentanaCronometro.setResizable(false);
-                dispose();
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	VentanaComenzar VentanaCronometro = new VentanaComenzar();
-                VentanaCronometro.setVisible(true);
-                
-                VentanaCronometro.setLocationRelativeTo(null);
-                VentanaCronometro.setResizable(false);
-                dispose();
+                Controlador.abrirVentana(Controlador.getVentanaComenzar(), Controlador.getVentanaMain());
             }
         });
+//        btnComenzar.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e)
+//            {
+//                VentanaComenzar VentanaCronometro = new VentanaComenzar();
+//                VentanaCronometro.setVisible(true);
+//                
+//                VentanaCronometro.setLocationRelativeTo(null);
+//                VentanaCronometro.setResizable(false);
+//                dispose();
+//            }
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//            	VentanaComenzar VentanaCronometro = new VentanaComenzar();
+//                VentanaCronometro.setVisible(true);
+//                
+//                VentanaCronometro.setLocationRelativeTo(null);
+//                VentanaCronometro.setResizable(false);
+//                dispose();
+//            }
+//        });
         
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
         contentPane.add(btnComenzar);
