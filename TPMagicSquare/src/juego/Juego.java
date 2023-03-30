@@ -16,9 +16,33 @@ public class Juego {
 	protected int centesimas_segundos;
 	protected int segundos;
 	protected int minutos;
+	private int dificultad;
+	public enum Dificultad {
+		FACIL,
+		NORMAL,
+		DIFICIL;
+	}
 	
-	public Juego(int tamanioDeGrilla) {
-		_grilla = new GrillaJuego(tamanioDeGrilla,1,9);
+	public Juego(Dificultad tamanioDeGrilla) {
+		switch(tamanioDeGrilla) {
+		case FACIL:
+			this.dificultad=3;
+			break;
+		case NORMAL:
+			this.dificultad=4;
+			break;
+		case DIFICIL:
+			this.dificultad=5;
+			break;
+		default:
+			this.dificultad=4;
+		
+			
+		}
+		
+		
+		
+		_grilla = new GrillaJuego(dificultad,1,9);
 		_estaJugando = false;
 	}
 	
