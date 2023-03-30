@@ -22,9 +22,9 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class VentanaRecord {
+public class VentanaRecord extends JFrame{
 
-	private JFrame marcoPrincipal;
+	
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
@@ -35,68 +35,62 @@ public class VentanaRecord {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaRecord window = new VentanaRecord();
-					window.marcoPrincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+		System.out.print("Hola");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanaComenzar().setVisible(true);
+            }
+        });
+    }
 
-	/**
-	 * Create the application.
-	 */
-	public VentanaRecord() {
-		initialize();
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		marcoPrincipal = new JFrame();
-		marcoPrincipal.setUndecorated(true);
-		marcoPrincipal.getContentPane().setBackground(new Color(0, 0, 51));
-		marcoPrincipal.setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
-		marcoPrincipal.setTitle("Records");
-		marcoPrincipal.setForeground(new Color(0, 128, 64));
-		marcoPrincipal.setBounds(100, 100, 486, 450);
-		marcoPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		marcoPrincipal.getContentPane().setLayout(null);
-		marcoPrincipal.setLocationRelativeTo(null);
+	public void VentanaRecord() {
 		
+		setUndecorated(true);
+		getContentPane().setBackground(new Color(0, 0, 51));
+		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
+		setTitle("Records");
+		setForeground(new Color(0, 128, 64));
+		setBounds(100, 100, 486, 450);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
+		initComponentes();
 		
+	}
+		private void initComponentes() {
+			System.out.print("Hola");
 		JLabel lblNewLabel = new JLabel("Puntajes");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setBounds(20, 11, 410, 37);
-		marcoPrincipal.getContentPane().add(lblNewLabel);
+		getContentPane().add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("Puesto");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_1.setBounds(20, 59, 96, 37);
-		marcoPrincipal.getContentPane().add(lblNewLabel_1);
+		getContentPane().add(lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("Nombre");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_2.setBounds(142, 59, 144, 37);
-		marcoPrincipal.getContentPane().add(lblNewLabel_2);
+		getContentPane().add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Puntaje");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(310, 59, 146, 37);
-		marcoPrincipal.getContentPane().add(lblNewLabel_3);
+		getContentPane().add(lblNewLabel_3);
 		
 		table = new JTable();
 		table.setRowSelectionAllowed(false);
@@ -141,21 +135,21 @@ public class VentanaRecord {
 		table.setBackground(new Color(255, 255, 255));
 		table.setForeground(new Color(0, 0, 51));
 		table.setBounds(20, 107, 442, 286);
-		marcoPrincipal.getContentPane().add(table);
+		getContentPane().add(table);
 		/////////Boton Volver/////////////////
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.setForeground(new Color(0, 0, 0));
 		botonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			marcoPrincipal.setVisible(false);
+			setVisible(false);
 			VentanaMain main=new VentanaMain();
 			main.setVisible(true);
 			
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				marcoPrincipal.setVisible(false);
+				setVisible(false);
 				VentanaMain main=new VentanaMain();
 				main.setVisible(true);
 			}
@@ -163,14 +157,14 @@ public class VentanaRecord {
 		botonVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
 		botonVolver.setBackground(new Color(128, 255, 128));
 		botonVolver.setBounds(20, 412, 123, 27);
-		marcoPrincipal.getContentPane().add(botonVolver);
+		getContentPane().add(botonVolver);
 		
 		/*
 		 * --------- Icono cerrar ventana ----------------
 		 */
 		iconoXcerrar = new IconoCerrarVentana();
 		iconoXcerrar.setBounds(447, 0, 39, 34);
-		marcoPrincipal.getContentPane().add(iconoXcerrar);
+		getContentPane().add(iconoXcerrar);
 		
 		String columnas[]={"Puesto","Nombre","Apellido"};
 		String filas[][]={{"1","Pee","Leo"},{"2","Caa","til"}};

@@ -16,6 +16,8 @@ import disenio.DisenioBoton;
 public class fabricaInterfaz extends JFrame {
 
 	public static JButton crearBoton(String texto, int x, int y, int ancho, int alto) {
+		
+		
 		JButton boton = new JButton(texto);
 
 		boton.setFocusable(false);

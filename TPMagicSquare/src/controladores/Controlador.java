@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import frontend.VentanaComenzar;
 import frontend.VentanaDificultad;
 import frontend.VentanaMain;
+import frontend.VentanaRecord;
 import juego.Juego;
 
 public class Controlador {
@@ -12,6 +13,7 @@ public class Controlador {
 	private static VentanaComenzar _ventanaComenzar = new VentanaComenzar();
 	private static VentanaDificultad _ventanaDificultad = new VentanaDificultad();
 	private static VentanaMain _ventanaMain = new VentanaMain();
+	private static VentanaRecord _ventanaRecord = new VentanaRecord();
 	private static Juego _juego;
 	private static String _sonido;
 	
@@ -23,7 +25,9 @@ public class Controlador {
 		ventanaAbrir.setResizable(false);
 		
 	}
-	
+	public static VentanaRecord getVentanaRecord() {
+		return _ventanaRecord;
+	}
 	public static VentanaComenzar getVentanaComenzar() {
 		return _ventanaComenzar;
 	}

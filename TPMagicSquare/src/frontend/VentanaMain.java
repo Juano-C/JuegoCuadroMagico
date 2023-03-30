@@ -227,29 +227,34 @@ public class VentanaMain extends JFrame
     
         
         /////////////////Creo boton records //////////7
-        JButton btnRecords = new JButton("Records");
-        btnRecords.setFocusable(false);
-        btnRecords.setBorderPainted(false);
-        btnRecords.setBackground(new Color(0, 0, 51));
-        btnRecords.setForeground(new Color(255, 255, 255));
-        btnRecords.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		VentanaRecord ventanaRecord = new VentanaRecord();
-               ventanaRecord.main(null);
-
-                dispose();
-        	}
-        	@Override
-            public void mousePressed(MouseEvent e) {
-        		VentanaRecord ventanaRecord = new VentanaRecord();
-                ventanaRecord.main(null);
-
-                 dispose();
-        	}
-        });
-        btnRecords.setFont(new Font("Georgia", Font.PLAIN, 25));
-        btnRecords.setBounds(162, 261, 159, 52);
+        JButton btnRecords = fabricaInterfaz.crearBoton("Records",162, 261, 159, 52);
+        		
+        		
+        btnRecords.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                Controlador.abrirVentana(Controlador.getVentanaRecord(), Controlador.getVentanaMain());
+            }
+        });	
+        		
+       
+//        btnRecords.addMouseListener(new MouseAdapter() {
+//        	@Override
+//        	public void mouseClicked(MouseEvent e) {
+//        		VentanaRecord ventanaRecord = new VentanaRecord();
+//               ventanaRecord.main(null);
+//
+//                dispose();
+//        	}
+//        	@Override
+//            public void mousePressed(MouseEvent e) {
+//        		VentanaRecord ventanaRecord = new VentanaRecord();
+//                ventanaRecord.main(null);
+//
+//                 dispose();
+//        	}
+//        });
+        
         btnRecords.addMouseListener(new DisenioBoton(btnRecords));
         contentPane.add(btnRecords);
         
