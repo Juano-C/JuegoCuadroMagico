@@ -1,30 +1,21 @@
 package frontend;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTable;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controladores.Controlador;
 import disenio.IconoCerrarVentana;
 
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class VentanaRecord extends JFrame {
@@ -54,20 +45,6 @@ public class VentanaRecord extends JFrame {
 		setLocationRelativeTo(null);
 		initComponentes();
 	}
-//	public void VentanaRecord() {
-//		
-//		setUndecorated(true);
-//		getContentPane().setBackground(new Color(0, 0, 51));
-//		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
-//		setTitle("Records");
-//		setForeground(new Color(0, 128, 64));
-//		setBounds(100, 100, 486, 450);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		getContentPane().setLayout(null);
-//		setLocationRelativeTo(null);
-//		initComponentes();
-//		
-//	}
 		private void initComponentes() {
 		JLabel lblNewLabel = new JLabel("Puntajes");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -123,9 +100,11 @@ public class VentanaRecord extends JFrame {
 				"Puesto", "Nombre", "Tiempo"
 			}
 		) {
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 				Object.class, Object.class, String.class
 			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
@@ -168,6 +147,7 @@ public class VentanaRecord extends JFrame {
 		
 		String columnas[]={"Puesto","Nombre","Apellido"};
 		String filas[][]={{"1","Pee","Leo"},{"2","Caa","til"}};
+		@SuppressWarnings("unused")
 		DefaultTableModel modeloTabla= new DefaultTableModel(filas,columnas);
 	}
 }

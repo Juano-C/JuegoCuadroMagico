@@ -1,13 +1,10 @@
 package sonido;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audios {
 
@@ -15,7 +12,8 @@ public class Audios {
 	private static String _rutaMusica = _dir + "//src//sonido//musicGameTP.wav";
 	private static Clip _musica;
 	
-	public static void musicaPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public static void musicaPlay()  {
+		try {
 		if(_musica == null || !_musica.isActive()) {
 			File archivoMusica = new File(_rutaMusica);
 			AudioInputStream stream = AudioSystem.getAudioInputStream(archivoMusica.getAbsoluteFile());
@@ -24,7 +22,9 @@ public class Audios {
 			_musica.loop(Clip.LOOP_CONTINUOUSLY);
 			_musica.start();
 		}
-		
+		}catch(Exception e){
+			
+		}
 	}
 	
 	public static void musicaStop() {

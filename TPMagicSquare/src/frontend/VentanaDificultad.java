@@ -15,16 +15,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class VentanaDificultad extends JFrame {
 
     public VentanaDificultad() {
-        // Tama�os
+        // Tamanios
         super();
         setUndecorated(true);
         setTitle("Cuadro Magico");
@@ -180,11 +180,4 @@ public class VentanaDificultad extends JFrame {
         //------------------------------------------------------
     }
 
-    public static void main(String[] args)
-    {
-        VentanaMain VentanaBase = new VentanaMain();
-        VentanaBase.setVisible(true);
-
-        VentanaBase.setLocationRelativeTo(null);
-    }
 }

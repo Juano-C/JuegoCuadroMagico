@@ -1,7 +1,5 @@
 package frontend;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,12 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -30,7 +24,19 @@ public class VentanaMain extends JFrame
 {
     private JPanel contentPane;
     private JFrame frmCuadroMagico;
-    private JButton reglas;
+    private JButton btnReglas;
+    private JButton btnRecords;
+    private JButton btnDificultad;
+    private JButton btnSalir;
+    private JButton btnMuteSoundMusic;
+    private  JLabel lblAutors;
+    
+    /*
+     * Ejecuta la app.
+     */
+	public static void main(String[] args) {
+		Controlador.abrirVentanaMain();
+	}
 
     //-------------------Create the frame.
     public VentanaMain()
@@ -73,7 +79,7 @@ public class VentanaMain extends JFrame
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
-        JButton btnDificultad = fabricaInterfaz.crearBoton("Dificultad",162, 133, 159, 46);
+        btnDificultad = fabricaInterfaz.crearBoton("Dificultad",162, 133, 159, 46);
         btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
         
         /*
@@ -92,7 +98,7 @@ public class VentanaMain extends JFrame
         contentPane.add(btnDificultad);
 
         //-------------------Boton Reglas
-        JButton btnReglas = fabricaInterfaz.crearBoton("Reglas", 162, 202, 159, 46);
+        btnReglas = fabricaInterfaz.crearBoton("Reglas", 162, 202, 159, 46);
         
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
@@ -116,7 +122,7 @@ public class VentanaMain extends JFrame
         contentPane.add(btnReglas);
         
         //------------------boton records
-        JButton btnRecords = fabricaInterfaz.crearBoton("Records",162, 261, 159, 52);
+        btnRecords = fabricaInterfaz.crearBoton("Records",162, 261, 159, 52);
         		
         		
         btnRecords.addActionListener(new ActionListener() {
@@ -131,7 +137,7 @@ public class VentanaMain extends JFrame
         contentPane.add(btnRecords);
         
         //-------------------boton Salir
-        JButton btnSalir = fabricaInterfaz.crearBoton("Salir", 162, 336, 159, 46);
+        btnSalir = fabricaInterfaz.crearBoton("Salir", 162, 336, 159, 46);
         btnSalir.addMouseListener(new DisenioBoton(btnSalir));        		
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
@@ -151,14 +157,14 @@ public class VentanaMain extends JFrame
         getContentPane().add(iconoXcerrar);
         
         //-------------------autor/es
-        JLabel lblAutors = new JLabel("Juan chauvet");
+        lblAutors = new JLabel("Juan chauvet");
         lblAutors.setForeground(new Color(255, 255, 255));
         lblAutors.setBounds(10, 425, 141, 14);
         contentPane.add(lblAutors);
         
         
         //-------------------boton de musica 
-        JButton btnMuteSoundMusic = new JButton("");
+        btnMuteSoundMusic = new JButton("");
         btnMuteSoundMusic.setFocusable(false);
         btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));
         btnMuteSoundMusic.addMouseListener(new MouseAdapter()
@@ -176,8 +182,7 @@ public class VentanaMain extends JFrame
         /*
          * Musica del Juego
          */
-        try{Audios.musicaPlay();}catch(Exception c) {};
-
+        Audios.musicaPlay();
     }
 
 }

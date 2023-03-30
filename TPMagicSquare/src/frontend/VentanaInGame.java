@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import controladores.Controlador;
 import disenio.DisenioBoton;
@@ -22,12 +20,9 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -402,7 +397,9 @@ public class VentanaInGame extends JFrame {
 		
 	}
 
-	public static void main(String[] args) {
-		Controlador.abrirVentanaMain();
-	}
+	
+	
+	
+	
+	
 }

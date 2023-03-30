@@ -15,6 +15,7 @@ public class Controlador {
 	private static VentanaMain _ventanaMain = new VentanaMain();
 	private static VentanaRecord _ventanaRecords = new VentanaRecord();
 	private static Juego _juego;
+	@SuppressWarnings("unused")
 	private static String _sonido;
 	private static Dificultad _dificultad;
 	
