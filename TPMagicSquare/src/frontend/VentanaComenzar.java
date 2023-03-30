@@ -180,32 +180,50 @@ public class VentanaComenzar extends JFrame
 			}
 		});
         
+		//---------boton de Volver (vuelve a la ventanaMain)
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnVolver.setBorderPainted(false);
+        btnVolver.setBackground(Color.WHITE);
+        botonRendirse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                VentanaMain ventanaDificultad = new VentanaMain();
+                ventanaDificultad.setVisible(true);
+                
+                ventanaDificultad.setLocationRelativeTo(null);
+                dispose();
+            }
+        });
         
         
 
         //---------agregado en el layout de los botones
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
+        	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(labelTiempo)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(labelCronometro, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addComponent(labelTiempo)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(labelCronometro, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
         						.addGroup(layout.createSequentialGroup()
         							.addComponent(botonIniciar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
         							.addPreferredGap(ComponentPlacement.RELATED)
         							.addComponent(botonPausar, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
         							.addGap(6)
-        							.addComponent(botonRendirse, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-        					.addPreferredGap(ComponentPlacement.RELATED, 145, Short.MAX_VALUE)))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(iconoXcerrar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+        							.addComponent(botonRendirse, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(iconoXcerrar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(btnVolver, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+        					.addGap(367)
+        					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -220,10 +238,12 @@ public class VentanaComenzar extends JFrame
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
         						.addComponent(botonRendirse, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         						.addComponent(botonPausar, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-        						.addComponent(botonIniciar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        					.addPreferredGap(ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
-        					.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(botonIniciar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         				.addComponent(iconoXcerrar, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(btnVolver, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap())
         );
         getContentPane().setLayout(layout);
