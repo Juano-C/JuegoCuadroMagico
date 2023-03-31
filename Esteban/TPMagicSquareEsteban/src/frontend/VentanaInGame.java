@@ -45,7 +45,7 @@ public class VentanaInGame extends JFrame {
 	public VentanaInGame() {
 		try {Audios.musicaPlay();} catch (Exception e) {} // Pa relajar
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 800, 650);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		contentPane = new JPanel();
@@ -188,7 +188,12 @@ public class VentanaInGame extends JFrame {
 		JTextField _celda;
 		int _fila;
 		int _columna;
-
+		/**
+		 * Sirve para identificar la celda
+		 * @param celda
+		 * @param fila
+		 * @param columna
+		 */
 		public AccionesCelda(JTextField celda, int fila, int columna) {
 			super();
 			if (celda != null) {

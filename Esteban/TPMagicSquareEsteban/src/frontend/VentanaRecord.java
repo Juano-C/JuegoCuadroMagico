@@ -81,7 +81,7 @@ public class VentanaRecord extends JFrame {
 		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"1", "Lola", "22"},
+			 	{"1", "Lola", "22"},
 				{null, null, null},
 				{null, null, null},
 				{null, null, null},

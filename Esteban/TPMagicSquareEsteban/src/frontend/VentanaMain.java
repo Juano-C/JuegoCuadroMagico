@@ -153,7 +153,7 @@ public class VentanaMain extends JFrame
          * --------- Icono cerrar ventana ----------------
          */
         JLabel iconoXcerrar = new IconoCerrarVentana();
-        iconoXcerrar.setBounds(461, 0, 39, 34);
+        
         getContentPane().add(iconoXcerrar);
         
         //-------------------autor/es
@@ -164,9 +164,10 @@ public class VentanaMain extends JFrame
         
         
         //-------------------boton de musica 
-        btnMuteSoundMusic = new JButton("");
+        btnMuteSoundMusic = fabricaInterfaz.crearBotonMusica(456, 406, 34, 33);
+        /*
         btnMuteSoundMusic.setFocusable(false);
-        btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));
+        btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));*/
         btnMuteSoundMusic.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -176,7 +177,7 @@ public class VentanaMain extends JFrame
                 //Sound.play();
             }
         });
-        btnMuteSoundMusic.setBounds(456, 406, 34, 33);
+        
         contentPane.add(btnMuteSoundMusic);
         
         /*

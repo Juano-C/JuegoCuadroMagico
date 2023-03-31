@@ -23,6 +23,7 @@ public class IconoCerrarVentana extends JLabel{
 	    setHorizontalAlignment(SwingConstants.CENTER);
 	    setOpaque(true);
 	    setBackground(new Color(0, 0, 51));
+	    setBounds(461, 0, 39, 34);
 		// Cerrar ventana
 		addMouseListener(new MouseAdapter() {
 			@Override
