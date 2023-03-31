@@ -38,7 +38,7 @@ public class fabricaInterfaz extends JFrame {
 	
 	public static JButton crearBotonMusica(int x,int y,int ancho,int alto) {
 		 
-		JButton boton=new JButton(new ImageIcon("JuegoCuadroMagico\Esteban\icons8-music-30"));
+		JButton boton=new JButton(new ImageIcon("Media/icono_musica.png"));
 		boton.setBounds(x, y, ancho, alto);
 		boton.setFocusable(false);
 		return boton;
