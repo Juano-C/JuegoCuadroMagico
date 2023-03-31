@@ -76,8 +76,9 @@ public class VentanaMain extends JFrame
         btnComenzar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                Controlador.abrirVentana(Controlador.getVentanaComenzar(), Controlador.getVentanaMain());
+                Controlador.abrirVentana(Controlador.getVentanaInGame(), Controlador.getVentanaMain());
 //				Controlador.abrirVentanaInGame();
+                
 
             }
         });        
@@ -105,7 +106,7 @@ public class VentanaMain extends JFrame
        		
                 Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());
 //				Controlador.abrirVentanaDificultad();
-                dispose();
+                
             }
         });
         
@@ -144,6 +145,7 @@ public class VentanaMain extends JFrame
             {
                 Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());
 //				Controlador.abrirVentanaRecord();
+                
 
             }
         });	

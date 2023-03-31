@@ -44,7 +44,7 @@ public class Controlador {
 	public static VentanaRecord getVentanaRecords() {
 		return _ventanaRecords;
 	}
-	public static VentanaInGame getVentanaComenzar() {
+	public static VentanaInGame getVentanaInGame() {
 		return _ventanaInGame;
 	}
 	public static VentanaDificultad getVentanaDificultad() {
