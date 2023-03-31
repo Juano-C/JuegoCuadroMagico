@@ -45,9 +45,12 @@ public class VentanaMain extends JFrame
     	
     	contentPane = new JPanel();
     	setContentPane(contentPane);
-    	contentPane.setLayout(null);
-    	//fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450);
+    	//contentPane.setLayout(null);
     	fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450,new Color(0, 0, 51),new EmptyBorder(6, 5, 5, 5));
+    	
+    	
+    	//fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450);
+    	
     	/*setUndecorated(true); // Quita el marco a la ventana
         setTitle("Cuadro M\u00E1gico");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

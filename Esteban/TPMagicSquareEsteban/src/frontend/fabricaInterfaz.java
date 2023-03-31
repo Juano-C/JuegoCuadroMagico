@@ -30,6 +30,7 @@ public class fabricaInterfaz extends JFrame {
 		ventana.setBounds(x, y, ancho, alto);
 		ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
+        ventana.getContentPane().setLayout(null);
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo) {
 		ventana.setUndecorated(true); // Quita el marco a la ventana
@@ -38,6 +39,8 @@ public class fabricaInterfaz extends JFrame {
 		ventana.setBounds(x, y, ancho, alto);
 		ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
+        ventana.getContentPane().setBackground(colorFondo);
+        ventana.getContentPane().setLayout(null);
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo,Border borde) {
 		ventana.setUndecorated(true); // Quita el marco a la ventana
@@ -48,6 +51,7 @@ public class fabricaInterfaz extends JFrame {
         ventana.setResizable(false);
         ventana.getContentPane().setBackground(colorFondo);
         ((JComponent) ventana.getContentPane()).setBorder(borde);
+        ventana.getContentPane().setLayout(null);
 	}
 	
 	

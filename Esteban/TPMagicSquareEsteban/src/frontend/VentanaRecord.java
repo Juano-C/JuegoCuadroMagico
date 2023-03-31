@@ -32,16 +32,16 @@ public class VentanaRecord extends JFrame {
 		
 		
 		
-		fabricaInterfaz.setVentana(this, "Records", 100, 100, 486, 450);
-		setUndecorated(true);
-		getContentPane().setBackground(new Color(0, 0, 51));
+		fabricaInterfaz.setVentana(this, "Records", 100, 100, 486, 450,new Color(0, 0, 51));
+		
+		
 		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
-		setTitle("Records");
+		
 		setForeground(new Color(0, 128, 64));
-		setBounds(100, 100, 486, 450);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);
+		
+		
+		
+		
 		initComponentes();
 	}
 
