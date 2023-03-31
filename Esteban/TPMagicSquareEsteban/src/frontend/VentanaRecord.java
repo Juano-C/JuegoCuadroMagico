@@ -29,6 +29,10 @@ public class VentanaRecord extends JFrame {
 	private JLabel iconoXcerrar;
 
 	public VentanaRecord() {
+		
+		
+		
+		fabricaInterfaz.setVentana(this, "Records", 100, 100, 486, 450);
 		setUndecorated(true);
 		getContentPane().setBackground(new Color(0, 0, 51));
 		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));

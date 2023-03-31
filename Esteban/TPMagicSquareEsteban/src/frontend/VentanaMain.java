@@ -43,9 +43,11 @@ public class VentanaMain extends JFrame
     {
     	
     	
-    	
-    	fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450);
-    	
+    	contentPane = new JPanel();
+    	setContentPane(contentPane);
+    	contentPane.setLayout(null);
+    	//fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450);
+    	fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450,new Color(0, 0, 51),new EmptyBorder(6, 5, 5, 5));
     	/*setUndecorated(true); // Quita el marco a la ventana
         setTitle("Cuadro M\u00E1gico");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,12 +56,13 @@ public class VentanaMain extends JFrame
         setResizable(false);*/
         
         
-        contentPane = new JPanel();
+       /* 
         contentPane.setBackground(new Color(0, 0, 51));
         contentPane.setBorder(new EmptyBorder(6, 5, 5, 5));
 
         setContentPane(contentPane);
         contentPane.setLayout(null);
+        */
 
         //-------------------Boton comenzar
 		JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);

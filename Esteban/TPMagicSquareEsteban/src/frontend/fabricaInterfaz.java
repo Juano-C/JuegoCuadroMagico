@@ -9,7 +9,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import controladores.Controlador;
 import disenio.DisenioBoton;
@@ -27,6 +30,24 @@ public class fabricaInterfaz extends JFrame {
 		ventana.setBounds(x, y, ancho, alto);
 		ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
+	}
+	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo) {
+		ventana.setUndecorated(true); // Quita el marco a la ventana
+		ventana.setTitle(titulo);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setBounds(x, y, ancho, alto);
+		ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
+	}
+	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo,Border borde) {
+		ventana.setUndecorated(true); // Quita el marco a la ventana
+		ventana.setTitle(titulo);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setBounds(x, y, ancho, alto);
+		ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
+        ventana.getContentPane().setBackground(colorFondo);
+        ((JComponent) ventana.getContentPane()).setBorder(borde);
 	}
 	
 	
