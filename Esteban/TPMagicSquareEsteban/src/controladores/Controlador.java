@@ -7,6 +7,7 @@ import frontend.VentanaMain;
 import frontend.VentanaRecord;
 import juego.Juego;
 import juego.Juego.Dificultad;
+import sonido.Audios;
 
 public class Controlador {
 	
@@ -18,7 +19,21 @@ public class Controlador {
 	@SuppressWarnings("unused")
 	private static String _sonido;
 	private static Dificultad _dificultad;
+	private static boolean musica=true;
 	
+	
+	public static  void manejarMusica() {
+		if(musica) {
+			musica=false;
+			Audios.musicaStop();
+			return;
+		}else {
+			musica=true;
+			Audios.musicaPlay();
+		}
+		
+		
+	}
 	public static void abrirVentana(JFrame ventanaAbrir,JFrame ventanaCerrar) {
 		ventanaAbrir.setLocationRelativeTo(null);
 		ventanaAbrir.setVisible(true);

@@ -165,9 +165,7 @@ public class VentanaMain extends JFrame
         
         //-------------------boton de musica 
         btnMuteSoundMusic = fabricaInterfaz.crearBotonMusica(456, 406, 34, 33);
-        /*
-        btnMuteSoundMusic.setFocusable(false);
-        btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));*/
+        
         btnMuteSoundMusic.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -175,6 +173,7 @@ public class VentanaMain extends JFrame
                 //AudioClip Sound;
                 //Sound = java.applet.Applet.newAudioClip(getClass().getResource("/frontend/tetrisSound.wav"));
                 //Sound.play();
+            	Controlador.manejarMusica();
             }
         });
         
