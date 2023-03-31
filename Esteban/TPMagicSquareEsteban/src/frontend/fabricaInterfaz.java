@@ -17,6 +17,19 @@ import disenio.IconoCerrarVentana;
 
 public class fabricaInterfaz extends JFrame {
 
+	
+	
+	
+	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto) {
+		ventana.setUndecorated(true); // Quita el marco a la ventana
+		ventana.setTitle(titulo);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setBounds(x, y, ancho, alto);
+		ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
+	}
+	
+	
 	public static JButton crearBoton(String texto, int x, int y, int ancho, int alto) {
 
 		JButton boton = new JButton(texto);
