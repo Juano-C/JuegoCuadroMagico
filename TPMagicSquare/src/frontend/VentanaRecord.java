@@ -29,11 +29,6 @@ public class VentanaRecord extends JFrame {
 	private JLabel iconoXcerrar;
 
 	public VentanaRecord() {
-		initialize();
-	}
-
-	private void initialize() {
-//		marcoPrincipal = new JFrame();
 		setUndecorated(true);
 		getContentPane().setBackground(new Color(0, 0, 51));
 		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
@@ -45,6 +40,7 @@ public class VentanaRecord extends JFrame {
 		setLocationRelativeTo(null);
 		initComponentes();
 	}
+
 		private void initComponentes() {
 		JLabel lblNewLabel = new JLabel("Puntajes");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
