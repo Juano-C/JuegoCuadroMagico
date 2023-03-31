@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controladores.Controlador;
+import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 
 import javax.swing.JLabel;
@@ -122,27 +123,30 @@ public class VentanaRecord extends JFrame {
 		getContentPane().add(table);
 		
 		//--------------boton Volver
-		JButton botonVolver = new JButton("Volver");
-		botonVolver.setForeground(new Color(0, 0, 0));
+		JButton botonVolver = fabricaInterfaz.crearBoton("Volver",5, 412, 123, 27);
+				
+
+		botonVolver.setHorizontalAlignment(SwingConstants.CENTER);
+		fabricaInterfaz.cambiarTamanioFuente(botonVolver,20);
 		botonVolver.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controlador.abrirVentanaMain();
+				Controlador.abrirVentana(Controlador.getVentanaMain(), Controlador.getVentanaRecords());;
 
 
 			}
 		});
-		botonVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
-		botonVolver.setBackground(new Color(128, 255, 128));
-		botonVolver.setBounds(20, 412, 123, 27);
+		
+
+		botonVolver.addMouseListener(new DisenioBoton(botonVolver));
 		getContentPane().add(botonVolver);
 		
 		/*
 		 * --------- Icono cerrar ventana ----------------
 		 */
-		iconoXcerrar = new IconoCerrarVentana();
-		iconoXcerrar.setBounds(447, 0, 39, 34);
+		iconoXcerrar = fabricaInterfaz.crearBotonCerrar(447, 0, 39, 34);
+		
 		getContentPane().add(iconoXcerrar);
 		
 		String columnas[]={"Puesto","Nombre","Apellido"};

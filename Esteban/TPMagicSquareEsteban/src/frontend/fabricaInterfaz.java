@@ -67,6 +67,9 @@ public class fabricaInterfaz extends JFrame {
 		boton.setBounds(x, y, ancho, alto);
 		return boton;
 	}
+	public static void cambiarTamanioFuente(JComponent componente,float tamanio) {
+		componente.setFont(componente.getFont().deriveFont(tamanio));
+	}
 
 	public static IconoCerrarVentana crearBotonCerrar(int x, int y, int ancho, int alto) {
 		IconoCerrarVentana boton = new IconoCerrarVentana();
@@ -82,6 +85,7 @@ public class fabricaInterfaz extends JFrame {
 		return boton;
 	     
 	}
+	
 
 
 }
