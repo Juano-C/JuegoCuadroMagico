@@ -18,31 +18,43 @@ public class Juego {
 	protected int minutos;
 	private int dificultad;
 	public enum Dificultad {
-		FACIL,
-		NORMAL,
-		DIFICIL;
+		FACIL(3),
+		NORMAL(4),
+		DIFICIL(5);
+
+		private int valor;
+		
+		Dificultad(int i) {
+			valor = i;
+		}
+		
+		int getInt(){
+			return this.valor;
+		}
 	}
 	
-	public Juego(Dificultad tamanioDeGrilla) {
-		switch(tamanioDeGrilla) {
-		case FACIL:
-			this.dificultad=3;
-			break;
-		case NORMAL:
-			this.dificultad=4;
-			break;
-		case DIFICIL:
-			this.dificultad=5;
-			break;
-		default:
-			this.dificultad=4;
-		
-			
+	public Juego(Dificultad dificultad) {
+		if(dificultad != null) {
+			switch(dificultad) {
+			case FACIL:
+				this.dificultad=3;
+				break;
+			case NORMAL:
+				this.dificultad=4;
+				break;
+			case DIFICIL:
+				this.dificultad=5;
+				break;
+			default:
+				System.out.println("ESTA POR DEFECTO");
+				this.dificultad=4;
+			}
+		}else {
+			this.dificultad = 4;
 		}
 		
 		
-		
-		_grilla = new GrillaJuego(dificultad,1,9);
+		_grilla = new GrillaJuego(this.dificultad,1,9);
 		_estaJugando = false;
 	}
 	
@@ -146,6 +158,10 @@ public class Juego {
 	
 	public String getTiempo() {
 		return _textCronometro;
+	}
+
+	public int getTamanio() {
+		return _grilla.getTamanio();
 	}
 
 //	public static void main(String[] args) {

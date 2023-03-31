@@ -1,6 +1,7 @@
 package disenio;
 
 import java.awt.Color;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -24,6 +25,8 @@ public class DisenioBoton implements MouseListener {
 		}
 
 	}
+	
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {}
@@ -49,5 +52,11 @@ public class DisenioBoton implements MouseListener {
 			_boton.setForeground(_letraOriginal);
 		}
 	}
+
+
+
+	
+	
+	
 	
 }

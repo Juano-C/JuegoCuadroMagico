@@ -6,20 +6,25 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controladores.Controlador;
+import disenio.DisenioBoton;
+import juego.Juego.Dificultad;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class VentanaDificultad extends JFrame {
 
     public VentanaDificultad() {
-        // Tama�os
+        // Tamanios
         super();
         setUndecorated(true);
         setTitle("Cuadro Magico");
@@ -42,7 +47,15 @@ public class VentanaDificultad extends JFrame {
         btnFacil.setBackground(new Color(0, 0, 51));
         btnFacil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
         btnFacil.setBounds(52, 100, 114, 34);
+        btnFacil.addMouseListener(new DisenioBoton(btnFacil));
         contentPane.add(btnFacil);
+        btnFacil.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controlador.setearDificultad(Dificultad.FACIL);
+			}
+		});
 
         //-------------------Boton de medio
         JButton btnMedio = new JButton("Medio");
@@ -52,7 +65,15 @@ public class VentanaDificultad extends JFrame {
         btnMedio.setForeground(new Color(255, 255, 255));
         btnMedio.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
         btnMedio.setBounds(52, 188, 114, 34);
+        btnMedio.addMouseListener(new DisenioBoton(btnMedio));
         contentPane.add(btnMedio);
+        btnMedio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controlador.setearDificultad(Dificultad.NORMAL);
+			}
+		});
 
         //-------------------Boton de dificil
         JButton btnDificil = new JButton("Dificil");
@@ -62,7 +83,15 @@ public class VentanaDificultad extends JFrame {
         btnDificil.setForeground(new Color(255, 255, 255));
         btnDificil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
         btnDificil.setBounds(52, 276, 114, 34);
+        btnDificil.addMouseListener(new DisenioBoton(btnDificil));
         contentPane.add(btnDificil);
+        btnDificil.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Controlador.setearDificultad(Dificultad.DIFICIL);
+			}
+		});
 
         //-------------------Boton salir pantalla de dificultad
         JButton btnSalir = new JButton("Salir");
@@ -83,35 +112,10 @@ public class VentanaDificultad extends JFrame {
         JButton btnAtras = new JButton("Atras");
         btnAtras.setFocusable(false);
         btnAtras.setBackground(new Color(255, 255, 255));
-        btnAtras.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		 VentanaMain ventanaDificultad = new VentanaMain();
-                 ventanaDificultad.setVisible(true);
-
-                 ventanaDificultad.setLocationRelativeTo(null);
-
-                 dispose();
-        	}
-        	@Override
-        	public void mousePressed(MouseEvent e) {
-        		VentanaMain ventanaDificultad = new VentanaMain();
-                ventanaDificultad.setVisible(true);
-
-                ventanaDificultad.setLocationRelativeTo(null);
-
-                dispose();
-        	}
-        });
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                VentanaMain ventanaDificultad = new VentanaMain();
-                ventanaDificultad.setVisible(true);
-
-                ventanaDificultad.setLocationRelativeTo(null);
-
-                dispose();
+               Controlador.abrirVentanaMain();
             }
             
         });
@@ -176,11 +180,4 @@ public class VentanaDificultad extends JFrame {
         //------------------------------------------------------
     }
 
-    public static void main(String[] args)
-    {
-        VentanaMain VentanaBase = new VentanaMain();
-        VentanaBase.setVisible(true);
-
-        VentanaBase.setLocationRelativeTo(null);
-    }
 }
