@@ -47,32 +47,35 @@ public class VentanaRecord extends JFrame {
 	}
 
 		private void initComponentes() {
-		JLabel lblNewLabel = new JLabel("Puntajes");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblNewLabel = fabricaInterfaz.crearLabelEstiloRecord(20, 11, 410, 37,"Puntajes");
+		/*lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setBounds(20, 11, 410, 37);
+		lblNewLabel.setBounds(20, 11, 410, 37);*/
 		getContentPane().add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("Puesto");
+		lblNewLabel_1 = fabricaInterfaz.crearLabelEstiloRecord(20, 59, 96, 37,"Puesto");
+		/*		new JLabel("Puesto");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(20, 59, 96, 37);
+		lblNewLabel_1.setBounds(20, 59, 96, 37);*/
 		getContentPane().add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("Nombre");
+		lblNewLabel_2 =  fabricaInterfaz.crearLabelEstiloRecord(142, 59, 144, 37,"Nombre");
+				/*new JLabel("Nombre");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(142, 59, 144, 37);
+		lblNewLabel_2.setBounds(142, 59, 144, 37);*/
 		getContentPane().add(lblNewLabel_2);
 		
-		lblNewLabel_3 = new JLabel("Puntaje");
+		lblNewLabel_3 = fabricaInterfaz.crearLabelEstiloRecord(310, 59, 146, 37,"Puntaje");
+				/*new JLabel("Puntaje");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(310, 59, 146, 37);
+		lblNewLabel_3.setBounds(310, 59, 146, 37);*/
 		getContentPane().add(lblNewLabel_3);
 		
 		table = new JTable();

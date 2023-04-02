@@ -1,6 +1,7 @@
 package controladores;
 import javax.swing.JFrame;
 
+import frontend.VentanaCargarRecord;
 import frontend.VentanaDificultad;
 import frontend.VentanaInGame;
 import frontend.VentanaMain;
@@ -15,6 +16,7 @@ public class Controlador {
 	private static VentanaDificultad _ventanaDificultad = new VentanaDificultad();
 	private static VentanaMain _ventanaMain = new VentanaMain();
 	private static VentanaRecord _ventanaRecords = new VentanaRecord();
+	private static VentanaCargarRecord _ventanaCargaRecord= new VentanaCargarRecord();
 	private static Juego _juego;
 	@SuppressWarnings("unused")
 	private static String _sonido;
@@ -53,6 +55,11 @@ public class Controlador {
 	public static VentanaMain getVentanaMain() {
 		return _ventanaMain;
 	}
+	public static VentanaCargarRecord getVentanaCargarRecord() {
+		return _ventanaCargaRecord;
+	}
+	
+
 	
 	public static void abrirVentanaInGame() {
 		_ventanaInGame.setVisible(true);
@@ -118,6 +125,14 @@ public class Controlador {
 
 	public static Dificultad getDificultad() {
 		return _dificultad;
+	}
+	public static String getRecord() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static void cargarNombre(String nombre) {
+		return ;
+		
 	}
 
 }
