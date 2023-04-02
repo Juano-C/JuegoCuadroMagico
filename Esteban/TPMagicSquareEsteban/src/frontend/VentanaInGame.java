@@ -412,6 +412,7 @@ public class VentanaInGame extends JFrame {
 		JOptionPane.showMessageDialog(getContentPane(), "Usted a ganado.");
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
+		//Aca agrego para haer que se vaya a la ventana para meter los records 
 	}
 
 	private class ActualizadorCronometro implements Runnable {

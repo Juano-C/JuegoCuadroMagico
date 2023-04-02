@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
@@ -41,6 +43,7 @@ public class fabricaInterfaz extends JFrame {
         ventana.setResizable(false);
         ventana.getContentPane().setBackground(colorFondo);
         ventana.getContentPane().setLayout(null);
+        
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo,Border borde) {
 		ventana.setUndecorated(true); // Quita el marco a la ventana
@@ -84,6 +87,25 @@ public class fabricaInterfaz extends JFrame {
 		boton.setFocusable(false);
 		return boton;
 	     
+	}
+	public static JLabel crearLabelEstiloRecord(int x,int y,int ancho,int alto,String texto) {
+		JLabel label =new JLabel(texto);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(new Color(255, 255, 255));
+		label.setFont(new Font("Tahoma", Font.BOLD, 15));
+		label.setBounds(x, y, ancho, alto);
+		return label;
+		
+	}
+	public static JLabel crearLabelEstiloRecordCarga(int x,int y,int ancho,int alto,String texto) {
+		JLabel label =new JLabel(texto);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(new Color(255, 255, 255));
+		label.setBackground(new Color(228, 221, 225));
+		label.setFont(new Font("Georgia", Font.PLAIN, 25));
+		label.setBounds(x, y, ancho, alto);
+		return label;
+		
 	}
 	
 
