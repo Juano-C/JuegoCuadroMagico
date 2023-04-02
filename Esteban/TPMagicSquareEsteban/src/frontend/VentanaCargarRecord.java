@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class VentanaCargarRecord {
+public class VentanaCargarRecord extends JFrame {
 
 	private JFrame frame;
 	private JTextField nombre;

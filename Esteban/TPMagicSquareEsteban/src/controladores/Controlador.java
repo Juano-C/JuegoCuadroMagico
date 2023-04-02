@@ -55,6 +55,9 @@ public class Controlador {
 	public static VentanaMain getVentanaMain() {
 		return _ventanaMain;
 	}
+	public static VentanaCargarRecord getVentanaCargarRecord() {
+		return _ventanaCargaRecord;
+	}
 	
 
 	
