@@ -89,13 +89,16 @@ public class VentanaCargarRecord {
 		frame.getContentPane().add(suRecord);
 		
 		nombre = new JTextField();
-		nombre.setBounds(154, 219, 157, 50);
+		nombre.setBounds(154, 219, 175, 45);
 		frame.getContentPane().add(nombre);
 		nombre.setColumns(10);
 		/*
 		 * Boton de subida 
 		 */
-		JButton botonSubida = new JButton("AGREGAR");
+		JButton botonSubida = fabricaInterfaz.crearBoton("SUBIR", 154, 280, 175, 45);
+				/*new JButton("AGREGAR");
+				botonSubida.setBounds(154, 280, 157, 45);*/
+		fabricaInterfaz.cambiarTamanioFuente(botonSubida, 23);
 		botonSubida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador.cargarNombre(nombre.getText());
@@ -103,14 +106,14 @@ public class VentanaCargarRecord {
 				Controlador.abrirVentana(Controlador.getVentanaMain(), frame);
 			}
 		});
-		botonSubida.setBounds(154, 280, 157, 45);
+		botonSubida.addMouseListener(new DisenioBoton(botonSubida) );
 		frame.getContentPane().add(botonSubida);
 		/*
 		 * Boton de continuar
 		 */
-		JButton botonIrIinicio = fabricaInterfaz.crearBoton("CONTINUAR", 155, 355, 140, 45);
+		JButton botonIrIinicio = fabricaInterfaz.crearBoton("CONTINUAR", 154, 355, 175, 45);
 			
-		fabricaInterfaz.cambiarTamanioFuente(botonIrIinicio, 15);
+		fabricaInterfaz.cambiarTamanioFuente(botonIrIinicio, 23);
 		/*	
 				new JButton("CONTINUAR");
 				botonIrIinicio.setBounds(173, 355, 117, 45);*/
@@ -126,9 +129,10 @@ public class VentanaCargarRecord {
 		/*
 		 * Label para poner el tiempo 
 		 */
-		JLabel record = new JLabel("11:11:11");
+		JLabel record =fabricaInterfaz.crearLabelEstiloRecordCarga(195, 158, 87, 50, "11:11:11");
+				/*new JLabel("11:11:11");
 		record.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		record.setBounds(191, 158, 87, 50);
+		record.setBounds(191, 158, 87, 50);*/
 		frame.getContentPane().add(record);
 	}
 }
