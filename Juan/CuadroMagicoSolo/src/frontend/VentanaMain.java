@@ -143,16 +143,6 @@ public class VentanaMain extends JFrame
 
         //-------------------boton de musica
         JButton btnMuteSoundMusic = new JButton("");
-        btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));
-        btnMuteSoundMusic.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                AudioClip Sound;
-                Sound = java.applet.Applet.newAudioClip(getClass().getResource("/frontend/tetrisSound.wav"));
-                Sound.play();
-            }
-        });
         btnMuteSoundMusic.setBounds(440, 367, 34, 33);
         contentPane.add(btnMuteSoundMusic);
     }
