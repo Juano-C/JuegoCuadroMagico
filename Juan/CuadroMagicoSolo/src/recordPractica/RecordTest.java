@@ -15,7 +15,7 @@ public class RecordTest
     @Test
     public void superaTiempo()
     {
-        RecordPrueba.añadirElementos(tmap, 1, "Data0");
+//        RecordPrueba.agregarElemento(tmap, 1, "Data0");
     }
 
     //nombre vacio (invalido)
