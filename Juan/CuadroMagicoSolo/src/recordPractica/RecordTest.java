@@ -1,5 +1,7 @@
 package recordPractica;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.TreeMap;
 import org.junit.Test;
 

@@ -3,7 +3,9 @@ package record;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-
+/*
+ * Creo que hay que poner metodos en privado
+ */
 public class DatosRecord
 {
 
