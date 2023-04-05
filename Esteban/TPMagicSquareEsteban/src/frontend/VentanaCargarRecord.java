@@ -27,9 +27,9 @@ public class VentanaCargarRecord extends  JFrame {
 	/**
 	 * Launch the application.
 	 */
-	@SuppressWarnings("unused")
+	
 	public static void main(String[] args) {
-		VentanaCargarRecord ventana =new VentanaCargarRecord();
+		new VentanaCargarRecord();
 	}
 
 	/**
