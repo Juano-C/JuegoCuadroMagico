@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controladores.Controlador;
+import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 
 import javax.swing.JLabel;
@@ -29,45 +30,52 @@ public class VentanaRecord extends JFrame {
 	private JLabel iconoXcerrar;
 
 	public VentanaRecord() {
-		setUndecorated(true);
-		getContentPane().setBackground(new Color(0, 0, 51));
+		
+		
+		
+		fabricaInterfaz.setVentana(this, "Records", 100, 100, 486, 450,new Color(0, 0, 51));
+		
+		
 		setFont(new Font("Gill Sans Ultra Bold Condensed", Font.PLAIN, 12));
-		setTitle("Records");
+		
 		setForeground(new Color(0, 128, 64));
-		setBounds(100, 100, 486, 450);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);
+		
+		
+		
+		
 		initComponentes();
 	}
 
 		private void initComponentes() {
-		JLabel lblNewLabel = new JLabel("Puntajes");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblNewLabel = fabricaInterfaz.crearLabelEstiloRecord(20, 11, 410, 37,"Puntajes");
+		/*lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setBounds(20, 11, 410, 37);
+		lblNewLabel.setBounds(20, 11, 410, 37);*/
 		getContentPane().add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("Puesto");
+		lblNewLabel_1 = fabricaInterfaz.crearLabelEstiloRecord(20, 59, 96, 37,"Puesto");
+		/*		new JLabel("Puesto");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(20, 59, 96, 37);
+		lblNewLabel_1.setBounds(20, 59, 96, 37);*/
 		getContentPane().add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("Nombre");
+		lblNewLabel_2 =  fabricaInterfaz.crearLabelEstiloRecord(142, 59, 144, 37,"Nombre");
+				/*new JLabel("Nombre");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(142, 59, 144, 37);
+		lblNewLabel_2.setBounds(142, 59, 144, 37);*/
 		getContentPane().add(lblNewLabel_2);
 		
-		lblNewLabel_3 = new JLabel("Puntaje");
+		lblNewLabel_3 = fabricaInterfaz.crearLabelEstiloRecord(310, 59, 146, 37,"Puntaje");
+				/*new JLabel("Puntaje");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(310, 59, 146, 37);
+		lblNewLabel_3.setBounds(310, 59, 146, 37);*/
 		getContentPane().add(lblNewLabel_3);
 		
 		table = new JTable();
@@ -81,7 +89,7 @@ public class VentanaRecord extends JFrame {
 		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"1", "Lola", "22"},
+			 	{"1", "Lola", "22"},
 				{null, null, null},
 				{null, null, null},
 				{null, null, null},
@@ -118,27 +126,31 @@ public class VentanaRecord extends JFrame {
 		getContentPane().add(table);
 		
 		//--------------boton Volver
-		JButton botonVolver = new JButton("Volver");
-		botonVolver.setForeground(new Color(0, 0, 0));
+		JButton botonVolver = fabricaInterfaz.crearBoton("Volver",5, 412, 123, 27);
+				
+
+		botonVolver.setHorizontalAlignment(SwingConstants.CENTER);
+		fabricaInterfaz.cambiarTamanioFuente(botonVolver,20);
 		botonVolver.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controlador.abrirVentanaMain();
+				Controlador.abrirVentana(Controlador.getVentanaMain(), Controlador.getVentanaRecords());
+				//dispose();
 
 
 			}
 		});
-		botonVolver.setFont(new Font("Tahoma", Font.BOLD, 15));
-		botonVolver.setBackground(new Color(128, 255, 128));
-		botonVolver.setBounds(20, 412, 123, 27);
+		
+
+		botonVolver.addMouseListener(new DisenioBoton(botonVolver));
 		getContentPane().add(botonVolver);
 		
 		/*
 		 * --------- Icono cerrar ventana ----------------
 		 */
-		iconoXcerrar = new IconoCerrarVentana();
-		iconoXcerrar.setBounds(447, 0, 39, 34);
+		iconoXcerrar = fabricaInterfaz.crearBotonCerrar(447, 0, 39, 34);
+		
 		getContentPane().add(iconoXcerrar);
 		
 		String columnas[]={"Puesto","Nombre","Apellido"};

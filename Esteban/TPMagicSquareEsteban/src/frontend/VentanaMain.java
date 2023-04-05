@@ -36,22 +36,37 @@ public class VentanaMain extends JFrame
      */
 	public static void main(String[] args) {
 		Controlador.abrirVentanaMain();
+		
 	}
 
     //-------------------Create the frame.
     public VentanaMain()
     {
-    	setUndecorated(true); // Quita el marco a la ventana
+    	setUndecorated(true);
+    	
+    	contentPane = new JPanel();
+    	setContentPane(contentPane);
+    	contentPane.setLayout(null);
+    	fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450,new Color(0, 0, 51),new EmptyBorder(6, 5, 5, 5));
+    	
+    	
+    	//fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450);
+    	
+    	/*setUndecorated(true); // Quita el marco a la ventana
         setTitle("Cuadro M\u00E1gico");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 450);
-        contentPane = new JPanel();
+        setLocationRelativeTo(null);
+        setResizable(false);*/
+        
+        
+       /* 
         contentPane.setBackground(new Color(0, 0, 51));
         contentPane.setBorder(new EmptyBorder(6, 5, 5, 5));
-        setLocationRelativeTo(null);
-        setResizable(false);
+
         setContentPane(contentPane);
         contentPane.setLayout(null);
+        */
 
         //-------------------Boton comenzar
 		JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
@@ -62,8 +77,9 @@ public class VentanaMain extends JFrame
         btnComenzar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                Controlador.abrirVentana(Controlador.getVentanaComenzar(), Controlador.getVentanaMain());
+                Controlador.abrirVentana(Controlador.getVentanaInGame(), Controlador.getVentanaMain());
 //				Controlador.abrirVentanaInGame();
+                
 
             }
         });        
@@ -91,7 +107,7 @@ public class VentanaMain extends JFrame
        		
                 Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());
 //				Controlador.abrirVentanaDificultad();
-                dispose();
+                
             }
         });
         
@@ -130,6 +146,7 @@ public class VentanaMain extends JFrame
             {
                 Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());
 //				Controlador.abrirVentanaRecord();
+                
 
             }
         });	
@@ -153,7 +170,7 @@ public class VentanaMain extends JFrame
          * --------- Icono cerrar ventana ----------------
          */
         JLabel iconoXcerrar = new IconoCerrarVentana();
-        iconoXcerrar.setBounds(461, 0, 39, 34);
+        
         getContentPane().add(iconoXcerrar);
         
         //-------------------autor/es
@@ -164,9 +181,8 @@ public class VentanaMain extends JFrame
         
         
         //-------------------boton de musica 
-        btnMuteSoundMusic = new JButton("");
-        btnMuteSoundMusic.setFocusable(false);
-        btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));
+        btnMuteSoundMusic = fabricaInterfaz.crearBotonMusica(456, 406, 34, 33);
+        
         btnMuteSoundMusic.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -174,9 +190,10 @@ public class VentanaMain extends JFrame
                 //AudioClip Sound;
                 //Sound = java.applet.Applet.newAudioClip(getClass().getResource("/frontend/tetrisSound.wav"));
                 //Sound.play();
+            	Controlador.manejarMusica();
             }
         });
-        btnMuteSoundMusic.setBounds(456, 406, 34, 33);
+        
         contentPane.add(btnMuteSoundMusic);
         
         /*
