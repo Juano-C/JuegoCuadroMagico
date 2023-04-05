@@ -26,16 +26,17 @@ public class fabricaInterfaz extends JFrame {
 	
 	
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto) {
-		 // Quita el marco a la ventana
+		
 		ventana.setTitle(titulo);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setBounds(x, y, ancho, alto);
 		ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
         ventana.getContentPane().setLayout(null);
+        
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo) {
-		 // Quita el marco a la ventana
+		
 		ventana.setTitle(titulo);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setBounds(x, y, ancho, alto);
@@ -43,11 +44,11 @@ public class fabricaInterfaz extends JFrame {
         ventana.setResizable(false);
         ventana.getContentPane().setBackground(colorFondo);
         ventana.getContentPane().setLayout(null);
-        //ventana.setUndecorated(true);
+       
         
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo,Border borde) {
-		 // Quita el marco a la ventana
+		 
 		ventana.setTitle(titulo);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setBounds(x, y, ancho, alto);
@@ -56,6 +57,7 @@ public class fabricaInterfaz extends JFrame {
         ventana.getContentPane().setBackground(colorFondo);
         ((JComponent) ventana.getContentPane()).setBorder(borde);
         ventana.getContentPane().setLayout(null);
+        
 	}
 	
 	
@@ -70,6 +72,7 @@ public class fabricaInterfaz extends JFrame {
 		boton.setForeground(new Color(255, 255, 255));
 		boton.setBackground(new Color(0, 0, 51));
 		boton.setBounds(x, y, ancho, alto);
+		boton.setVisible(true);
 		return boton;
 	}
 	public static void cambiarTamanioFuente(JComponent componente,float tamanio) {

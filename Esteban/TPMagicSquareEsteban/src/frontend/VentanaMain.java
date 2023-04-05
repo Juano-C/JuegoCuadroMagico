@@ -36,16 +36,17 @@ public class VentanaMain extends JFrame
      */
 	public static void main(String[] args) {
 		Controlador.abrirVentanaMain();
+		
 	}
 
     //-------------------Create the frame.
     public VentanaMain()
     {
-    	
+    	setUndecorated(true);
     	
     	contentPane = new JPanel();
     	setContentPane(contentPane);
-    	//contentPane.setLayout(null);
+    	contentPane.setLayout(null);
     	fabricaInterfaz.setVentana(this, "Cuadro M\u00E1gico",100, 100, 500, 450,new Color(0, 0, 51),new EmptyBorder(6, 5, 5, 5));
     	
     	
