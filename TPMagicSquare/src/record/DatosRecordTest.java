@@ -93,7 +93,7 @@ public class DatosRecordTest
     @Test 
     public void unRecordMaximoTest() {
     	DatosRecord.agregarElemento(tmap, 100000, "ll");
-    	assertTrue(tmap.get(1).equals("lll"));
+    	assertTrue(DatosRecord.mostrarPuesto(tmap, 0).equals("ll"));
     }
     @Test 
     public void tresRecordsTest() {
