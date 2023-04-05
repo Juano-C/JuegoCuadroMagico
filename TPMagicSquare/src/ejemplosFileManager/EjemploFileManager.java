@@ -46,6 +46,7 @@ public class EjemploFileManager {
 		System.out.println(_user_dir);
 	}
 
+	/*
  	public static void main(String[] args) {
  		EjemploFileManager fm = new EjemploFileManager();
  		
@@ -55,5 +56,5 @@ public class EjemploFileManager {
  		
 
 	}
-
+	*/
 }
