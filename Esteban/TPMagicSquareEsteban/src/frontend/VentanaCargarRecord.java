@@ -1,10 +1,12 @@
 package frontend;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controladores.Controlador;
@@ -16,7 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class VentanaCargarRecord extends JFrame {
+@SuppressWarnings("serial")
+public class VentanaCargarRecord extends  JFrame {
 
 	private JFrame frame;
 	private JTextField nombre;
@@ -24,24 +27,24 @@ public class VentanaCargarRecord extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaCargarRecord window = new VentanaCargarRecord();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		VentanaCargarRecord ventana =new VentanaCargarRecord();
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public VentanaCargarRecord() {
+		
+		//super();
+		setUndecorated(true);
 		initialize();
+		
+		//setUndecorated(true);
+		
+		
+		
 	}
 
 	/**
@@ -50,12 +53,11 @@ public class VentanaCargarRecord extends JFrame {
 	private void initialize() {
 		
 		
+		JPanel contentPane = new JPanel();
+		setContentPane(contentPane);
+		setVisible(true);
+		fabricaInterfaz.setVentana(this, "Record",  100, 100, 486, 450,new Color(0, 0, 51));
 		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 486, 450);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		fabricaInterfaz.setVentana(frame, "Record",  100, 100, 486, 450,new Color(0, 0, 51));
 		
 		
 		/*
@@ -63,9 +65,9 @@ public class VentanaCargarRecord extends JFrame {
 		 */
 		JLabel iconoXcerrar = fabricaInterfaz.crearBotonCerrar(447, 0, 39, 34);
 		
-		frame.getContentPane().add(iconoXcerrar);
+		getContentPane().add(iconoXcerrar);
 		
-		
+		;
 		
 		/*
 		 * Felicidades
@@ -77,7 +79,7 @@ public class VentanaCargarRecord extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(23, 11, 426, 50);*/
 		
-		frame.getContentPane().add(felicidades);
+		getContentPane().add(felicidades);
 		/*
 		 * Texto 
 		 */
@@ -86,11 +88,11 @@ public class VentanaCargarRecord extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(154, 116, 190, 31);*/
-		frame.getContentPane().add(suRecord);
+		getContentPane().add(suRecord);
 		
 		nombre = new JTextField();
 		nombre.setBounds(154, 219, 175, 45);
-		frame.getContentPane().add(nombre);
+		getContentPane().add(nombre);
 		nombre.setColumns(10);
 		/*
 		 * Boton de subida 
@@ -106,8 +108,9 @@ public class VentanaCargarRecord extends JFrame {
 				Controlador.abrirVentana(Controlador.getVentanaMain(), frame);
 			}
 		});
+		
 		botonSubida.addMouseListener(new DisenioBoton(botonSubida) );
-		frame.getContentPane().add(botonSubida);
+		getContentPane().add(botonSubida);
 		/*
 		 * Boton de continuar
 		 */
@@ -125,7 +128,7 @@ public class VentanaCargarRecord extends JFrame {
 		});
 		
 		botonIrIinicio.addMouseListener(new DisenioBoton(botonIrIinicio) );
-		frame.getContentPane().add(botonIrIinicio);
+		getContentPane().add(botonIrIinicio);
 		/*
 		 * Label para poner el tiempo 
 		 */
@@ -133,6 +136,6 @@ public class VentanaCargarRecord extends JFrame {
 				/*new JLabel("11:11:11");
 		record.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		record.setBounds(191, 158, 87, 50);*/
-		frame.getContentPane().add(record);
+		getContentPane().add(record);
 	}
 }

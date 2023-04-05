@@ -26,7 +26,7 @@ public class fabricaInterfaz extends JFrame {
 	
 	
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto) {
-		ventana.setUndecorated(true); // Quita el marco a la ventana
+		 // Quita el marco a la ventana
 		ventana.setTitle(titulo);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setBounds(x, y, ancho, alto);
@@ -35,7 +35,7 @@ public class fabricaInterfaz extends JFrame {
         ventana.getContentPane().setLayout(null);
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo) {
-		ventana.setUndecorated(true); // Quita el marco a la ventana
+		 // Quita el marco a la ventana
 		ventana.setTitle(titulo);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setBounds(x, y, ancho, alto);
@@ -43,10 +43,11 @@ public class fabricaInterfaz extends JFrame {
         ventana.setResizable(false);
         ventana.getContentPane().setBackground(colorFondo);
         ventana.getContentPane().setLayout(null);
+        //ventana.setUndecorated(true);
         
 	}
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto,Color colorFondo,Border borde) {
-		ventana.setUndecorated(true); // Quita el marco a la ventana
+		 // Quita el marco a la ventana
 		ventana.setTitle(titulo);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setBounds(x, y, ancho, alto);
@@ -64,9 +65,10 @@ public class fabricaInterfaz extends JFrame {
 
 		boton.setFocusable(false);
 		boton.setBorderPainted(false);
+		
+		boton.setFont(new Font("Georgia", Font.PLAIN, 25));
 		boton.setForeground(new Color(255, 255, 255));
 		boton.setBackground(new Color(0, 0, 51));
-		boton.setFont(new Font("Georgia", Font.PLAIN, 25));
 		boton.setBounds(x, y, ancho, alto);
 		return boton;
 	}
