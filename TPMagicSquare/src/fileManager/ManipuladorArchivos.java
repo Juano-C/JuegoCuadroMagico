@@ -260,6 +260,7 @@ public class ManipuladorArchivos {
 	 * Para ello uso el un diccionario que esta de forma estatica
 	 * en la clase llamado posicionesTiempo
 	 */
+	@SuppressWarnings("unused")
 	private static void imprimitTabla() {
 		for(Integer indice: posicionesTiempo.keySet()) {
 		System.out.println("indice: " + indice + " --> " + posicionesTiempo.get(indice));
@@ -272,22 +273,6 @@ public class ManipuladorArchivos {
 	 */
 	public static String getRutaTiempos() {
 		return _directorioArchivo;
-	}
-	
-	public static void main(String[] args) {
-		/*
-		 * Probando los metodos y si se escribe. (esto debe ir a tests de ser posible)
-		 */
-//		Map<Integer, String> m = (HashMap<Integer, String>) lineasDeText();
-//		for(Integer indice: m.keySet()) {
-//			System.out.println("indice: " + indice + " --> " + m.get(indice));
-//		}
-//		escribirTiempo("00:00:10", "Darius");
-//		escribirTiempo("00:00:50", "Mina");
-//		escribirTiempo("00:00:05", "Rayos");
-//		escribirTiempo("00:00:11", "Bobby");
-//		imprimitTabla();
-//		System.out.println(elPrimerTiempoEsMenor("00:00:10", "01:01:20"));
 	}
 
 }

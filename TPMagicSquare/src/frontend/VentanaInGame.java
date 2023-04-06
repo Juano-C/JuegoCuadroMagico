@@ -1,29 +1,27 @@
 package frontend;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Map;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controladores.Controlador;
 import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 import juego.Juego;
-import sonido.Audios;
-
-import java.awt.Color;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Map;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class VentanaInGame extends JFrame {
@@ -38,14 +36,13 @@ public class VentanaInGame extends JFrame {
 	private JLabel tiempoText;
 	private JLabel tiempoJuego;
 	private Thread actualizarTiempo;
-	
+
 	private static int TAMANIO = 4;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
 	public VentanaInGame() {
-		try {Audios.musicaPlay();} catch (Exception e) {} // Pa relajar
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 800, 650);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		contentPane = new JPanel();
@@ -74,7 +71,7 @@ public class VentanaInGame extends JFrame {
 		rendirse.setFont(new Font("Leelawadee UI", Font.BOLD, 13));
 		rendirse.addMouseListener(new DisenioBoton(rendirse));
 		contentPane.add(rendirse);
-		
+
 		tiempoText = new JLabel("Tiempo: ");
 		tiempoText.setHorizontalAlignment(SwingConstants.CENTER);
 		tiempoText.setBounds(185, 22, 89, 23);
@@ -83,7 +80,7 @@ public class VentanaInGame extends JFrame {
 		tiempoText.setBackground(new Color(0, 0, 51));
 		tiempoText.setFont(new Font("Leelawadee UI", Font.BOLD, 13));
 		contentPane.add(tiempoText);
-		
+
 		tiempoJuego = new JLabel("");
 		tiempoJuego.setHorizontalAlignment(SwingConstants.CENTER);
 		tiempoJuego.setForeground(Color.WHITE);
@@ -99,6 +96,27 @@ public class VentanaInGame extends JFrame {
 
 		iniciar.addActionListener(new AccionesIniciar());
 		rendirse.addActionListener(new AccionesRendirse());
+
+		// --------------boton Volver
+		JButton botonVolver = fabricaInterfaz.crearBoton("Volver", 5, 600, 123, 27);
+
+		botonVolver.setHorizontalAlignment(SwingConstants.CENTER);
+		fabricaInterfaz.cambiarTamanioFuente(botonVolver, 20);
+		botonVolver.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				Controlador.abrirVentana(Controlador.getVentanaMain(),Controlador.getVentanaInGame());
+				frenarTodo();
+
+			}
+		});
+
+		botonVolver.addMouseListener(new DisenioBoton(botonVolver));
+		getContentPane().add(botonVolver);
+
 	}
 
 	private void crearGrilla(int tamanio) {
@@ -189,6 +207,13 @@ public class VentanaInGame extends JFrame {
 		int _fila;
 		int _columna;
 
+		/**
+		 * Sirve para identificar la celda
+		 * 
+		 * @param celda
+		 * @param fila
+		 * @param columna
+		 */
 		public AccionesCelda(JTextField celda, int fila, int columna) {
 			super();
 			if (celda != null) {
@@ -224,7 +249,7 @@ public class VentanaInGame extends JFrame {
 				} else {
 					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, 0);
 				}
-				
+
 				cambiarEstadosCasillas();
 
 				if (__juego__.gano()) {
@@ -235,22 +260,24 @@ public class VentanaInGame extends JFrame {
 		}
 
 		private void cambiarEstadosCasillas() {
-			if(__juego__!= null && matriz != null) {
+			if (__juego__ != null && matriz != null) {
 				Map<String, boolean[]> filasYcolumnas = __juego__.filasYColumnasQueEstanBien();
 				boolean[] filas = filasYcolumnas.get("fila");
 				boolean[] columnas = filasYcolumnas.get("columna");
-				for(int i=0; i < filas.length; i++) {
-					if(filas[i] == true) {
-						matriz[i][matriz.length - 1].setBackground(Color.green);;
-					}else {
-						matriz[i][matriz.length - 1].setBackground(Color.red);;
+				for (int i = 0; i < filas.length; i++) {
+					if (filas[i] == true) {
+						matriz[i][matriz.length - 1].setBackground(Color.green);
+						;
+					} else {
+						matriz[i][matriz.length - 1].setBackground(Color.red);
+						;
 					}
 				}
-				for(int i=0; i < columnas.length; i++) {
-					if(columnas[i] == true) {
-						matriz[matriz.length-1][i].setBackground(Color.green);
-					}else {
-						matriz[matriz.length-1][i].setBackground(Color.red);
+				for (int i = 0; i < columnas.length; i++) {
+					if (columnas[i] == true) {
+						matriz[matriz.length - 1][i].setBackground(Color.green);
+					} else {
+						matriz[matriz.length - 1][i].setBackground(Color.red);
 					}
 				}
 			}
@@ -263,15 +290,14 @@ public class VentanaInGame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// Vacio la Grilla
 			vaciarGrilla();
-			
+
 			// Inicia la instancia de Juego. Creo la grilla logica.
 			__juego__ = new Juego(Controlador.getDificultad());
-			__juego__.iniciar();			
+			__juego__.iniciar();
 			TAMANIO = __juego__.getTamanio();
-			
+
 			// Creo la Grilla GUI para el usuario.
 			crearGrilla(TAMANIO + 1);
-
 
 			// Carga a la grilla los valores de la instancia de Juego
 			cargarValoresAlaGrilla();
@@ -284,14 +310,14 @@ public class VentanaInGame extends JFrame {
 
 			// Habilito la opcion de rendirse
 			rendirse.setEnabled(true);
-			
+
 			// Correr cronometro
-			actualizarTiempo = new Thread(new  ActualizadorCronometro());
+			actualizarTiempo = new Thread(new ActualizadorCronometro());
 			actualizarTiempo.start();
 		}
 
 		private void deshabilitar() {
-			iniciar.setBackground(new Color(0,0,51));
+			iniciar.setBackground(new Color(0, 0, 51));
 			iniciar.setForeground(new Color(255, 255, 255));
 			iniciar.setEnabled(false);
 		}
@@ -309,7 +335,7 @@ public class VentanaInGame extends JFrame {
 		}
 
 		private void vaciarGrilla() {
-			if(matriz != null) {
+			if (matriz != null) {
 				for (int fila = 0; fila < TAMANIO; fila++) {
 					for (int columna = 0; columna < TAMANIO; columna++) {
 						matriz[fila][columna].setText("");
@@ -340,9 +366,9 @@ public class VentanaInGame extends JFrame {
 			// Habilito iniciar
 			iniciar.setEnabled(true);
 		}
-		
+
 		private void deshabilitar() {
-			rendirse.setBackground(new Color(0,0,51));
+			rendirse.setBackground(new Color(0, 0, 51));
 			rendirse.setForeground(new Color(255, 255, 255));
 			rendirse.setEnabled(false);
 		}
@@ -369,37 +395,38 @@ public class VentanaInGame extends JFrame {
 	@SuppressWarnings("deprecation")
 	private void frenarTodo() {
 		Grilla.setVisible(false);
-		if(actualizarTiempo != null) {
+		if (actualizarTiempo != null) {
 			// Freno el cronometro
 			actualizarTiempo.stop();
 		}
-
-	}
-
-	private void jugadorGano() {
-		JOptionPane.showMessageDialog(getContentPane(), "Usted a ganado.");
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
 	}
-	
-	private class ActualizadorCronometro implements Runnable{
+
+	private void jugadorGano() {
+		//JOptionPane.showMessageDialog(getContentPane(), "Usted a ganado.");
+		iniciar.setEnabled(true);
+		rendirse.setEnabled(false);
+		//Aca agrego para haer que se vaya a la ventana para meter los records 
+		setVisible(false);
+		Controlador.setearTiempoLogrado(__juego__.getTiempo());
+//		System.out.println(__juego__.getTiempo());
+		Controlador.abrirVentana(Controlador.getVentanaCargarRecord(), Controlador.getVentanaInGame());
+	}
+
+	private class ActualizadorCronometro implements Runnable {
 
 		@Override
 		public void run() {
-			while(true) {
-				if(__juego__ != null && !__juego__.gano()) {
+			while (true) {
+				if (__juego__ != null && !__juego__.gano()) {
 					tiempoJuego.setText(__juego__.getTiempo());
-				}else {
+				} else {
 					tiempoJuego.setText("00:00:00");
 				}
 			}
 		}
-		
+
 	}
 
-	
-	
-	
-	
-	
 }

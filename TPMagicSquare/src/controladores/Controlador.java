@@ -1,12 +1,14 @@
 package controladores;
 import javax.swing.JFrame;
 
+import fileManager.ManipuladorArchivos;
+import frontend.VentanaCargarRecord;
 import frontend.VentanaDificultad;
 import frontend.VentanaInGame;
 import frontend.VentanaMain;
 import frontend.VentanaRecord;
-import juego.Juego;
 import juego.Juego.Dificultad;
+import sonido.Audios;
 
 public class Controlador {
 	
@@ -14,11 +16,26 @@ public class Controlador {
 	private static VentanaDificultad _ventanaDificultad = new VentanaDificultad();
 	private static VentanaMain _ventanaMain = new VentanaMain();
 	private static VentanaRecord _ventanaRecords = new VentanaRecord();
-	private static Juego _juego;
+	private static VentanaCargarRecord _ventanaCargaRecord= new VentanaCargarRecord();
 	@SuppressWarnings("unused")
 	private static String _sonido;
 	private static Dificultad _dificultad;
+	private static boolean musica=true;
+	private static String _tiempoLogrado = "99:99:99";
 	
+	
+	public static  void manejarMusica() {
+		if(musica) {
+			musica=false;
+			Audios.musicaStop();
+			return;
+		}else {
+			musica=true;
+			Audios.musicaPlay();
+		}
+		
+		
+	}
 	public static void abrirVentana(JFrame ventanaAbrir,JFrame ventanaCerrar) {
 		ventanaAbrir.setLocationRelativeTo(null);
 		ventanaAbrir.setVisible(true);
@@ -29,7 +46,7 @@ public class Controlador {
 	public static VentanaRecord getVentanaRecords() {
 		return _ventanaRecords;
 	}
-	public static VentanaInGame getVentanaComenzar() {
+	public static VentanaInGame getVentanaInGame() {
 		return _ventanaInGame;
 	}
 	public static VentanaDificultad getVentanaDificultad() {
@@ -38,6 +55,11 @@ public class Controlador {
 	public static VentanaMain getVentanaMain() {
 		return _ventanaMain;
 	}
+	public static VentanaCargarRecord getVentanaCargarRecord() {
+		return _ventanaCargaRecord;
+	}
+	
+
 	
 	public static void abrirVentanaInGame() {
 		_ventanaInGame.setVisible(true);
@@ -86,23 +108,19 @@ public class Controlador {
 	}
 
 
-	public static int obtenerResultadosSolucion(String fila_o_col, int indice) {
-		if(_juego != null) {
-			return _juego.obtenerResultadosSolucion(fila_o_col, indice);
-		}
-		return 0;
-	}
-
-
-	public static void ingresoNumeroEnGrillaJuego(int fila, int columna, int num) {
-		if(_juego != null) {
-			_juego.ingresoNumeroEnGrillaJuego(fila, columna, num);
-		}
-	}
-
 
 	public static Dificultad getDificultad() {
 		return _dificultad;
+	}
+	
+	public static void setearTiempoLogrado(String tiempo) {
+		_tiempoLogrado = tiempo;
+	}
+	
+	public static void cargarNombre(String nombre) {
+		ManipuladorArchivos.escribirTiempo(_tiempoLogrado , nombre);
+		return ;
+		
 	}
 
 }
