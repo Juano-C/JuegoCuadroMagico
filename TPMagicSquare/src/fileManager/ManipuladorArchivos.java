@@ -12,7 +12,7 @@ import java.util.Map;
 
 import javax.swing.JOptionPane;
 
-public class Manager {
+public class ManipuladorArchivos {
 	// Directorio del proyecto. (va cambiando dependiendo de la computador que
 	// ejecute el proyecto)
 	private static String _directorioProyecto = System.getProperty("user.dir");
@@ -30,7 +30,7 @@ public class Manager {
 	public static Map<Integer, String> lineasDeText() {
 		Map<Integer, String> diccionario = new HashMap<Integer, String>();
 		ArrayList<String> lineas = (ArrayList<String>) leerArchivoTXT(_directorioArchivo);
-		for (int indice = 1; indice <= 10; indice++) {
+		for (int indice = 1; indice <= 18; indice++) {
 			try {
 				String linea = lineas.get(indice - 1);
 				diccionario.put(indice, linea);
@@ -107,32 +107,6 @@ public class Manager {
 	}
 
 	/*
-	 * Ejemplo de escribir 10 lineas en un archivo
-	 */
-	public static void escribirDiezLineas() {
-		FileWriter fichero = null;
-		PrintWriter pw = null;
-		try {
-			fichero = new FileWriter(_directorioArchivo);
-			pw = new PrintWriter(fichero);
-
-//	            for (int i = 0; i < 10; i++)
-//	                pw.println("Linea " + i);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				// Nuevamente aprovechamos el finally para
-				// asegurarnos que se cierra el fichero.
-				if (null != fichero)
-					fichero.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
-
-	/*
 	 * Escribir el tiempo en el archivo de txt
 	 */
 	public static void escribirTiempo(String tiempo, String nombre) {
@@ -147,7 +121,7 @@ public class Manager {
 			
 			Integer puestoParada = null; // Donde se sobreescribio
 			String lineaAmover = null;	// La linea que hay que mover ya que se reemplazo
-			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10}; // Todas las posiciones en orden simplemente para leer mejor
+			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18}; // Todas las posiciones en orden simplemente para leer mejor
 			
 			// Recorro el map que representa la tabla de records..
 			for(Integer puesto: posiciones) {
@@ -292,6 +266,14 @@ public class Manager {
 		}
 	}
 
+	/**
+	 * Devuelve la direccion de la ruta almacenada
+	 * @param args
+	 */
+	public static String getRutaTiempos() {
+		return _directorioArchivo;
+	}
+	
 	public static void main(String[] args) {
 		/*
 		 * Probando los metodos y si se escribe. (esto debe ir a tests de ser posible)
