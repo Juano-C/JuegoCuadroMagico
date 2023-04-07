@@ -151,7 +151,7 @@ public class Juego {
 				
 				
 				_textCronometro = (minutos<=9?"0":"")+minutos+":"+(segundos <= 9?"0":"")+segundos+":"+(centesimas_segundos <=9?"0":"")+centesimas_segundos;
-				try {Thread.sleep(20);} catch (InterruptedException e1) {}
+				try {Thread.sleep(10);} catch (InterruptedException e1) {}
 		}
 		
 	};
@@ -164,17 +164,4 @@ public class Juego {
 		return _grilla.getTamanio();
 	}
 
-//	public static void main(String[] args) {
-//		Juego game = new Juego(5);
-//		game.iniciar();
-//		while(true) {
-//			System.out.println(game.getTiempo());
-//			try {
-//				Thread.sleep(20);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 }

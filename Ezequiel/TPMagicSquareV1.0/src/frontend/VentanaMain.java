@@ -57,7 +57,8 @@ public class VentanaMain extends JFrame
         btnComenzar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                Controlador.abrirVentana(Controlador.getVentanaInGame(), Controlador.getVentanaMain());                
+            	Controlador.reproducirClick();
+                Controlador.abrirVentana(Controlador.getVentanaInGame(), Controlador.getVentanaMain());    
             }
         });        
         
@@ -81,7 +82,7 @@ public class VentanaMain extends JFrame
         btnDificultad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-       		
+            	Controlador.reproducirClick();
                 Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());                
             }
         });
@@ -93,6 +94,7 @@ public class VentanaMain extends JFrame
         
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
+            	Controlador.reproducirClick();
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
                         "OBJETIVO: El objetivo del juego consiste en igualar los n�meros presentados como RESULTADO \n" +
                         "tanto en las filas como en las columnas. Para ello se deben completar los casilleros con n�meros \n"+
@@ -119,10 +121,8 @@ public class VentanaMain extends JFrame
         btnRecords.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());
-//				Controlador.abrirVentanaRecord();
-                
-
+            	Controlador.reproducirClick();
+                Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());                
             }
         });	
         btnRecords.addMouseListener(new DisenioBoton(btnRecords));
@@ -133,7 +133,9 @@ public class VentanaMain extends JFrame
         btnSalir.addMouseListener(new DisenioBoton(btnSalir));        		
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
-            {
+            {	
+            	Controlador.reproducirClick();
+            	try {Thread.sleep(400);} catch (InterruptedException e1) {}
                 System.exit(0);
             }
         });

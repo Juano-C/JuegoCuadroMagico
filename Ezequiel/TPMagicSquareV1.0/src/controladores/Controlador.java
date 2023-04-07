@@ -17,11 +17,9 @@ public class Controlador {
 	private static VentanaMain _ventanaMain = new VentanaMain();
 	private static VentanaRecord _ventanaRecords = new VentanaRecord();
 	private static VentanaCargarRecord _ventanaCargaRecord= new VentanaCargarRecord();
-	@SuppressWarnings("unused")
-	private static String _sonido;
 	private static Dificultad _dificultad;
 	private static boolean musica=true;
-	private static String _tiempoLogrado = "99:99:99";
+	private static String _tiempoLogrado = null;
 	
 	
 	public static  void manejarMusica() {
@@ -33,9 +31,13 @@ public class Controlador {
 			musica=true;
 			Audios.musicaPlay();
 		}
-		
-		
 	}
+	
+	public static void reproducirClick() {
+		Audios.sonidoClick();
+	}
+	
+	
 	public static void abrirVentana(JFrame ventanaAbrir,JFrame ventanaCerrar) {
 		ventanaAbrir.setLocationRelativeTo(null);
 		ventanaAbrir.setVisible(true);
@@ -121,6 +123,10 @@ public class Controlador {
 		ManipuladorArchivos.escribirTiempo(_tiempoLogrado , nombre);
 		return ;
 		
+	}
+
+	public static String getRecord() {
+		return _tiempoLogrado;
 	}
 
 }

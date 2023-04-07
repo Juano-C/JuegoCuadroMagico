@@ -73,6 +73,7 @@ public class VentanaRecord extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Controlador.reproducirClick();
 				Controlador.abrirVentana(Controlador.getVentanaMain(), Controlador.getVentanaRecords());
 			}
 		});

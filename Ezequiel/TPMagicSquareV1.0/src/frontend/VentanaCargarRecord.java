@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controladores.Controlador;
 import disenio.DisenioBoton;
@@ -22,6 +23,7 @@ public class VentanaCargarRecord extends  JFrame {
 	private JLabel suRecord;
 	private JLabel felicidades;
 	private JLabel iconoXcerrar;
+	private JLabel record;
 
 	/**
 	 * Create the application.
@@ -41,8 +43,6 @@ public class VentanaCargarRecord extends  JFrame {
 		 contentPane = new JPanel();
 		setContentPane(contentPane);
 		fabricaInterfaz.setVentana(this, "Record",  100, 100, 486, 450,new Color(0, 0, 51));
-		
-		
 		
 		/*
 		 * Icono cerrar ventana 
@@ -78,6 +78,7 @@ public class VentanaCargarRecord extends  JFrame {
 				Controlador.cargarNombre(nombre.getText());
 				nombre.setText("");
 				Controlador.abrirVentana(Controlador.getVentanaMain(), Controlador.getVentanaCargarRecord());
+				Controlador.reproducirClick();
 			}
 		});
 		/*
@@ -92,13 +93,21 @@ public class VentanaCargarRecord extends  JFrame {
 			public void actionPerformed(ActionEvent e) {
 				nombre.setText("");
 				Controlador.abrirVentana(Controlador.getVentanaMain(), Controlador.getVentanaCargarRecord());
+				Controlador.reproducirClick();
 			}
 		});
-		/*
-		 * Label para poner el tiempo 
-		 */
-		JLabel record =fabricaInterfaz.crearLabelEstiloRecordCarga(195, 158, 87, 50, "11:11:11");
-		contentPane.add(record);
-		
 	}
+
+	@Override
+	public void setVisible(boolean b) {
+		super.setVisible(b);
+		
+		/*
+		 * Cargo el tiempo
+		 */
+		record = fabricaInterfaz.crearLabelEstiloRecordCarga(195, 158, 200, 50,Controlador.getRecord());
+		record.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPane.add(record);
+	}
+	
 }

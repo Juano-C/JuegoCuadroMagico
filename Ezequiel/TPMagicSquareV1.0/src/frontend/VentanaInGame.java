@@ -244,8 +244,6 @@ public class VentanaInGame extends JFrame {
 			if (__juego__ != null) {
 				if (_celda.getText().length() != 0) {
 					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, Integer.valueOf(_celda.getText()));
-					System.out.println("Se ingreso el numero " + _celda.getText() + " en la posicion (" + _fila + ","
-							+ _columna + ").");
 				} else {
 					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, 0);
 				}
@@ -314,6 +312,8 @@ public class VentanaInGame extends JFrame {
 			// Correr cronometro
 			actualizarTiempo = new Thread(new ActualizadorCronometro());
 			actualizarTiempo.start();
+			
+        	Controlador.reproducirClick();
 		}
 
 		private void deshabilitar() {
@@ -365,6 +365,8 @@ public class VentanaInGame extends JFrame {
 
 			// Habilito iniciar
 			iniciar.setEnabled(true);
+			
+        	Controlador.reproducirClick();
 		}
 
 		private void deshabilitar() {
@@ -394,7 +396,9 @@ public class VentanaInGame extends JFrame {
 
 	@SuppressWarnings("deprecation")
 	private void frenarTodo() {
-		Grilla.setVisible(false);
+		if(Grilla != null) {
+			Grilla.setVisible(false);
+		}
 		if (actualizarTiempo != null) {
 			// Freno el cronometro
 			actualizarTiempo.stop();
@@ -404,13 +408,11 @@ public class VentanaInGame extends JFrame {
 	}
 
 	private void jugadorGano() {
-		//JOptionPane.showMessageDialog(getContentPane(), "Usted a ganado.");
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
 		//Aca agrego para haer que se vaya a la ventana para meter los records 
 		setVisible(false);
 		Controlador.setearTiempoLogrado(__juego__.getTiempo());
-//		System.out.println(__juego__.getTiempo());
 		Controlador.abrirVentana(Controlador.getVentanaCargarRecord(), Controlador.getVentanaInGame());
 	}
 
