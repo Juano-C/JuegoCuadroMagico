@@ -30,18 +30,17 @@ public class VentanaMain extends JFrame
     private JButton btnSalir;
     private JButton btnMuteSoundMusic;
     private  JLabel lblAutors;
-    
-    /*
-     * Ejecuta la app.
-     */
-	public static void main(String[] args) {
-		Controlador.abrirVentanaMain();
-	}
+
+    //Ejecuta la app.
+    public static void main(String[] args)
+    {
+        Controlador.abrirVentanaMain();
+    }
 
     //-------------------Create the frame.
     public VentanaMain()
     {
-    	setUndecorated(true); // Quita el marco a la ventana
+        setUndecorated(true); // Quita el marco a la ventana
         setTitle("Cuadro M\u00E1gico");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 450);
@@ -54,54 +53,44 @@ public class VentanaMain extends JFrame
         contentPane.setLayout(null);
 
         //-------------------Boton comenzar
-		JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
-    	
-        /*
-         * Hace que si el boton comenzar es apretado se va a la pagina comenzar
-         */
-        btnComenzar.addActionListener(new ActionListener() {
+        JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
+
+        //Hace que si el boton comenzar es apretado se va a la pagina comenzar
+        btnComenzar.addActionListener(new ActionListener()
+        {
             public void actionPerformed(ActionEvent e)
             {
                 Controlador.abrirVentana(Controlador.getVentanaComenzar(), Controlador.getVentanaMain());
-//				Controlador.abrirVentanaInGame();
-
             }
-        });        
-        
-        /*
-         * Hace que cambie el color del boton comenzar
-         */
-        
+        });
+
+        //Hace que cambie el color del boton comenzar
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
-        /*
-         * agrega el boton comenzar al panel
-         */
+
+        //agrega el boton comenzar al panel
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
         btnDificultad = fabricaInterfaz.crearBoton("Dificultad",162, 133, 159, 46);
         btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
-        
-        /*
-         * Hace que si el boton dificultad es apretado se va a la pagina comenzar
-         */
-        btnDificultad.addActionListener(new ActionListener() {
+
+        //Hace que si el boton dificultad es apretado se va a la pagina comenzar
+        btnDificultad.addActionListener(new ActionListener()
+        {
             public void actionPerformed(ActionEvent e)
             {
-       		
                 Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());
-//				Controlador.abrirVentanaDificultad();
                 dispose();
             }
         });
-        
         contentPane.add(btnDificultad);
 
         //-------------------Boton Reglas
         btnReglas = fabricaInterfaz.crearBoton("Reglas", 162, 202, 159, 46);
-        
-        btnReglas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent mentajeReglas) {
+        btnReglas.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent mentajeReglas)
+            {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
                         "OBJETIVO: El objetivo del juego consiste en igualar los n�meros presentados como RESULTADO \n" +
                         "tanto en las filas como en las columnas. Para ello se deben completar los casilleros con n�meros \n"+
@@ -117,71 +106,52 @@ public class VentanaMain extends JFrame
                         "(*) Una vez pulsado ENTER no se podr� modificar el valor del casillero.");
             }
         });
-        
         btnReglas.addMouseListener(new DisenioBoton(btnReglas));
         contentPane.add(btnReglas);
-        
+
         //------------------boton records
         btnRecords = fabricaInterfaz.crearBoton("Records",162, 261, 159, 52);
-        		
-        		
-        btnRecords.addActionListener(new ActionListener() {
+        btnRecords.addActionListener(new ActionListener()
+        {
             public void actionPerformed(ActionEvent e)
             {
                 Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());
-//				Controlador.abrirVentanaRecord();
-
             }
-        });	
+        });
         btnRecords.addMouseListener(new DisenioBoton(btnRecords));
         contentPane.add(btnRecords);
-        
+
         //-------------------boton Salir
         btnSalir = fabricaInterfaz.crearBoton("Salir", 162, 336, 159, 46);
-        btnSalir.addMouseListener(new DisenioBoton(btnSalir));        		
+        btnSalir.addMouseListener(new DisenioBoton(btnSalir));
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 System.exit(0);
             }
         });
-        
+
         contentPane.add(btnSalir);
-        
-        
-        /*
-         * --------- Icono cerrar ventana ----------------
-         */
+
+        //--------- Icono cerrar ventana ----------------
         JLabel iconoXcerrar = new IconoCerrarVentana();
         iconoXcerrar.setBounds(461, 0, 39, 34);
         getContentPane().add(iconoXcerrar);
-        
-        //-------------------autor/es
+
+        //-------------------autor/es------------
         lblAutors = new JLabel("Juan chauvet");
         lblAutors.setForeground(new Color(255, 255, 255));
         lblAutors.setBounds(10, 425, 141, 14);
         contentPane.add(lblAutors);
-        
-        
-        //-------------------boton de musica 
+
+        //-------------------boton de musica------------
         btnMuteSoundMusic = new JButton("");
         btnMuteSoundMusic.setFocusable(false);
         btnMuteSoundMusic.setIcon(new ImageIcon("C:\\Users\\juan\\Desktop\\Universidad\\Materias\\No rendidas\\Programacion l l l\\tp 1er semestre 2023\\fotos cuadro magico\\fsfsfsf.png"));
-        btnMuteSoundMusic.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                //AudioClip Sound;
-                //Sound = java.applet.Applet.newAudioClip(getClass().getResource("/frontend/tetrisSound.wav"));
-                //Sound.play();
-            }
-        });
         btnMuteSoundMusic.setBounds(456, 406, 34, 33);
         contentPane.add(btnMuteSoundMusic);
-        
-        /*
-         * Musica del Juego
-         */
+
+        //Musica del Juego
         Audios.musicaPlay();
     }
 

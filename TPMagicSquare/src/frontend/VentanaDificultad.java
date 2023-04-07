@@ -21,9 +21,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class VentanaDificultad extends JFrame {
+public class VentanaDificultad extends JFrame
+{
 
-    public VentanaDificultad() {
+    public VentanaDificultad()
+    {
         // Tamanios
         super();
         setUndecorated(true);
@@ -49,13 +51,14 @@ public class VentanaDificultad extends JFrame {
         btnFacil.setBounds(52, 100, 114, 34);
         btnFacil.addMouseListener(new DisenioBoton(btnFacil));
         contentPane.add(btnFacil);
-        btnFacil.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Controlador.setearDificultad(Dificultad.FACIL);
-			}
-		});
+        btnFacil.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Controlador.setearDificultad(Dificultad.FACIL);
+            }
+        });
 
         //-------------------Boton de medio
         JButton btnMedio = new JButton("Medio");
@@ -67,13 +70,14 @@ public class VentanaDificultad extends JFrame {
         btnMedio.setBounds(52, 188, 114, 34);
         btnMedio.addMouseListener(new DisenioBoton(btnMedio));
         contentPane.add(btnMedio);
-        btnMedio.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Controlador.setearDificultad(Dificultad.NORMAL);
-			}
-		});
+        btnMedio.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Controlador.setearDificultad(Dificultad.NORMAL);
+            }
+        });
 
         //-------------------Boton de dificil
         JButton btnDificil = new JButton("Dificil");
@@ -85,19 +89,21 @@ public class VentanaDificultad extends JFrame {
         btnDificil.setBounds(52, 276, 114, 34);
         btnDificil.addMouseListener(new DisenioBoton(btnDificil));
         contentPane.add(btnDificil);
-        btnDificil.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Controlador.setearDificultad(Dificultad.DIFICIL);
-			}
-		});
+        btnDificil.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Controlador.setearDificultad(Dificultad.DIFICIL);
+            }
+        });
 
         //-------------------Boton salir pantalla de dificultad
         JButton btnSalir = new JButton("Salir");
         btnSalir.setFocusable(false);
         btnSalir.setBackground(new Color(255, 255, 255));
-        btnSalir.addMouseListener(new MouseAdapter() {
+        btnSalir.addMouseListener(new MouseAdapter()
+        {
             @Override
             public void mouseClicked(MouseEvent e)
             {
@@ -112,12 +118,12 @@ public class VentanaDificultad extends JFrame {
         JButton btnAtras = new JButton("Atras");
         btnAtras.setFocusable(false);
         btnAtras.setBackground(new Color(255, 255, 255));
-        btnAtras.addActionListener(new ActionListener() {
+        btnAtras.addActionListener(new ActionListener()
+        {
             public void actionPerformed(ActionEvent e)
             {
                Controlador.abrirVentanaMain();
             }
-            
         });
         btnAtras.setFont(new Font("Serif", Font.PLAIN, 15));
         btnAtras.setBounds(10, 460, 85, 29);
@@ -135,13 +141,14 @@ public class VentanaDificultad extends JFrame {
         lblGrillaDex.setFont(new Font("Serif", Font.PLAIN, 20));
         lblGrillaDex.setBounds(223, 188, 281, 27);
         contentPane.add(lblGrillaDex);
-        
+
         JLabel lblGrillaDex_1 = new JLabel("Grilla de 5x5 con valores de 0 a 50");
         lblGrillaDex_1.setForeground(new Color(255, 255, 255));
         lblGrillaDex_1.setFont(new Font("Serif", Font.PLAIN, 20));
         lblGrillaDex_1.setBounds(223, 276, 281, 27);
         contentPane.add(lblGrillaDex_1);
-        
+
+        // Cerrar ventana
         JLabel iconoXcerrar = new JLabel("X");
         iconoXcerrar.setOpaque(true);
         iconoXcerrar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -150,34 +157,35 @@ public class VentanaDificultad extends JFrame {
         iconoXcerrar.setBackground(new Color(0, 0, 51));
         iconoXcerrar.setBounds(545, 0, 39, 34);
         contentPane.add(iconoXcerrar);
-		// Cerrar ventana
-		iconoXcerrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.red);
-				iconoXcerrar.setForeground(Color.white);
-			}
+        iconoXcerrar.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+                iconoXcerrar.setBackground(Color.red);
+                iconoXcerrar.setForeground(Color.white);
+            }
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconoXcerrar.setBackground(new Color(0, 0, 51));
-				iconoXcerrar.setForeground(new Color(255, 255, 255));
-			}
+            @Override
+            public void mouseExited(MouseEvent e)
+            {
+                iconoXcerrar.setBackground(new Color(0, 0, 51));
+                iconoXcerrar.setForeground(new Color(255, 255, 255));
+            }
 
-			@Override
-			public void mousePressed(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.lightGray);
-				iconoXcerrar.setForeground(Color.white);
-			}
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                iconoXcerrar.setBackground(Color.lightGray);
+                iconoXcerrar.setForeground(Color.white);
+            }
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-        
-        
-        //------------------------------------------------------
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                System.exit(0);
+            }
+        });
     }
 
 }

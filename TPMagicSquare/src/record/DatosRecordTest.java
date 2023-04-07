@@ -13,31 +13,31 @@ public class DatosRecordTest
     @Test (expected = IllegalArgumentException.class)
     public void superaTiempoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 1999999, "Data0");
+        DatosRecord.agregarElemento(tmap, 1999999, "Data0");
     }
 
     //nombre vacio (invalido)
     @Test (expected = IllegalArgumentException.class)
     public void nombreInvalidoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 0, "");
+        DatosRecord.agregarElemento(tmap, 0, "");
     }
 
     //elimina elemento
     @Test
     public void eliminarElementoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 0, "Data1");
-    	DatosRecord.agregarElemento(tmap, 1, "Data2");
-    	DatosRecord.agregarElemento(tmap, 2, "Data3");
-    	DatosRecord.agregarElemento(tmap, 3, "Data4");
-    	DatosRecord.agregarElemento(tmap, 4, "Data5");
-    	DatosRecord.agregarElemento(tmap, 5, "Data6");
-    	DatosRecord.agregarElemento(tmap, 6, "Data7");
-    	DatosRecord.agregarElemento(tmap, 7, "Data8");
-    	DatosRecord.agregarElemento(tmap, 8, "Data9");
-    	DatosRecord.agregarElemento(tmap, 9, "Data10");
-    	DatosRecord.eliminarElemento(tmap, 1);
+        DatosRecord.agregarElemento(tmap, 0, "Data1");
+        DatosRecord.agregarElemento(tmap, 1, "Data2");
+        DatosRecord.agregarElemento(tmap, 2, "Data3");
+        DatosRecord.agregarElemento(tmap, 3, "Data4");
+        DatosRecord.agregarElemento(tmap, 4, "Data5");
+        DatosRecord.agregarElemento(tmap, 5, "Data6");
+        DatosRecord.agregarElemento(tmap, 6, "Data7");
+        DatosRecord.agregarElemento(tmap, 7, "Data8");
+        DatosRecord.agregarElemento(tmap, 8, "Data9");
+        DatosRecord.agregarElemento(tmap, 9, "Data10");
+        DatosRecord.eliminarElemento(tmap, 1);
 
         assertTrue(!tmap.containsKey(1));
     }
@@ -46,7 +46,7 @@ public class DatosRecordTest
     @Test
     public void agregarElementoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 0, "Data1");
+        DatosRecord.agregarElemento(tmap, 0, "Data1");
         assertTrue(tmap.containsKey(0));
     }
 
@@ -55,14 +55,14 @@ public class DatosRecordTest
     @Test
     public void agregoElementoRecordMaximoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 7, "Data0");
-    	DatosRecord.agregarElemento(tmap, 8, "Data1");
-    	DatosRecord.agregarElemento(tmap, 9, "Data2");
-    	DatosRecord.agregarElemento(tmap, 14, "Data3");
-    	DatosRecord.agregarElemento(tmap, 18, "Data4");
-    	DatosRecord.agregarElemento(tmap, 27, "Data5");
-    	DatosRecord.agregarElemento(tmap, 33, "Data6");
-    	DatosRecord.agregarElemento(tmap, 47, "Data7");
+        DatosRecord.agregarElemento(tmap, 7, "Data0");
+        DatosRecord.agregarElemento(tmap, 8, "Data1");
+        DatosRecord.agregarElemento(tmap, 9, "Data2");
+        DatosRecord.agregarElemento(tmap, 14, "Data3");
+        DatosRecord.agregarElemento(tmap, 18, "Data4");
+        DatosRecord.agregarElemento(tmap, 27, "Data5");
+        DatosRecord.agregarElemento(tmap, 33, "Data6");
+        DatosRecord.agregarElemento(tmap, 47, "Data7");
         DatosRecord.agregarElemento(tmap, 50, "Data8");
         DatosRecord.agregarElemento(tmap, 200, "Data9");
         DatosRecord.agregarElemento(tmap, 0, "Data10");
@@ -74,7 +74,7 @@ public class DatosRecordTest
     @Test
     public void quieroSegundoPuestoRecordLlenoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 7, "Data0");
+        DatosRecord.agregarElemento(tmap, 7, "Data0");
         DatosRecord.agregarElemento(tmap, 8, "Data1");
         DatosRecord.agregarElemento(tmap, 9, "Data2");
         DatosRecord.agregarElemento(tmap, 14, "Data3");
@@ -93,37 +93,26 @@ public class DatosRecordTest
     @Test
     public void unRecordMaximoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 100000, "ll");
+        DatosRecord.agregarElemento(tmap, 100000, "ll");
 
         assertTrue(tmap.size()==1);
     }
 
-    //no se que hace, no puedo checkear si esta bien o mal.
-    @Test
-    public void tresRecordsTest()
-    {
-//      RecordPrueba.agregarElemento(tmap, 10000, "juan");
-//      RecordPrueba.agregarElemento(tmap, 11, "lau");
-//      RecordPrueba.agregarElemento(tmap, 3, "pedro");
-
-//      assertTrue(tmap.get(2).equals("lau"));
-    }
-
-  //si el map esta lleno, no agrega un 11avo elemento
+    //si el map esta lleno, no agrega un 11avo elemento
     @Test
     public void recordLLenoTest()
     {
-    	DatosRecord.agregarElemento(tmap, 0, "juan");
-    	DatosRecord.agregarElemento(tmap, 1, "lau");
-    	DatosRecord.agregarElemento(tmap, 2, "pedro");
-    	DatosRecord.agregarElemento(tmap, 3, "maria");
-    	DatosRecord.agregarElemento(tmap, 4, "sol");
-    	DatosRecord.agregarElemento(tmap, 5, "lolo");
-    	DatosRecord.agregarElemento(tmap, 6, "messi");
-    	DatosRecord.agregarElemento(tmap, 7, "mario");
-    	DatosRecord.agregarElemento(tmap, 8, "luna");
-    	DatosRecord.agregarElemento(tmap, 9, "pollo");
-    	DatosRecord.agregarElemento(tmap, 10, "ultimo");
+        DatosRecord.agregarElemento(tmap, 0, "juan");
+        DatosRecord.agregarElemento(tmap, 1, "lau");
+        DatosRecord.agregarElemento(tmap, 2, "pedro");
+        DatosRecord.agregarElemento(tmap, 3, "maria");
+        DatosRecord.agregarElemento(tmap, 4, "sol");
+        DatosRecord.agregarElemento(tmap, 5, "lolo");
+        DatosRecord.agregarElemento(tmap, 6, "messi");
+        DatosRecord.agregarElemento(tmap, 7, "mario");
+        DatosRecord.agregarElemento(tmap, 8, "luna");
+        DatosRecord.agregarElemento(tmap, 9, "pollo");
+        DatosRecord.agregarElemento(tmap, 10, "ultimo");
 
         assertTrue(tmap.size()==10);
     }

@@ -31,7 +31,7 @@ public class DatosRecord
               Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
 
               if(tiempo < entryArray[recordMap.size()-1].getKey())
-            	  DatosRecord.eliminarElemento(recordMap, recordMap.size()-1);
+                  DatosRecord.eliminarElemento(recordMap, recordMap.size()-1);
         }
     }
 
@@ -39,7 +39,7 @@ public class DatosRecord
     public static void removerElementoDeMas(TreeMap<Integer, String> recordMap)
     {
         if(recordMap.size()>10)
-        	DatosRecord.eliminarElemento(recordMap, recordMap.size()-1);
+            DatosRecord.eliminarElemento(recordMap, recordMap.size()-1);
     }
 
     //Quita ultimo elemento asi solo almacena 10 records
