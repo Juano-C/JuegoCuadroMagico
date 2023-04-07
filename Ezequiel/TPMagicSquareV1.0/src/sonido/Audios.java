@@ -38,9 +38,13 @@ public class Audios {
 	
 	public static void sonidoClick() {
 		try {
+			// Creo el archivo
 			File archivo = new File(_rutaSonidoClick);
+			// Creo el Stream de Audio
 			AudioInputStream stream = AudioSystem.getAudioInputStream(archivo.getAbsoluteFile());
+			// Le asigno un clip a mi variable Clip
 			_sonidoClick = AudioSystem.getClip();
+			// Abro el audio que esta en la en mi stream 
 			_sonidoClick.open(stream);
 			
 			// Volumen del clip
@@ -48,6 +52,7 @@ public class Audios {
 			FloatControl gainControl = (FloatControl) _sonidoClick.getControl(FloatControl.Type.MASTER_GAIN);        
 			gainControl.setValue(20f * (float) Math.log10(volume));
 		
+			// Reproduzco el audio
 			_sonidoClick.start();
 		} catch (Exception e) {
 		}
