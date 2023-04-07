@@ -93,7 +93,7 @@ public class GrillaJuego {
 		return true;
 	}
 
-	public boolean verificacionIngresos(int fila, int columna, int num) {
+	private boolean verificacionIngresos(int fila, int columna, int num) {
 
 		return verificacionFilaColumna(fila, columna) && verificacionNumero(num);
 	}
