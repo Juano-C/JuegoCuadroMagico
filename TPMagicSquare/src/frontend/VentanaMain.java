@@ -149,7 +149,7 @@ public class VentanaMain extends JFrame
         getContentPane().add(iconoXcerrar);
         
         //-------------------autor/es
-        lblAutors = new JLabel("Juan chauvet");
+        lblAutors = new JLabel("Juan, Ezequiel, Esteban");
         lblAutors.setForeground(new Color(255, 255, 255));
         lblAutors.setBounds(10, 425, 141, 14);
         contentPane.add(lblAutors);

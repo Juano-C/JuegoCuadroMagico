@@ -4,65 +4,103 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+//Creo que hay que poner metodos en privado
 public class RecordPrueba
 {
-    //si la key (tiempo) se ha excedido     |  Excepcion
-    //si no pone ningun nombre              |
-    public static void agregarElemento(TreeMap<Integer, String> tmap, int key, String value)
+    //Si la key (tiempo) se ha excedido     |  Excepcion
+    //Si no pone ningun nombre              |
+    public static void agregarElemento(TreeMap<Integer, String> recordMap, int tiempo, String nombre)
     {
         //parametros invalidos = excepcion
-        invalidParameters(key, value);
+        invalidParameters(tiempo, nombre);
 
-        //si consigue repetir un record. suma 1 al ultimo record obtenido
-        if(tmap.containsKey(key))
-        {
-        	key++;
-
-            Set<Map.Entry<Integer, String> > entrySet = tmap.entrySet();
-            Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
-
-            for (int indiceMap = 0; indiceMap < tmap.size()-1; indiceMap++)
-            {
-            	if(key<=entryArray[indiceMap].getKey())
-            	{
-            		int sumaKeyMap = entryArray[indiceMap].getKey()+1;
-            		tmap.put(sumaKeyMap, entryArray[indiceMap].getValue());
-            	}    		
-            }
-        }
-
-        //agrega tiempo y nombre a los records
-        tmap.put(key, value);
+        //agrega tiempo y nombre al map de records
+        recordMap.put(tiempo, nombre);
 
         //quita ultimo elemento asi solo almacena 10 records
-        removerUltimo(tmap);
+        eliminarUltimoSiMapLleno(recordMap, tiempo);
     }
 
-    //parametros invalidos = excepcion
-    public static void removerUltimo(TreeMap<Integer, String> tmap)
+    public static void eliminarUltimoSiMapLleno(TreeMap<Integer, String> recordMap, int tiempo)
     {
-        if(tmap.size()>10)
-            tmap.pollLastEntry();
+        if(recordMap.size()>10)
+        {
+              Set<Map.Entry<Integer, String>> entrySet = recordMap.entrySet();
+              Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
+
+              if(tiempo < entryArray[recordMap.size()-1].getKey())
+            	  RecordPrueba.eliminarElemento(recordMap, recordMap.size()-1);
+        }
     }
 
-    //quita ultimo elemento asi solo almacena 10 records
+    //Eliminar elementos > 10
+    public static void removerElementoDeMas(TreeMap<Integer, String> recordMap)
+    {
+        if(recordMap.size()>10)
+        	RecordPrueba.eliminarElemento(recordMap, recordMap.size()-1);
+    }
+
+    //Quita ultimo elemento asi solo almacena 10 records
+    //Se podria usar una variable que almacene el tiempo maximo ( 999999 ) para comparar con la key
     public static void invalidParameters(int key, String value)
     {
-        if(key>=999999 || value.isEmpty())
+        if(key>= 999999 || value.isEmpty())
             throw new IllegalArgumentException("parametros invalidos");
     }
 
     //mostrar el Map (no es necesario implementar, se puede borrar)
-    public static void mostrarMap(TreeMap<Integer, String> tmap)
+    public static void mostrarMap(TreeMap<Integer, String> recordMap)
     {
-        Set<Map.Entry<Integer, String> > entrySet = tmap.entrySet();
+        Set<Map.Entry<Integer, String>> entrySet = recordMap.entrySet();
         Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
 
-        for (int indiceMap = 0; indiceMap < tmap.size(); indiceMap++)
+        for (int indiceMap = 0; indiceMap < recordMap.size(); indiceMap++)
         {
-            System.out.println("Puntaje " + indiceMap + ": "+ entryArray[indiceMap].getKey());
-            System.out.println("Nombre " + indiceMap + ": "+ entryArray[indiceMap].getValue());
+            System.out.println("puesto: "+indiceMap);
+
+            System.out.println("Puntaje: "+ entryArray[indiceMap].getKey());
+            System.out.println("Nombre: "+ entryArray[indiceMap].getValue());
             System.out.println();
+        }
+    }
+
+    public static int mostrarPuntajePuesto(TreeMap<Integer, String> recordMap, int puesto)
+    {
+        Set<Map.Entry<Integer, String> > entrySet = recordMap.entrySet();
+        Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
+
+        for (int indiceMap = 0; indiceMap < recordMap.size(); indiceMap++)
+        {
+            if(puesto==indiceMap)
+                return entryArray[indiceMap].getKey();
+        }
+        throw new IllegalArgumentException("parametros invalidos");
+    }
+
+    public static String mostrarNombrePuesto(TreeMap<Integer, String> recordMap, int puesto)
+    {
+        Set<Map.Entry<Integer, String> > entrySet = recordMap.entrySet();
+        Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
+
+        for (int indiceMap = 0; indiceMap < recordMap.size(); indiceMap++)
+        {
+            if(puesto==indiceMap)
+                return entryArray[indiceMap].getValue();
+        }
+        throw new IllegalArgumentException("parametros invalidos");
+    }
+
+    public static void eliminarElemento(TreeMap<Integer, String> recordMap, int posicion)
+    {
+        Set<Map.Entry<Integer, String> > entrySet = recordMap.entrySet();
+        Map.Entry<Integer, String>[] entryArray = entrySet.toArray(new Map.Entry[entrySet.size()]);
+
+        for (int posicionMap = 0; posicionMap < recordMap.size(); posicionMap++)
+        {
+            if( posicion == posicionMap )
+            {
+                recordMap.remove(entryArray[posicionMap].getKey(), entryArray[posicionMap].getValue());
+            }
         }
     }
 

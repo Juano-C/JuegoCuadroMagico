@@ -17,6 +17,7 @@ public class Juego {
 	protected int segundos;
 	protected int minutos;
 	private int dificultad;
+	
 	public enum Dificultad {
 		FACIL(3),
 		NORMAL(4),

@@ -1,6 +1,5 @@
 package record;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.TreeMap;
 import org.junit.Test;
@@ -8,7 +7,8 @@ import org.junit.Test;
 public class DatosRecordTest
 {
     private TreeMap<Integer, String> tmap = new TreeMap<Integer, String>();
-
+    private int tamanioMap =10 ;
+    
     //si se agrega una key que se excede de tiempo
     @Test (expected = IllegalArgumentException.class)
     public void superaTiempoTest()
@@ -98,17 +98,6 @@ public class DatosRecordTest
         assertTrue(tmap.size()==1);
     }
 
-    //no se que hace, no puedo checkear si esta bien o mal.
-    @Test
-    public void tresRecordsTest()
-    {
-//      RecordPrueba.agregarElemento(tmap, 10000, "juan");
-//      RecordPrueba.agregarElemento(tmap, 11, "lau");
-//      RecordPrueba.agregarElemento(tmap, 3, "pedro");
-
-//      assertTrue(tmap.get(2).equals("lau"));
-    }
-
   //si el map esta lleno, no agrega un 11avo elemento
     @Test
     public void recordLLenoTest()
@@ -125,7 +114,7 @@ public class DatosRecordTest
     	DatosRecord.agregarElemento(tmap, 9, "pollo");
     	DatosRecord.agregarElemento(tmap, 10, "ultimo");
 
-        assertTrue(tmap.size()==10);
+        assertTrue(tmap.size()==tamanioMap);
     }
 
     //Deja el map en 10 slot. elimina los elementos de mas que se agreguen
@@ -146,7 +135,7 @@ public class DatosRecordTest
 
         DatosRecord.removerElementoDeMas(tmap);
 
-        assertTrue(tmap.size()==10);
+        assertTrue(tmap.size()==tamanioMap);
     }
 
 }
