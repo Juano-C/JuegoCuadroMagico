@@ -29,14 +29,6 @@ public class VentanaMain extends JFrame
     private JButton btnSalir;
     private JButton btnMuteSoundMusic;
     private JLabel lblAutors;
-    
-    /*
-     * Ejecuta la app.
-     */
-	public static void main(String[] args) {
-		Controlador.abrirVentanaMain();
-		
-	}
 
     //-------------------Create the frame.
     public VentanaMain()

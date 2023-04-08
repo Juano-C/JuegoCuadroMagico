@@ -12,6 +12,8 @@ import java.util.Map;
 
 import javax.swing.JOptionPane;
 
+import juego.Juego.Dificultad;
+
 public class ManipuladorArchivos {
 	// Directorio del proyecto. (va cambiando dependiendo de la computador que
 	// ejecute el proyecto)
@@ -24,13 +26,15 @@ public class ManipuladorArchivos {
 	// Diccionario cargado con todas las cosas
 	private static Map<Integer, String> posicionesTiempo = lineasDeText();
 
+	// Obtengo todas las lineas en un map
+	private static Map<Integer, String> posicionesLineas = lineasDeText();
 	/*
 	 * Lee cada linea del archivo y la va aniaadiendo al diccionario
 	 */
 	public static Map<Integer, String> lineasDeText() {
 		Map<Integer, String> diccionario = new HashMap<Integer, String>();
 		ArrayList<String> lineas = (ArrayList<String>) leerArchivoTXT(_directorioArchivo);
-		for (int indice = 1; indice <= 18; indice++) {
+		for (int indice = 1; indice <= 10; indice++) {
 			try {
 				String linea = lineas.get(indice - 1);
 				diccionario.put(indice, linea);
@@ -121,7 +125,7 @@ public class ManipuladorArchivos {
 			
 			Integer puestoParada = null; // Donde se sobreescribio
 			String lineaAmover = null;	// La linea que hay que mover ya que se reemplazo
-			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18}; // Todas las posiciones en orden simplemente para leer mejor
+			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10}; // Todas las posiciones en orden simplemente para leer mejor
 			
 			// Recorro el map que representa la tabla de records..
 			for(Integer puesto: posiciones) {
@@ -223,7 +227,7 @@ public class ManipuladorArchivos {
 		if(tiempo == null) {
 			return false;
 		}
-		if(tiempoActual == null) {
+		if(tiempoActual == null || tiempoActual.isEmpty()) {
 			return true;
 		}
 		String[] tiempoAcolocar = tiempo.split(":");
@@ -275,4 +279,116 @@ public class ManipuladorArchivos {
 		return _directorioArchivo;
 	}
 
+	
+	
+	
+	
+	/**
+	 * Esta funcion escribe en el archivo .txt que guarda el tiempo, nombre y dificultad, asi como tambien
+	 * el puntaje obtenido
+	 * @param tiempo
+	 * @param nombre
+	 * @param dificultad
+	 */
+	public static void escribirPuntaje(String tiempo, String nombre, Dificultad dificultad) {
+		FileWriter fichero = null;
+		PrintWriter escritor = null;
+		try {
+			fichero = new FileWriter(_directorioArchivo);									 // Representa el fichero .txt
+			escritor = new PrintWriter(fichero);  			                                 // Se usa para usar la funcion de write en el fichero 
+			
+			Integer puestoParada = null; // Donde se sobreescribio
+			String lineaAmover = null;	// La linea que hay que mover ya que se reemplazo
+			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10}; // Todas las posiciones en orden simplemente para leer mejor
+			
+			Double puntaje = SistemaPuntaje.obtenerPuntaje(tiempo, Dificultad.FACIL);
+			// Recorro el map que representa la tabla de records..
+			for(Integer puesto: posiciones) {
+				String tiempoActual = obtenerTiempoFormatText(posicionesLineas.get(puesto));
+				Double puntajeActual = SistemaPuntaje.obtenerPuntaje(tiempoActual, Dificultad.FACIL);
+			
+				if(puntaje > puntajeActual) { 						     // Comparo los dos puntajes
+					/*
+					 * Lo que hago si ese puntaje es mayor:
+					 * 	- Me guardo la linea que habia en esta posicion
+					 * 	- Asi tambien como la posicion
+					 *  - Creo la nueva linea y la agrego al map(tabla)
+					 *  - Corto el ciclo
+					 */
+					lineaAmover = posicionesLineas.get(puesto);							
+					puestoParada = puesto;
+					String nuevaLinea = tiempo + "-" + nombre + "-" + Dificultad.FACIL + "-" + puntaje; 
+					posicionesTiempo.put(puesto, nuevaLinea);
+					break;
+				}
+				else if(posicionesTiempo.get(puesto) == null){
+					/*
+					 * Sino como estoy recorriendo de arriba hacia abajo (de 1 a 10)
+					 * si encuentro un lugar con null lo escribo ahi y corto el ciclo
+					 */
+					posicionesTiempo.put(puesto, tiempo + "-" + nombre + "-" + Dificultad.FACIL + "-" + puntaje);
+					break;
+				}
+			}
+			
+			// Si puesto parada es null significa que no hubo una parada, por ende no hay que escribir nada.
+			if(puestoParada != null) {
+				
+				String lineaAnterior = null;
+				// Recorro el map en orden (puede mejorarse la complejidad)
+				for(Integer puesto: posiciones) {
+					
+					// Si puesto esta debajo del puesto donde reemplazamos entonces -->
+					if(puesto > puestoParada) {
+						/*
+						 * - Me guardo la linea actual en lineaAnterior
+						 * - Reemplazo la linea por la lineaAmover
+						 * - Luego la que tengo que mover sera la lineaAnterior asi que le paso el valor
+						 * < Como son 10 posiciones nunca estare agregando una posicion 11. 
+						 */
+						lineaAnterior = posicionesTiempo.get(puesto);
+						posicionesTiempo.put(puesto, lineaAmover);
+						lineaAmover = lineaAnterior;
+					}
+				}
+			}
+			
+			/*
+			 * Una vez cambie la linea o no. Escribo devuelta el .txt gracias al map.
+			 */
+			for(Integer puesto: posiciones) {
+				if(posicionesTiempo.get(puesto) != null) {
+					escritor.println(posicionesTiempo.get(puesto));  					// Escribe una linea y agrega un salto de linea.
+				}
+			}
+			
+		} catch (Exception e) {
+			
+		} finally {
+			try {
+				// Nuevamente aprovechamos el finally para
+				// asegurarnos que se cierra el fichero.
+				if (null != fichero)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	
+//	public static void main(String[] args) {
+////		ManipuladorArchivos.escribirPuntaje("00:40:00", "pedrito", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:20:00", "esteban", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:20:00", "juan", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:10:00", "ese", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:50:00", "pedrito", Dificultad.FACIL);
+////		
+////		imprimitTabla();
+//	}
+	
+	
+	
+	
+	
 }

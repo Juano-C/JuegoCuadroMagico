@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -107,7 +110,7 @@ public class VentanaInGame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				Controlador.reproducirClick();
 				Controlador.abrirVentana(Controlador.getVentanaMain(),Controlador.getVentanaInGame());
 				frenarTodo();
 
@@ -150,6 +153,14 @@ public class VentanaInGame extends JFrame {
 				} else {
 					// Si no son las ultimas les agrego interaccion
 					celda.addKeyListener(new AccionesCelda(celda, i, j));
+					
+					// Sonido al clickear en la celda
+					celda.addMouseListener( new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							Controlador.reproducirClickCelda();
+						}
+					});
 				}
 
 				matriz[i][j] = celda;
@@ -158,51 +169,7 @@ public class VentanaInGame extends JFrame {
 		}
 	}
 
-	// Usar celda en ves de JTextField;
-	@SuppressWarnings({ "unused" })
-	private class Celda extends JTextField {
-
-		Tupla _posicion;
-
-		public Celda(int x, int y) {
-			_posicion = new Tupla(x, y);
-		}
-
-		public int getInt() {
-			try {
-				return Integer.valueOf(getText());
-			} catch (Exception e) {
-				return 0;
-			}
-		}
-
-	}
-
-	private class Tupla {
-		private int _x, _y;
-
-		public Tupla(int x, int y) {
-			_x = x;
-			_y = y;
-		}
-
-		@SuppressWarnings("unused")
-		public int getX() {
-			return _x;
-		}
-
-		@SuppressWarnings("unused")
-		public int getY() {
-			return _y;
-		}
-	}
-
-	private class AccionesCelda implements KeyListener {
-		/*
-		 * Celda _celda; public accionesCelda(Celda celda){}
-		 * 
-		 * 
-		 */
+	private class AccionesCelda implements KeyListener{
 		JTextField _celda;
 		int _fila;
 		int _columna;
@@ -257,6 +224,11 @@ public class VentanaInGame extends JFrame {
 			}
 		}
 
+		/**
+		 * Cambia de color las casillas de los resultados objetivos.
+		 * Si esta bien las colaca en verde.
+		 * Si esta mal las coloca en rojo.
+		 */
 		private void cambiarEstadosCasillas() {
 			if (__juego__ != null && matriz != null) {
 				Map<String, boolean[]> filasYcolumnas = __juego__.filasYColumnasQueEstanBien();
@@ -280,6 +252,7 @@ public class VentanaInGame extends JFrame {
 				}
 			}
 		}
+
 	}
 
 	private class AccionesIniciar implements ActionListener {
@@ -351,6 +324,8 @@ public class VentanaInGame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			Controlador.reproducirSonidoPerdio();
+			
 			// Freno el juego
 			frenarTodo();
 
@@ -408,6 +383,7 @@ public class VentanaInGame extends JFrame {
 	}
 
 	private void jugadorGano() {
+		Controlador.reproducirSonidoGano();
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
 		//Aca agrego para haer que se vaya a la ventana para meter los records 

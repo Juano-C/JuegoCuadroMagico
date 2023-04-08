@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import controladores.Controlador;
 import disenio.DisenioBoton;
+import disenio.IconoCerrarVentana;
 import juego.Juego.Dificultad;
 
 import javax.swing.JButton;
@@ -17,11 +18,19 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class VentanaDificultad extends JFrame {
+	
+	private JButton btnFacil;
+	private JButton btnMedio;
+	private JButton btnDificil; 
+	Dificultad dificultadActual = Dificultad.NORMAL;
 
     public VentanaDificultad() {
         // Tamanios
@@ -40,88 +49,83 @@ public class VentanaDificultad extends JFrame {
         contentPane.setLayout(null);
 
         //-------------------Boton de facil
-        JButton btnFacil = new JButton("Facil");
+        btnFacil = new JButton("Facil");
         btnFacil.setFocusable(false);
         btnFacil.setForeground(new Color(255, 255, 255));
         btnFacil.setBorderPainted(false);
         btnFacil.setBackground(new Color(0, 0, 51));
         btnFacil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
         btnFacil.setBounds(52, 100, 114, 34);
-        btnFacil.addMouseListener(new DisenioBoton(btnFacil));
+//        btnFacil.addMouseListener(new Hover(btnFacil));
         contentPane.add(btnFacil);
         btnFacil.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Controlador.reproducirClick();
 				Controlador.setearDificultad(Dificultad.FACIL);
+				cambiarDificultad(Dificultad.FACIL);
 			}
 		});
 
         //-------------------Boton de medio
-        JButton btnMedio = new JButton("Medio");
+        btnMedio = new JButton("Medio");
         btnMedio.setFocusable(false);
-        btnMedio.setBackground(new Color(0, 0, 51));
+        btnMedio.setBackground(new Color(255, 255, 255));
         btnMedio.setBorderPainted(false);
-        btnMedio.setForeground(new Color(255, 255, 255));
+        btnMedio.setForeground(new Color(0, 0, 51));
         btnMedio.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
         btnMedio.setBounds(52, 188, 114, 34);
-        btnMedio.addMouseListener(new DisenioBoton(btnMedio));
+//        btnMedio.addMouseListener(new Hover(btnMedio));
         contentPane.add(btnMedio);
         btnMedio.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Controlador.reproducirClick();
 				Controlador.setearDificultad(Dificultad.NORMAL);
+				cambiarDificultad(Dificultad.NORMAL);
 			}
 		});
 
         //-------------------Boton de dificil
-        JButton btnDificil = new JButton("Dificil");
+        btnDificil = new JButton("Dificil");
         btnDificil.setFocusable(false);
         btnDificil.setBackground(new Color(0, 0, 51));
         btnDificil.setBorderPainted(false);
         btnDificil.setForeground(new Color(255, 255, 255));
         btnDificil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
         btnDificil.setBounds(52, 276, 114, 34);
-        btnDificil.addMouseListener(new DisenioBoton(btnDificil));
+//        btnDificil.addMouseListener(new Hover(btnDificil));
         contentPane.add(btnDificil);
         btnDificil.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Controlador.reproducirClick();
 				Controlador.setearDificultad(Dificultad.DIFICIL);
+				cambiarDificultad(Dificultad.DIFICIL);
 			}
 		});
-
-        //-------------------Boton salir pantalla de dificultad
-        JButton btnSalir = new JButton("Salir");
-        btnSalir.setFocusable(false);
-        btnSalir.setBackground(new Color(255, 255, 255));
-        btnSalir.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                System.exit(0);
-            }
-        });
-        btnSalir.setFont(new Font("Serif", Font.PLAIN, 15));
-        btnSalir.setBounds(485, 460, 85, 29);
-        contentPane.add(btnSalir);
 
         //-------------------Boton de Atras
         JButton btnAtras = new JButton("Atras");
         btnAtras.setFocusable(false);
-        btnAtras.setBackground(new Color(255, 255, 255));
+        btnAtras.setBorderPainted(false);
+        btnAtras.setBackground(new Color(0, 0, 51));
+        btnAtras.setForeground(new Color(255,255,255));
+        btnAtras.setFont(new Font("Serif", Font.PLAIN, 15));
+        btnAtras.setBounds(10, 460, 85, 29);
+        btnAtras.addMouseListener(new DisenioBoton(btnAtras));
+        contentPane.add(btnAtras);
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
+               Controlador.reproducirClick();
                Controlador.abrirVentanaMain();
             }
             
         });
-        btnAtras.setFont(new Font("Serif", Font.PLAIN, 15));
-        btnAtras.setBounds(10, 460, 85, 29);
-        contentPane.add(btnAtras);
 
         //-----------Textos de dificultad de grilla--------------
         JLabel lblNewLabel = new JLabel("Grilla de 3x3 con valores de 0 a 9");
@@ -142,42 +146,86 @@ public class VentanaDificultad extends JFrame {
         lblGrillaDex_1.setBounds(223, 276, 281, 27);
         contentPane.add(lblGrillaDex_1);
         
-        JLabel iconoXcerrar = new JLabel("X");
-        iconoXcerrar.setOpaque(true);
-        iconoXcerrar.setHorizontalAlignment(SwingConstants.CENTER);
-        iconoXcerrar.setForeground(Color.WHITE);
-        iconoXcerrar.setFont(new Font("Verdana", Font.BOLD, 18));
-        iconoXcerrar.setBackground(new Color(0, 0, 51));
+        //-----------Icono cerrar ventana
+        JLabel iconoXcerrar = new IconoCerrarVentana();
         iconoXcerrar.setBounds(545, 0, 39, 34);
         contentPane.add(iconoXcerrar);
-		// Cerrar ventana
-		iconoXcerrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.red);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				iconoXcerrar.setBackground(new Color(0, 0, 51));
-				iconoXcerrar.setForeground(new Color(255, 255, 255));
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				iconoXcerrar.setBackground(Color.lightGray);
-				iconoXcerrar.setForeground(Color.white);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-        
-        
+	        
         //------------------------------------------------------
     }
+    
+    private void cambiarDificultad(Dificultad dificultad) {
+    	switch (dificultad) {
+		case FACIL: {
+			desmarcarBoton(btnMedio);
+			desmarcarBoton(btnDificil);
+			marcarBoton(btnFacil);
+			break;
+		}
+		case NORMAL: {
+			desmarcarBoton(btnFacil);
+			desmarcarBoton(btnDificil);
+			marcarBoton(btnMedio);
+			break;
+		}
+		case DIFICIL: {
+			desmarcarBoton(btnMedio);
+			desmarcarBoton(btnFacil);
+			marcarBoton(btnDificil);
+			break;
+		}
+		default:
+			break;
+		}
+    	
+    }
+    
+    /**
+     * Desmarca el boton pasado como parametro
+     */
+    private void desmarcarBoton(JButton boton) {
+    	boton.setBackground(new Color(0,0,51));
+    	boton.setForeground(new Color(255,255,255));
+    }
+   
+    /**
+     * Marca el boton pasado como parametro
+     * @param boton
+     */
+    private void marcarBoton(JButton boton) {
+    	boton.setBackground(new Color(255,255,255));
+    	boton.setForeground(new Color(0,0,51));
+    }
+    
+    private class Hover implements MouseListener{
 
+    	JButton boton;
+    	
+    	public Hover(JButton boton_) {
+    		boton = boton_;
+    	}
+    	
+		@Override
+		public void mouseClicked(MouseEvent e) {}
+
+		@Override
+		public void mousePressed(MouseEvent e) {}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			boton.setBackground(new Color(255,255,255));
+			boton.setForeground(new Color(0,0,51));
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			boton.setBackground(new Color(0,0,51));
+			boton.setForeground(new Color(255,255,255));
+		}
+    	
+
+    }
 }
