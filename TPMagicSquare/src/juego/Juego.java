@@ -76,12 +76,18 @@ public class Juego {
 		return _grilla.estaBienMatriz();
 	}
 	
+	/*
+	 * Ese metodo se va porque no sirve 
+	 
+	
 	public boolean verificacionDeDatosValidos(String fila,String columna,String numero) {
 		if(!(verificacionDeConversion(fila)&&verificacionDeConversion(columna)&&verificacionDeConversion(numero))) {
 			return false;
 		}
 		return verificacionDeDatosValidos( Integer.parseInt(fila),Integer.parseInt(columna),Integer.parseInt(numero)) ;
 	}
+	*/
+	
 	/* 
 	 * Verifica que los datos esten bien dentro del rango para que la grilla no se rompa
 	 */
@@ -105,10 +111,12 @@ public class Juego {
 			return false;
 		}
 	}
+	
+	/*
 	private boolean verificacionDeDatosValidos(int fila,int columna,int numero) {
 		return this._grilla.verificacionIngresos(fila,columna,numero);
 	}
-
+*/
 	public int obtenerResultadosSolucion(String fila_o_columna, int indice) {
 		try {
 			return _grilla.obtenerResultadoSolucion(fila_o_columna, indice);
