@@ -89,7 +89,7 @@ public class VentanaRecord extends JFrame {
 	private void actualizarTabla() {
 		DefaultTableModel model = new DefaultTableModel();
 
-		model.addColumn("Puestp");
+		model.addColumn("Puesto");
 		model.addColumn("Nombre");
 		model.addColumn("Tiempo");
 

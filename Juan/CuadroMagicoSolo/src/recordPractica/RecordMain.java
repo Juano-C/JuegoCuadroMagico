@@ -20,8 +20,8 @@ public class RecordMain
         RecordPrueba.agregarElemento(tmap, 9, "Data8");
         RecordPrueba.agregarElemento(tmap, 10, "Data9");
 
+        
         RecordPrueba.agregarElemento(tmap, 11, "Data10");
-        RecordPrueba.agregarElemento(tmap,  1, "Data11");
 
         /*
          * RecordPrueba.agregarElemento(tmap, 1, "Data0");
