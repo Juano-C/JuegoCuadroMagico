@@ -107,7 +107,7 @@ public class VentanaInGame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				Controlador.reproducirClick();
 				Controlador.abrirVentana(Controlador.getVentanaMain(),Controlador.getVentanaInGame());
 				frenarTodo();
 

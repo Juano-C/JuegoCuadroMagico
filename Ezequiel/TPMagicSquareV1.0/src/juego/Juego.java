@@ -137,7 +137,7 @@ public class Juego {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			 centesimas_segundos ++;
-	            if(centesimas_segundos == 100)
+	            if(centesimas_segundos == 60)
 	            {
 	                segundos++;
 	                centesimas_segundos = 0;
@@ -151,7 +151,7 @@ public class Juego {
 				
 				
 				_textCronometro = (minutos<=9?"0":"")+minutos+":"+(segundos <= 9?"0":"")+segundos+":"+(centesimas_segundos <=9?"0":"")+centesimas_segundos;
-				try {Thread.sleep(10);} catch (InterruptedException e1) {}
+//				try {Thread.sleep(5);} catch (InterruptedException e1) {}
 		}
 		
 	};

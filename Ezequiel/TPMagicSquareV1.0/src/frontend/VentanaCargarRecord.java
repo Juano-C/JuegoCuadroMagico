@@ -77,7 +77,9 @@ public class VentanaCargarRecord extends  JFrame {
 				// Paso el nombre al archivo de txt
 				Controlador.cargarNombre(nombre.getText());
 				nombre.setText("");
+				record.setText("");
 				Controlador.abrirVentana(Controlador.getVentanaMain(), Controlador.getVentanaCargarRecord());
+				
 				Controlador.reproducirClick();
 			}
 		});
@@ -105,9 +107,12 @@ public class VentanaCargarRecord extends  JFrame {
 		/*
 		 * Cargo el tiempo
 		 */
-		record = fabricaInterfaz.crearLabelEstiloRecordCarga(195, 158, 200, 50,Controlador.getRecord());
-		record.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(record);
+		if(b == true) { // Solo cuando se llama a esta ventana me fijo el tiempo logrado
+			record = fabricaInterfaz.crearLabelEstiloRecordCarga(168, 158, 150, 50, "");
+			record.setText(Controlador.getRecord());
+			record.setAlignmentX(SwingConstants.CENTER);
+			contentPane.add(record);
+		}
 	}
 	
 }

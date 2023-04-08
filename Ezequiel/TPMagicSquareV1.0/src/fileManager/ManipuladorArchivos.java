@@ -30,7 +30,7 @@ public class ManipuladorArchivos {
 	public static Map<Integer, String> lineasDeText() {
 		Map<Integer, String> diccionario = new HashMap<Integer, String>();
 		ArrayList<String> lineas = (ArrayList<String>) leerArchivoTXT(_directorioArchivo);
-		for (int indice = 1; indice <= 18; indice++) {
+		for (int indice = 1; indice <= 10; indice++) {
 			try {
 				String linea = lineas.get(indice - 1);
 				diccionario.put(indice, linea);
@@ -121,7 +121,7 @@ public class ManipuladorArchivos {
 			
 			Integer puestoParada = null; // Donde se sobreescribio
 			String lineaAmover = null;	// La linea que hay que mover ya que se reemplazo
-			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18}; // Todas las posiciones en orden simplemente para leer mejor
+			Integer[] posiciones = new Integer[]{1,2,3,4,5,6,7,8,9,10}; // Todas las posiciones en orden simplemente para leer mejor
 			
 			// Recorro el map que representa la tabla de records..
 			for(Integer puesto: posiciones) {
@@ -223,7 +223,7 @@ public class ManipuladorArchivos {
 		if(tiempo == null) {
 			return false;
 		}
-		if(tiempoActual == null) {
+		if(tiempoActual == null || tiempoActual.isEmpty()) {
 			return true;
 		}
 		String[] tiempoAcolocar = tiempo.split(":");

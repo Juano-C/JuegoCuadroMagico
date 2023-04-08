@@ -109,8 +109,6 @@ public class Controlador {
 		_dificultad = dificultad;
 	}
 
-
-
 	public static Dificultad getDificultad() {
 		return _dificultad;
 	}
@@ -120,9 +118,7 @@ public class Controlador {
 	}
 	
 	public static void cargarNombre(String nombre) {
-		ManipuladorArchivos.escribirTiempo(_tiempoLogrado , nombre);
-		return ;
-		
+		ManipuladorArchivos.escribirTiempo(_tiempoLogrado , nombre);		
 	}
 
 	public static String getRecord() {

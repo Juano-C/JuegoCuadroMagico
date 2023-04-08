@@ -37,8 +37,8 @@ public class VentanaRecord extends JFrame {
 	}
 
 	private void initComponentes() {
-		JLabel lblNewLabel = fabricaInterfaz.crearLabelEstiloRecord(20, 11, 410, 37, "Puntajes");
-		getContentPane().add(lblNewLabel);
+//		JLabel lblNewLabel = fabricaInterfaz.crearLabelEstiloRecord(20, 11, 410, 37, "Puntajes");
+//		getContentPane().add(lblNewLabel);
 
 		lblNewLabel_1 = fabricaInterfaz.crearLabelEstiloRecord(20, 59, 96, 37, "Puesto");
 		getContentPane().add(lblNewLabel_1);
@@ -46,17 +46,18 @@ public class VentanaRecord extends JFrame {
 		lblNewLabel_2 = fabricaInterfaz.crearLabelEstiloRecord(142, 59, 144, 37, "Nombre");
 		getContentPane().add(lblNewLabel_2);
 
-		lblNewLabel_3 = fabricaInterfaz.crearLabelEstiloRecord(310, 59, 146, 37, "Puntaje");
+		lblNewLabel_3 = fabricaInterfaz.crearLabelEstiloRecord(310, 59, 146, 37, "Tiempo");
 		getContentPane().add(lblNewLabel_3);
 
 		/* ----------- CREACION DE LA TABLA DE RECORDS ----------- */
 		table = new JTable();
+		table.setRowHeight(29);
+		table.setShowGrid(false);
 		table.setRowSelectionAllowed(false);
 		table.setFont(new Font("Tahoma", Font.BOLD, 15));
 		table.setBackground(new Color(255, 255, 255));
 		table.setForeground(new Color(0, 0, 51));
 		table.setBounds(20, 107, 442, 294);
-		table.setShowGrid(false);
 		getContentPane().add(table);
 
 //		actualizarTabla();
