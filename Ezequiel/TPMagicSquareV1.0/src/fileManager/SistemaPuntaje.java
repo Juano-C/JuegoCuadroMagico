@@ -54,20 +54,20 @@ public class SistemaPuntaje {
 
 
 
-	public static void main(String[] args) {
-		
-		System.out.println( "Puntaje F: " + obtenerPuntaje("00:30:00", Dificultad.FACIL)  );
-		System.out.println( "Puntaje M: " + obtenerPuntaje("00:30:00", Dificultad.NORMAL)  );
-		System.out.println( "Puntaje D: " + obtenerPuntaje("00:30:00", Dificultad.DIFICIL)  );
-		System.out.println( "Puntaje F: " + obtenerPuntaje("01:10:00", Dificultad.FACIL)  );
-		System.out.println( "Puntaje M: " + obtenerPuntaje("01:10:00", Dificultad.NORMAL)  );
-		System.out.println( "Puntaje D: " + obtenerPuntaje("01:10:00", Dificultad.DIFICIL)  );
-		System.out.println( "Puntaje F: " + obtenerPuntaje("02:10:00", Dificultad.FACIL)  );
-		System.out.println( "Puntaje M: " + obtenerPuntaje("02:10:00", Dificultad.NORMAL)  );
-		System.out.println( "Puntaje D: " + obtenerPuntaje("02:10:00", Dificultad.DIFICIL)  );
-
-
-
-	}
+//	public static void main(String[] args) {
+//		
+//		System.out.println( "Puntaje F: " + obtenerPuntaje("00:30:00", Dificultad.FACIL)  );
+//		System.out.println( "Puntaje M: " + obtenerPuntaje("00:30:00", Dificultad.NORMAL)  );
+//		System.out.println( "Puntaje D: " + obtenerPuntaje("00:30:00", Dificultad.DIFICIL)  );
+//		System.out.println( "Puntaje F: " + obtenerPuntaje("01:10:00", Dificultad.FACIL)  );
+//		System.out.println( "Puntaje M: " + obtenerPuntaje("01:10:00", Dificultad.NORMAL)  );
+//		System.out.println( "Puntaje D: " + obtenerPuntaje("01:10:00", Dificultad.DIFICIL)  );
+//		System.out.println( "Puntaje F: " + obtenerPuntaje("02:10:00", Dificultad.FACIL)  );
+//		System.out.println( "Puntaje M: " + obtenerPuntaje("02:10:00", Dificultad.NORMAL)  );
+//		System.out.println( "Puntaje D: " + obtenerPuntaje("02:10:00", Dificultad.DIFICIL)  );
+//
+//
+//
+//	}
 
 }

@@ -377,15 +377,15 @@ public class ManipuladorArchivos {
 	}
 	
 	
-	public static void main(String[] args) {
-//		ManipuladorArchivos.escribirPuntaje("00:40:00", "pedrito", Dificultad.FACIL);
-//		ManipuladorArchivos.escribirPuntaje("00:20:00", "esteban", Dificultad.FACIL);
-//		ManipuladorArchivos.escribirPuntaje("00:20:00", "juan", Dificultad.FACIL);
-//		ManipuladorArchivos.escribirPuntaje("00:10:00", "ese", Dificultad.FACIL);
-//		ManipuladorArchivos.escribirPuntaje("00:50:00", "pedrito", Dificultad.FACIL);
-//		
-//		imprimitTabla();
-	}
+//	public static void main(String[] args) {
+////		ManipuladorArchivos.escribirPuntaje("00:40:00", "pedrito", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:20:00", "esteban", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:20:00", "juan", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:10:00", "ese", Dificultad.FACIL);
+////		ManipuladorArchivos.escribirPuntaje("00:50:00", "pedrito", Dificultad.FACIL);
+////		
+////		imprimitTabla();
+//	}
 	
 	
 	

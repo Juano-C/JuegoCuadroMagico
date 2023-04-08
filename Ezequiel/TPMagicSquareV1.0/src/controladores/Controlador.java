@@ -118,7 +118,8 @@ public class Controlador {
 	}
 	
 	public static void cargarNombre(String nombre) {
-		ManipuladorArchivos.escribirTiempo(_tiempoLogrado , nombre);		
+//		ManipuladorArchivos.escribirTiempo(_tiempoLogrado , nombre);	
+		ManipuladorArchivos.escribirPuntaje(_tiempoLogrado, nombre, _dificultad);
 	}
 
 	public static String getRecord() {
