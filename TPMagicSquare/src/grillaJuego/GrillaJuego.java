@@ -279,14 +279,8 @@ public class GrillaJuego {
 	/*
 	 * Generamos un numero aleatorio entre el min y max
 	 */
-	private int numeroAleatorio(int min, int max) {
-
-		if (seed != null) {
-
-			// r.setSeed(seed);
-
-		}
-
+	private int numeroAleatorio(int min, int max)
+	{
 		return min + r.nextInt(max-min);
 	}
 

@@ -16,9 +16,6 @@ import disenio.IconoCerrarVentana;
 @SuppressWarnings("serial")
 public class fabricaInterfaz extends JFrame {
 
-	
-	
-	
 	public static void setVentana(JFrame ventana,String titulo,int x,int y,int ancho,int alto) {
 		
 		ventana.setTitle(titulo);

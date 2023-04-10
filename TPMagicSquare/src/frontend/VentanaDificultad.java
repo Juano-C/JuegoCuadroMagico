@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 public class VentanaDificultad extends JFrame {
 
     public VentanaDificultad() {
-        // Tamanios
+
         super();
         setUndecorated(true);
         setTitle("Cuadro Magico");
@@ -49,10 +49,11 @@ public class VentanaDificultad extends JFrame {
         btnFacil.setBounds(52, 100, 114, 34);
         btnFacil.addMouseListener(new DisenioBoton(btnFacil));
         contentPane.add(btnFacil);
-        btnFacil.addActionListener(new ActionListener() {
-			
+        btnFacil.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				Controlador.setearDificultad(Dificultad.FACIL);
 			}
 		});
@@ -67,10 +68,11 @@ public class VentanaDificultad extends JFrame {
         btnMedio.setBounds(52, 188, 114, 34);
         btnMedio.addMouseListener(new DisenioBoton(btnMedio));
         contentPane.add(btnMedio);
-        btnMedio.addActionListener(new ActionListener() {
-			
+        btnMedio.addActionListener(new ActionListener()
+        {			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				Controlador.setearDificultad(Dificultad.NORMAL);
 			}
 		});
@@ -85,10 +87,11 @@ public class VentanaDificultad extends JFrame {
         btnDificil.setBounds(52, 276, 114, 34);
         btnDificil.addMouseListener(new DisenioBoton(btnDificil));
         contentPane.add(btnDificil);
-        btnDificil.addActionListener(new ActionListener() {
-			
+        btnDificil.addActionListener(new ActionListener()
+        {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				Controlador.setearDificultad(Dificultad.DIFICIL);
 			}
 		});
@@ -97,7 +100,8 @@ public class VentanaDificultad extends JFrame {
         JButton btnSalir = new JButton("Salir");
         btnSalir.setFocusable(false);
         btnSalir.setBackground(new Color(255, 255, 255));
-        btnSalir.addMouseListener(new MouseAdapter() {
+        btnSalir.addMouseListener(new MouseAdapter()
+        {
             @Override
             public void mouseClicked(MouseEvent e)
             {
@@ -112,12 +116,12 @@ public class VentanaDificultad extends JFrame {
         JButton btnAtras = new JButton("Atras");
         btnAtras.setFocusable(false);
         btnAtras.setBackground(new Color(255, 255, 255));
-        btnAtras.addActionListener(new ActionListener() {
+        btnAtras.addActionListener(new ActionListener()
+        {
             public void actionPerformed(ActionEvent e)
             {
                Controlador.abrirVentanaMain();
             }
-            
         });
         btnAtras.setFont(new Font("Serif", Font.PLAIN, 15));
         btnAtras.setBounds(10, 460, 85, 29);
@@ -141,6 +145,7 @@ public class VentanaDificultad extends JFrame {
         lblGrillaDex_1.setFont(new Font("Serif", Font.PLAIN, 20));
         lblGrillaDex_1.setBounds(223, 276, 281, 27);
         contentPane.add(lblGrillaDex_1);
+        //-----------------------------------------------------------
         
         JLabel iconoXcerrar = new JLabel("X");
         iconoXcerrar.setOpaque(true);
@@ -150,34 +155,35 @@ public class VentanaDificultad extends JFrame {
         iconoXcerrar.setBackground(new Color(0, 0, 51));
         iconoXcerrar.setBounds(545, 0, 39, 34);
         contentPane.add(iconoXcerrar);
-		// Cerrar ventana
-		iconoXcerrar.addMouseListener(new MouseAdapter() {
+		iconoXcerrar.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e)
+			{
 				iconoXcerrar.setBackground(Color.red);
 				iconoXcerrar.setForeground(Color.white);
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) {
+			public void mouseExited(MouseEvent e)
+			{
 				iconoXcerrar.setBackground(new Color(0, 0, 51));
 				iconoXcerrar.setForeground(new Color(255, 255, 255));
 			}
 
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mousePressed(MouseEvent e)
+			{
 				iconoXcerrar.setBackground(Color.lightGray);
 				iconoXcerrar.setForeground(Color.white);
 			}
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+			{
 				System.exit(0);
 			}
 		});
-        
-        
-        //------------------------------------------------------
     }
 
 }

@@ -10,9 +10,6 @@ import javax.swing.SwingConstants;
 
 public class IconoCerrarVentana extends JLabel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8319491395429590318L;
 
 	public IconoCerrarVentana() {

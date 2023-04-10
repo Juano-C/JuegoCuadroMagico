@@ -4,8 +4,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-
-//Creo que hay que poner metodos en privado
 public class DatosRecord
 {
 	private static int tamanioMap=18; //cantidad de records que vamos a guardar

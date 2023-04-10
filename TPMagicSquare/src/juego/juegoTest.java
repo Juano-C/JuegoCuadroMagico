@@ -8,9 +8,6 @@ import juego.Juego.Dificultad;
 
 public class juegoTest {
 
-	
-	
-
 	@Test
 	public void iniciarJuego() {
 		Juego juego=new Juego(Dificultad.FACIL);
@@ -36,6 +33,4 @@ public class juegoTest {
 		assertFalse(juego.parar());
 	}
 	
-
-
 }

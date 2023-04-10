@@ -24,7 +24,8 @@ import disenio.IconoCerrarVentana;
 import juego.Juego;
 
 @SuppressWarnings("serial")
-public class VentanaInGame extends JFrame {
+public class VentanaInGame extends JFrame
+{
 
 	private JPanel contentPane;
 	private JButton iniciar;
@@ -40,7 +41,8 @@ public class VentanaInGame extends JFrame {
 	private static int TAMANIO = 4;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
-	public VentanaInGame() {
+	public VentanaInGame()
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 650);
 		setLocationRelativeTo(null);
@@ -99,58 +101,54 @@ public class VentanaInGame extends JFrame {
 
 		// --------------boton Volver
 		JButton botonVolver = fabricaInterfaz.crearBoton("Volver", 5, 600, 123, 27);
-
 		botonVolver.setHorizontalAlignment(SwingConstants.CENTER);
 		fabricaInterfaz.cambiarTamanioFuente(botonVolver, 20);
 		botonVolver.addActionListener(new ActionListener() {
-
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
+			public void actionPerformed(ActionEvent e)
+			{
 				Controlador.abrirVentana(Controlador.getVentanaMain(),Controlador.getVentanaInGame());
 				frenarTodo();
-
 			}
 		});
-
 		botonVolver.addMouseListener(new DisenioBoton(botonVolver));
 		getContentPane().add(botonVolver);
-
 	}
 
-	private void crearGrilla(int tamanio) {
-		// Si la grilla no es nula tengo que remover la anterior
-		if (Grilla != null) {
+	private void crearGrilla(int tamanio)
+	{
+		if (Grilla != null)
 			contentPane.remove(Grilla);
-		}
+
 		matriz = new JTextField[tamanio][tamanio];
 		Grilla = new JPanel();
-		Grilla.setVisible(false); // Evito que se vea
+		Grilla.setVisible(false);
 		Grilla.setOpaque(false);
 		Grilla.setBounds(10, 64, 780, 507);
 		contentPane.add(Grilla);
 		Grilla.setLayout(new GridLayout(tamanio, tamanio, 20, 20));
 
-		for (int i = 0; i < tamanio; i++) {
-			for (int j = 0; j < tamanio; j++) {
+		for (int i = 0; i < tamanio; i++)
+		{
+			for (int j = 0; j < tamanio; j++)
+			{
 				JTextField celda = new JTextField();
-				celda.setColumns(10); // No se que hace lo puso window builder
+				celda.setColumns(10);
 				celda.setFont(new Font("Helvetica", Font.BOLD, 30));
 				celda.setHorizontalAlignment(SwingConstants.CENTER);
 
-				if (i == tamanio - 1 && j == tamanio - 1) {
-					// Estoy en la esquina derecha inferior. No la quiero mostrar
+				if (i == tamanio - 1 && j == tamanio - 1)
 					celda.setVisible(false);
-				} else if (i == tamanio - 1 || j == tamanio - 1) {
-					// Las ultima fla y la ultima columna se pintan en rojo.
+				
+				else if (i == tamanio - 1 || j == tamanio - 1)
+				{
 					celda.setBackground(Color.RED);
 					celda.setForeground(Color.WHITE);
 					celda.setEditable(false);
-				} else {
-					// Si no son las ultimas les agrego interaccion
-					celda.addKeyListener(new AccionesCelda(celda, i, j));
 				}
+				
+				else
+					celda.addKeyListener(new AccionesCelda(celda, i, j));
 
 				matriz[i][j] = celda;
 				Grilla.add(celda);
@@ -158,13 +156,14 @@ public class VentanaInGame extends JFrame {
 		}
 	}
 
-	// Usar celda en ves de JTextField;
 	@SuppressWarnings({ "unused" })
-	private class Celda extends JTextField {
+	private class Celda extends JTextField
+	{
 
 		Tupla _posicion;
 
-		public Celda(int x, int y) {
+		public Celda(int x, int y)
+		{
 			_posicion = new Tupla(x, y);
 		}
 
@@ -178,43 +177,39 @@ public class VentanaInGame extends JFrame {
 
 	}
 
-	private class Tupla {
+	private class Tupla
+	{
 		private int _x, _y;
 
-		public Tupla(int x, int y) {
+		public Tupla(int x, int y)
+		{
 			_x = x;
 			_y = y;
 		}
 
 		@SuppressWarnings("unused")
-		public int getX() {
+		public int getX()
+		{
 			return _x;
 		}
 
 		@SuppressWarnings("unused")
-		public int getY() {
+		public int getY()
+		{
 			return _y;
 		}
 	}
 
-	private class AccionesCelda implements KeyListener {
-		/*
-		 * Celda _celda; public accionesCelda(Celda celda){}
-		 * 
-		 * 
-		 */
+	private class AccionesCelda implements KeyListener
+	{
+
 		JTextField _celda;
 		int _fila;
 		int _columna;
 
-		/**
-		 * Sirve para identificar la celda
-		 * 
-		 * @param celda
-		 * @param fila
-		 * @param columna
-		 */
-		public AccionesCelda(JTextField celda, int fila, int columna) {
+		//Sirve para identificar la celda
+		public AccionesCelda(JTextField celda, int fila, int columna)
+		{
 			super();
 			if (celda != null) {
 				_celda = celda;
@@ -229,9 +224,9 @@ public class VentanaInGame extends JFrame {
 		public void keyTyped(KeyEvent e) {
 			int key = e.getKeyChar();
 			boolean esNumero = (key >= 49) && (key <= 57);
-			if (!esNumero || _celda.getText().length() > 0) {
+			
+			if (!esNumero || _celda.getText().length() > 0)
 				e.consume();
-			}
 		}
 
 		@Override
@@ -239,20 +234,24 @@ public class VentanaInGame extends JFrame {
 		}
 
 		@Override
-		public void keyReleased(KeyEvent e) {
+		public void keyReleased(KeyEvent e)
+		{
 			// Al soltar la tecla se ejecuta este evento.
-			if (__juego__ != null) {
-				if (_celda.getText().length() != 0) {
+			if (__juego__ != null)
+			{
+				if (_celda.getText().length() != 0)
+				{
 					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, Integer.valueOf(_celda.getText()));
-					System.out.println("Se ingreso el numero " + _celda.getText() + " en la posicion (" + _fila + ","
-							+ _columna + ").");
-				} else {
-					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, 0);
+					System.out.println("Se ingreso el numero " + _celda.getText() + " en la posicion (" + _fila + ","+ _columna + ").");
 				}
+				
+				else
+					__juego__.ingresoNumeroEnGrillaJuego(_fila, _columna, 0);
 
 				cambiarEstadosCasillas();
 
-				if (__juego__.gano()) {
+				if (__juego__.gano())
+				{
 					frenarTodo();
 					jugadorGano();
 				}
@@ -288,7 +287,7 @@ public class VentanaInGame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Vacio la Grilla
+
 			vaciarGrilla();
 
 			// Inicia la instancia de Juego. Creo la grilla logica.
@@ -316,7 +315,8 @@ public class VentanaInGame extends JFrame {
 			actualizarTiempo.start();
 		}
 
-		private void deshabilitar() {
+		private void deshabilitar()
+		{
 			iniciar.setBackground(new Color(0, 0, 51));
 			iniciar.setForeground(new Color(255, 255, 255));
 			iniciar.setEnabled(false);
@@ -342,9 +342,7 @@ public class VentanaInGame extends JFrame {
 					}
 				}
 			}
-
 		}
-
 	}
 
 	private class AccionesRendirse implements ActionListener {
@@ -404,13 +402,12 @@ public class VentanaInGame extends JFrame {
 	}
 
 	private void jugadorGano() {
-		//JOptionPane.showMessageDialog(getContentPane(), "Usted a ganado.");
+
 		iniciar.setEnabled(true);
 		rendirse.setEnabled(false);
 		//Aca agrego para haer que se vaya a la ventana para meter los records 
 		setVisible(false);
 		Controlador.setearTiempoLogrado(__juego__.getTiempo());
-//		System.out.println(__juego__.getTiempo());
 		Controlador.abrirVentana(Controlador.getVentanaCargarRecord(), Controlador.getVentanaInGame());
 	}
 
