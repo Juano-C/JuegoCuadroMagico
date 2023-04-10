@@ -76,19 +76,7 @@ public class Juego {
 	public boolean gano() { 
 		return _grilla.estaBienMatriz();
 	}
-	
-	/*
-	 * Ese metodo se va porque no sirve 
-	 
-	
-	public boolean verificacionDeDatosValidos(String fila,String columna,String numero) {
-		if(!(verificacionDeConversion(fila)&&verificacionDeConversion(columna)&&verificacionDeConversion(numero))) {
-			return false;
-		}
-		return verificacionDeDatosValidos( Integer.parseInt(fila),Integer.parseInt(columna),Integer.parseInt(numero)) ;
-	}
-	*/
-	
+
 	/* 
 	 * Verifica que los datos esten bien dentro del rango para que la grilla no se rompa
 	 */
@@ -113,11 +101,7 @@ public class Juego {
 		}
 	}
 	
-	/*
-	private boolean verificacionDeDatosValidos(int fila,int columna,int numero) {
-		return this._grilla.verificacionIngresos(fila,columna,numero);
-	}
-*/
+
 	public int obtenerResultadosSolucion(String fila_o_columna, int indice) {
 		try {
 			return _grilla.obtenerResultadoSolucion(fila_o_columna, indice);
@@ -173,17 +157,4 @@ public class Juego {
 		return _grilla.getTamanio();
 	}
 
-//	public static void main(String[] args) {
-//		Juego game = new Juego(5);
-//		game.iniciar();
-//		while(true) {
-//			System.out.println(game.getTiempo());
-//			try {
-//				Thread.sleep(20);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 }

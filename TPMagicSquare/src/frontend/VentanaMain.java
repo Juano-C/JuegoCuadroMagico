@@ -29,16 +29,7 @@ public class VentanaMain extends JFrame
     private JButton btnSalir;
     private JButton btnMuteSoundMusic;
     private JLabel lblAutors;
-    
-    /*
-     * Ejecuta la app.
-     */
-	public static void main(String[] args) {
-		Controlador.abrirVentanaMain();
-		
-	}
 
-    //-------------------Create the frame.
     public VentanaMain()
     {
     	setUndecorated(true);
@@ -50,47 +41,28 @@ public class VentanaMain extends JFrame
 
         //-------------------Boton comenzar
 		JButton btnComenzar = fabricaInterfaz.crearBoton("Comenzar",162, 61, 159, 46);
-    	
-        /*
-         * Hace que si el boton comenzar es apretado se va a la pagina comenzar
-         */
         btnComenzar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 Controlador.abrirVentana(Controlador.getVentanaInGame(), Controlador.getVentanaMain());                
             }
-        });        
-        
-        /*
-         * Hace que cambie el color del boton comenzar
-         */
-        
+        });
         btnComenzar.addMouseListener(new DisenioBoton(btnComenzar));
-        /*
-         * agrega el boton comenzar al panel
-         */
         contentPane.add(btnComenzar);
 
         //-------------------Boton dificultad
         btnDificultad = fabricaInterfaz.crearBoton("Dificultad",162, 133, 159, 46);
         btnDificultad.addMouseListener(new DisenioBoton(btnDificultad));
-        
-        /*
-         * Hace que si el boton dificultad es apretado se va a la pagina comenzar
-         */
         btnDificultad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-       		
                 Controlador.abrirVentana(Controlador.getVentanaDificultad(), Controlador.getVentanaMain());                
             }
         });
-        
         contentPane.add(btnDificultad);
 
         //-------------------Boton Reglas
         btnReglas = fabricaInterfaz.crearBoton("Reglas", 162, 202, 159, 46);
-        
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
@@ -108,21 +80,15 @@ public class VentanaMain extends JFrame
                         "(*) Una vez pulsado ENTER no se podr� modificar el valor del casillero.");
             }
         });
-        
         btnReglas.addMouseListener(new DisenioBoton(btnReglas));
         contentPane.add(btnReglas);
         
         //------------------boton records
         btnRecords = fabricaInterfaz.crearBoton("Records",162, 261, 159, 52);
-        		
-        		
         btnRecords.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
                 Controlador.abrirVentana(Controlador.getVentanaRecords(), Controlador.getVentanaMain());
-//				Controlador.abrirVentanaRecord();
-                
-
             }
         });	
         btnRecords.addMouseListener(new DisenioBoton(btnRecords));
@@ -137,15 +103,8 @@ public class VentanaMain extends JFrame
                 System.exit(0);
             }
         });
-        
         contentPane.add(btnSalir);
-        
-        
-        /*
-         * --------- Icono cerrar ventana ----------------
-         */
         JLabel iconoXcerrar = new IconoCerrarVentana();
-        
         getContentPane().add(iconoXcerrar);
         
         //-------------------autor/es
@@ -153,11 +112,7 @@ public class VentanaMain extends JFrame
         lblAutors.setForeground(new Color(255, 255, 255));
         lblAutors.setBounds(10, 425, 141, 14);
         contentPane.add(lblAutors);
-        
-        
-        //-------------------boton de musica 
-        btnMuteSoundMusic = fabricaInterfaz.crearBotonMusica(456, 406, 34, 33);
-        
+        btnMuteSoundMusic = fabricaInterfaz.crearBotonMusica(456, 406, 34, 33);    
         btnMuteSoundMusic.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -167,10 +122,7 @@ public class VentanaMain extends JFrame
         });
         
         contentPane.add(btnMuteSoundMusic);
-        
-        /*
-         * Musica del Juego
-         */
+
         Audios.musicaPlay();
     }
 
