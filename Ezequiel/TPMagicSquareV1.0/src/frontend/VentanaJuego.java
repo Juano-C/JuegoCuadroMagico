@@ -27,7 +27,7 @@ import disenio.IconoCerrarVentana;
 import juego.Juego;
 
 @SuppressWarnings("serial")
-public class VentanaInGame extends JFrame {
+public class VentanaJuego extends JFrame {
 
 	private JPanel contentPane;
 	private JButton iniciar;
@@ -43,7 +43,7 @@ public class VentanaInGame extends JFrame {
 	private static int TAMANIO = 4;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
-	public VentanaInGame() {
+	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 650);
 		setLocationRelativeTo(null);

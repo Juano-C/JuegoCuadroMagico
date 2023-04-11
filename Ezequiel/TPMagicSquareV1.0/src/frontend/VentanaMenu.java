@@ -19,7 +19,7 @@ import disenio.IconoCerrarVentana;
 import sonido.Audios;
 
 @SuppressWarnings("serial")
-public class VentanaMain extends JFrame
+public class VentanaMenu extends JFrame
 {
     private JPanel contentPane;
     private JFrame frmCuadroMagico;
@@ -31,7 +31,7 @@ public class VentanaMain extends JFrame
     private JLabel lblAutors;
 
     //-------------------Create the frame.
-    public VentanaMain()
+    public VentanaMenu()
     {
     	setUndecorated(true);
     	

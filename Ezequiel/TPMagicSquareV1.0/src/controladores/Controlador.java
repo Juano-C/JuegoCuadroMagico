@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 import fileManager.ManipuladorArchivos;
 import frontend.VentanaCargarRecord;
 import frontend.VentanaDificultad;
-import frontend.VentanaInGame;
-import frontend.VentanaMain;
+import frontend.VentanaJuego;
+import frontend.VentanaMenu;
 import frontend.VentanaRecord;
 import juego.Juego.Dificultad;
 import sonido.Audios;
@@ -19,9 +19,9 @@ import sonido.Audios;
  */
 public class Controlador {
 	
-	private static VentanaInGame _ventanaInGame = new VentanaInGame();
+	private static VentanaJuego _ventanaInGame = new VentanaJuego();
 	private static VentanaDificultad _ventanaDificultad = new VentanaDificultad();
-	private static VentanaMain _ventanaMain = new VentanaMain();
+	private static VentanaMenu _ventanaMain = new VentanaMenu();
 	private static VentanaRecord _ventanaRecords = new VentanaRecord();
 	private static VentanaCargarRecord _ventanaCargaRecord= new VentanaCargarRecord();
 	private static Dificultad _dificultad;
@@ -43,13 +43,13 @@ public class Controlador {
 	public static VentanaRecord getVentanaRecords() {
 		return _ventanaRecords;
 	}
-	public static VentanaInGame getVentanaInGame() {
+	public static VentanaJuego getVentanaInGame() {
 		return _ventanaInGame;
 	}
 	public static VentanaDificultad getVentanaDificultad() {
 		return _ventanaDificultad;
 	}
-	public static VentanaMain getVentanaMain() {
+	public static VentanaMenu getVentanaMain() {
 		return _ventanaMain;
 	}
 	public static VentanaCargarRecord getVentanaCargarRecord() {
