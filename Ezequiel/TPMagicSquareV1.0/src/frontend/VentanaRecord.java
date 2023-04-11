@@ -10,12 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import archivos.ManipuladorArchivos;
 import controladores.Controlador;
 import disenio.DisenioBoton;
-import fileManager.ManipuladorArchivos;
+
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 

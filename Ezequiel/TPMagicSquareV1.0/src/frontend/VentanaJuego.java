@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -40,7 +39,6 @@ public class VentanaJuego extends JFrame {
 	private JLabel tiempoJuego;
 	private Thread actualizarTiempo;
 
-	private static int TAMANIO = 4;
 	private static Color COLORFONDO = new Color(0, 0, 51);
 
 	public VentanaJuego() {
@@ -101,7 +99,7 @@ public class VentanaJuego extends JFrame {
 		rendirse.addActionListener(new AccionesRendirse());
 
 		// --------------boton Volver
-		JButton botonVolver = fabricaInterfaz.crearBoton("Volver", 5, 600, 123, 27);
+		JButton botonVolver = fabricaInterfaz.crearBoton("Volver", 10, 600, 110, 30);
 
 		botonVolver.setHorizontalAlignment(SwingConstants.CENTER);
 		fabricaInterfaz.cambiarTamanioFuente(botonVolver, 20);
@@ -265,10 +263,9 @@ public class VentanaJuego extends JFrame {
 			// Inicia la instancia de Juego. Creo la grilla logica.
 			__juego__ = new Juego(Controlador.getDificultad());
 			__juego__.iniciar();
-			TAMANIO = __juego__.getTamanio();
 
 			// Creo la Grilla GUI para el usuario.
-			crearGrilla(TAMANIO + 1);
+			crearGrilla(__juego__.getTamanio() + 1);
 
 			// Carga a la grilla los valores de la instancia de Juego
 			cargarValoresAlaGrilla();
@@ -309,8 +306,8 @@ public class VentanaJuego extends JFrame {
 
 		private void vaciarGrilla() {
 			if (matriz != null) {
-				for (int fila = 0; fila < TAMANIO; fila++) {
-					for (int columna = 0; columna < TAMANIO; columna++) {
+				for (int fila = 0; fila < __juego__.getTamanio(); fila++) {
+					for (int columna = 0; columna < __juego__.getTamanio(); columna++) {
 						matriz[fila][columna].setText("");
 					}
 				}

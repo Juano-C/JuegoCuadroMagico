@@ -2,8 +2,15 @@ package frontend;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -11,17 +18,6 @@ import controladores.Controlador;
 import disenio.DisenioBoton;
 import disenio.IconoCerrarVentana;
 import juego.Juego.Dificultad;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseWheelListener;
-
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
@@ -55,7 +51,7 @@ public class VentanaDificultad extends JFrame {
         btnFacil.setBorderPainted(false);
         btnFacil.setBackground(new Color(0, 0, 51));
         btnFacil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        btnFacil.setBounds(52, 100, 114, 34);
+        btnFacil.setBounds(86, 142, 114, 34);
 //        btnFacil.addMouseListener(new Hover(btnFacil));
         contentPane.add(btnFacil);
         btnFacil.addActionListener(new ActionListener() {
@@ -75,7 +71,7 @@ public class VentanaDificultad extends JFrame {
         btnMedio.setBorderPainted(false);
         btnMedio.setForeground(new Color(0, 0, 51));
         btnMedio.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        btnMedio.setBounds(52, 188, 114, 34);
+        btnMedio.setBounds(86, 230, 114, 34);
 //        btnMedio.addMouseListener(new Hover(btnMedio));
         contentPane.add(btnMedio);
         btnMedio.addActionListener(new ActionListener() {
@@ -95,7 +91,7 @@ public class VentanaDificultad extends JFrame {
         btnDificil.setBorderPainted(false);
         btnDificil.setForeground(new Color(255, 255, 255));
         btnDificil.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        btnDificil.setBounds(52, 276, 114, 34);
+        btnDificil.setBounds(86, 318, 114, 34);
 //        btnDificil.addMouseListener(new Hover(btnDificil));
         contentPane.add(btnDificil);
         btnDificil.addActionListener(new ActionListener() {
@@ -128,28 +124,38 @@ public class VentanaDificultad extends JFrame {
         });
 
         //-----------Textos de dificultad de grilla--------------
-        JLabel lblNewLabel = new JLabel("Grilla de 3x3 con valores de 0 a 9");
+        JLabel lblNewLabel = new JLabel("Grilla de 3x3");
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblNewLabel.setBounds(223, 100, 271, 27);
+        lblNewLabel.setBounds(266, 149, 271, 27);
         contentPane.add(lblNewLabel);
 
-        JLabel lblGrillaDex = new JLabel("Grilla de 4x4 con valores de 0 a 20");
+        JLabel lblGrillaDex = new JLabel("Grilla de 4x4");
+        lblGrillaDex.setHorizontalAlignment(SwingConstants.CENTER);
         lblGrillaDex.setForeground(new Color(255, 255, 255));
         lblGrillaDex.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblGrillaDex.setBounds(223, 188, 281, 27);
+        lblGrillaDex.setBounds(266, 237, 281, 27);
         contentPane.add(lblGrillaDex);
         
-        JLabel lblGrillaDex_1 = new JLabel("Grilla de 5x5 con valores de 0 a 50");
+        JLabel lblGrillaDex_1 = new JLabel("Grilla de 5x5");
+        lblGrillaDex_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblGrillaDex_1.setForeground(new Color(255, 255, 255));
         lblGrillaDex_1.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblGrillaDex_1.setBounds(223, 276, 281, 27);
+        lblGrillaDex_1.setBounds(266, 325, 281, 27);
         contentPane.add(lblGrillaDex_1);
         
         //-----------Icono cerrar ventana
         JLabel iconoXcerrar = new IconoCerrarVentana();
         iconoXcerrar.setBounds(545, 0, 39, 34);
         contentPane.add(iconoXcerrar);
+        
+        JLabel explicacionDificultad = new JLabel("Los valores permitidos para cada dificutlad son de 1-9");
+        explicacionDificultad.setFont(new Font("Serif", Font.BOLD, 20));
+        explicacionDificultad.setForeground(Color.WHITE);
+        explicacionDificultad.setHorizontalAlignment(SwingConstants.CENTER);
+        explicacionDificultad.setBounds(26, 45, 521, 58);
+        contentPane.add(explicacionDificultad);
 	        
         //------------------------------------------------------
     }
@@ -197,7 +203,13 @@ public class VentanaDificultad extends JFrame {
     	boton.setForeground(new Color(0,0,51));
     }
     
-    private class Hover implements MouseListener{
+    /**
+     * La interaccion con los botones facil normal y dificil
+     * @author 
+     *
+     */
+    @SuppressWarnings("unused")
+	private class Hover implements MouseListener{
 
     	JButton boton;
     	

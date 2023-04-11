@@ -43,19 +43,19 @@ public class Audios {
 	}
 	
 	public static void sonidoClick() {
-		reproducir(_rutaSonidoClick, (float) 0.2, false);
+		reproducir(_rutaSonidoClick, (float) 0.1, false);
 	}
 	
 	public static void sonidoClickCelda() {
-		reproducir(_rutaSonidoClickCelda, (float) 0.2, false);
+		reproducir(_rutaSonidoClickCelda, (float) 0.1, false);
 	}
 
 	public static void sonidoPerdio() {
-		reproducir(_rutaSonidoPerdio, (float) 0.3, false);
+		reproducir(_rutaSonidoPerdio, (float) 0.1, false);
 	}
 	
 	public static void sonidoGano() {
-		reproducir(_rutaSonidoGano, (float) 1.0, false);
+		reproducir(_rutaSonidoGano, (float) 0.1, false);
 	}
 	
 	/**

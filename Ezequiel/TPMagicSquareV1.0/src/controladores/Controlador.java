@@ -1,7 +1,7 @@
 package controladores;
 import javax.swing.JFrame;
 
-import fileManager.ManipuladorArchivos;
+import archivos.ManipuladorArchivos;
 import frontend.VentanaCargarRecord;
 import frontend.VentanaDificultad;
 import frontend.VentanaJuego;
