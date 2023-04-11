@@ -66,18 +66,18 @@ public class VentanaMain extends JFrame
         btnReglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent mentajeReglas) {
                 JOptionPane.showMessageDialog(frmCuadroMagico, 
-                        "OBJETIVO: El objetivo del juego consiste en igualar los nï¿½meros presentados como RESULTADO \n" +
-                        "tanto en las filas como en las columnas. Para ello se deben completar los casilleros con nï¿½meros \n"+
-                        "mayores a 0 (cero), los cuales se irï¿½n sumando por fila y por columna. Una vez completada una fila\n"+
+                        "OBJETIVO: El objetivo del juego consiste en igualar los números presentados como RESULTADO \n" +
+                        "tanto en las filas como en las columnas. Para ello se deben completar los casilleros con números \n"+
+                        "mayores a 0 (cero), los cuales se irían sumando por fila y por columna. Una vez completada una fila\n"+
                         "y/o  columna,  si  la  suma  equivale  al  respectivo  \"RESULTADO\"  entonces dicha  fila/columna  se \n"+
-                        "considerarï¿½   como  acertada  y se marcarï¿½ en color VERDE,  si se pasa  del valor se  marcarï¿½   en \n"+
+                        "considerarían   como  acertada  y se marcaría en color VERDE,  si se pasa  del valor se  marcaría   en \n"+
                         "color ROJO.\n"+
                         "El juego se gana cuando todas las filas y todas las columnas equivalen al resultado.\r\n" + 
                         "\r\n" + 
-                        "INSERTAR Nï¿½MERO: Para insertar un nï¿½mero en el tablero hay que hacer un click sobre el casillero \n"+
-                        " a insertar, luego escribir el nï¿½mero deseado y dar ENTER (*).\r\n" + 
+                        "INSERTAR NÚMERO: Para insertar un nï¿½mero en el tablero hay que hacer un click sobre el casillero \n"+
+                        " a insertar, luego escribir el número deseado y dar ENTER (*).\r\n" + 
                         "\r\n" + 
-                        "(*) Una vez pulsado ENTER no se podrï¿½ modificar el valor del casillero.");
+                        "(*) Una vez pulsado ENTER no se podrían modificar el valor del casillero.");
             }
         });
         btnReglas.addMouseListener(new DisenioBoton(btnReglas));
